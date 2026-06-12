@@ -1280,10 +1280,12 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 /* =========================================================
    Monochrome portraits + bottom glass surface
    ========================================================= */
-.host img,
-.ad-portrait img,
 .about-stack .img-card img {
   filter: grayscale(1) contrast(1.06);
+}
+.host img,
+.ad-portrait img {
+  filter: contrast(1.03);
 }
 .host-info::before {
   content: "";
