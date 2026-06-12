@@ -219,6 +219,11 @@ main, header, footer { position: relative; z-index: 1; }
   line-height: 1;
   gap: 4px;
 }
+.brand-logo {
+  display: block;
+  width: clamp(104px, 12vw, 138px);
+  height: auto;
+}
 .brand .brand-name {
   font-family: var(--font-display);
   font-size: 16px;
@@ -1300,8 +1305,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 <header class="nav" id="nav">
   <div class="container">
     <a class="brand" href="#top" aria-label="Boots on the Ground · An Evening of Legacy">
-      <span class="brand-name">Boots on the Ground</span>
-      <span class="brand-tag">An Evening of Legacy</span>
+      <img class="brand-logo" src="images/boots-logo.png" alt="Boots on the Ground · An Evening of Legacy" width="349" height="161" decoding="async" fetchpriority="high" />
     </a>
 
     <nav aria-label="Primary">
