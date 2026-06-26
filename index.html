@@ -1355,7 +1355,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   -webkit-backface-visibility: hidden; backface-visibility: hidden;
   box-shadow: var(--shadow-card);
 }
-.mem-front .mem-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.04); transition: filter 2500ms ease-in-out; }
+.mem-front .mem-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.04); transition: filter 4000ms ease-in-out; }
 .mem-card:hover .mem-photo, .mem-card:focus-within .mem-photo { filter: grayscale(0) saturate(1.06) contrast(1.02); }
 @media (prefers-reduced-motion: reduce) { .mem-front .mem-photo { transition: filter 200ms linear; } }
 .mem-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,9,5,0) 42%, rgba(14,9,5,0.55) 72%, rgba(14,9,5,0.88) 100%); }
@@ -1388,16 +1388,12 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 .mem-back-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: var(--space-3); padding-bottom: var(--space-3); border-bottom: 1px solid var(--hairline); }
 .mem-back-head .mem-name { font-family: var(--font-display); font-size: 20px; line-height: 1.1; color: var(--warm-white); }
 .mem-quote {
-  position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden;
+  position: relative; flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--glow-border) transparent; padding-right: 10px;
   margin: 0;
   font-family: var(--font-body); font-style: italic; font-size: 16px; line-height: 1.5;
   color: rgba(245,237,224,0.88);
 }
-.mem-quote.is-clamped::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 72px;
-  background: linear-gradient(180deg, rgba(20,13,8,0), rgba(20,13,8,0.96));
-  pointer-events: none;
-}
+.mem-quote.is-clamped::after { display: none; }
 .mem-readmore {
   align-self: flex-start; margin-top: var(--space-4);
   font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
@@ -1408,6 +1404,10 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   transition: background 200ms ease;
 }
 .mem-readmore:hover { background: rgba(181,106,37,0.38); }
+.mem-readmore { display: none; }
+.mem-quote::-webkit-scrollbar { width: 6px; }
+.mem-quote::-webkit-scrollbar-thumb { background: var(--glow-border); border-radius: 999px; }
+.mem-quote::-webkit-scrollbar-track { background: transparent; }
 .mem-card.is-expanded { z-index: 6; }
 .mem-card.is-expanded .mem-card-inner { transform: none; height: auto; transition: none; }
 .mem-card.is-expanded .mem-front { display: none; }
