@@ -2389,7 +2389,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
     if (zoom) zoom.addEventListener('click', function (e) { e.stopPropagation(); openLightbox(card); });
     // expand -> reader
     var exp = card.querySelector('[data-action="expand"]');
-    if (exp) exp.addEventListener('click', function (e) { e.stopPropagation(); toggleExpand(card); });
+    if (exp) exp.addEventListener('click', function (e) { e.stopPropagation(); openReader(card); });
   });
   window.addEventListener('resize', function () { cards.forEach(measureClamp); });
 
