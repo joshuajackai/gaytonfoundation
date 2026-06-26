@@ -1296,6 +1296,150 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(26,24,20,0.95) 48%);
   mask-image: linear-gradient(180deg, transparent 0%, rgba(26,24,20,0.95) 48%);
 }
+
+/* =========================================================
+   07.45 — MEMORIES OF CHANDLER (flip-card marquee)
+   ========================================================= */
+.memories { overflow: hidden; }
+.mem-marquee {
+  position: relative;
+  margin-top: var(--space-10);
+  -webkit-mask-image: linear-gradient(90deg, transparent, rgba(0,0,0,1) 7%, rgba(0,0,0,1) 93%, transparent);
+          mask-image: linear-gradient(90deg, transparent, rgba(0,0,0,1) 7%, rgba(0,0,0,1) 93%, transparent);
+}
+.mem-track {
+  display: flex;
+  gap: var(--space-5);
+  width: max-content;
+  padding-inline: var(--gutter);
+  animation: mem-scroll 64s linear infinite;
+  will-change: transform;
+}
+.mem-track.is-paused { animation-play-state: paused; }
+.mem-marquee:hover .mem-track,
+.mem-marquee:focus-within .mem-track { animation-play-state: paused; }
+@keyframes mem-scroll { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+
+.mem-card { flex: 0 0 auto; width: clamp(264px, 80vw, 300px); perspective: 1500px; }
+.mem-card-inner {
+  position: relative; width: 100%; height: 392px;
+  transform-style: preserve-3d;
+  transition: transform 640ms cubic-bezier(.2,.7,.2,1);
+}
+.mem-card.is-flipped .mem-card-inner { transform: rotateY(180deg); }
+.mem-face {
+  position: absolute; inset: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  background: var(--midnight);
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  box-shadow: var(--shadow-card);
+}
+.mem-front .mem-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.93) contrast(1.03); }
+.mem-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,9,5,0) 42%, rgba(14,9,5,0.55) 72%, rgba(14,9,5,0.88) 100%); }
+.mem-front-actions { position: absolute; top: 12px; right: 12px; display: flex; gap: 8px; z-index: 3; }
+.mem-front-name { position: absolute; left: 18px; right: 18px; bottom: 16px; z-index: 3; }
+.mem-front-name .mem-name { display: block; font-family: var(--font-display); font-size: 23px; line-height: 1.08; color: var(--warm-white); }
+.mem-front-name .mem-with { font-family: var(--font-ui); font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--text-secondary); }
+
+.mem-iconbtn {
+  width: 38px; height: 38px; flex: 0 0 auto;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--glass-dark);
+  border: 1px solid var(--hairline);
+  color: var(--warm-white);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+.mem-iconbtn:hover { background: rgba(181,106,37,0.32); border-color: var(--glow-border); transform: translateY(-1px); }
+.mem-iconbtn--sm { width: 32px; height: 32px; }
+.mem-iconbtn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.mem-iconbtn--sm svg { width: 15px; height: 15px; }
+
+.mem-back {
+  transform: rotateY(180deg);
+  display: flex; flex-direction: column;
+  padding: var(--space-6);
+  background: linear-gradient(165deg, rgba(181,106,37,0.12), rgba(63,69,54,0.18)), var(--midnight);
+}
+.mem-back-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: var(--space-3); padding-bottom: var(--space-3); border-bottom: 1px solid var(--hairline); }
+.mem-back-head .mem-name { font-family: var(--font-display); font-size: 20px; line-height: 1.1; color: var(--warm-white); }
+.mem-quote {
+  position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden;
+  margin: 0;
+  font-family: var(--font-body); font-style: italic; font-size: 16px; line-height: 1.5;
+  color: rgba(245,237,224,0.88);
+}
+.mem-quote.is-clamped::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 72px;
+  background: linear-gradient(180deg, rgba(20,13,8,0), rgba(20,13,8,0.96));
+  pointer-events: none;
+}
+.mem-readmore {
+  align-self: flex-start; margin-top: var(--space-4);
+  font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--warm-white);
+  background: rgba(181,106,37,0.24);
+  border: 1px solid var(--glow-border);
+  border-radius: 999px; padding: 9px 16px;
+  transition: background 200ms ease;
+}
+.mem-readmore:hover { background: rgba(181,106,37,0.38); }
+
+/* Overlays (lightbox + reader) */
+.mem-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  display: grid; place-items: center;
+  padding: clamp(16px, 4vw, 44px);
+  background: rgba(14,9,5,0.86);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  opacity: 0; visibility: hidden; transition: opacity 240ms ease, visibility 240ms ease;
+}
+.mem-overlay.is-open { opacity: 1; visibility: visible; }
+.mem-overlay__close { position: absolute; top: clamp(14px,3vw,22px); right: clamp(14px,3vw,22px); z-index: 2; }
+.mem-lightbox__fig { margin: 0; max-width: min(92vw, 880px); display: flex; flex-direction: column; align-items: center; }
+.mem-lightbox__img { width: 100%; height: auto; max-height: 82vh; object-fit: contain; border-radius: var(--radius-md); border: 1px solid var(--hairline); box-shadow: var(--shadow-card); background: var(--midnight); }
+.mem-lightbox__cap { margin-top: 14px; text-align: center; font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-secondary); }
+.mem-reader__panel {
+  position: relative;
+  width: min(92vw, 600px); max-height: 84vh;
+  display: flex; flex-direction: column;
+  background: linear-gradient(165deg, rgba(181,106,37,0.14), rgba(63,69,54,0.20)), var(--midnight);
+  border: 1px solid var(--glow-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow), var(--shadow-card);
+  padding: clamp(22px, 4vw, 38px);
+}
+.mem-reader__head { display: flex; align-items: center; gap: 14px; margin-bottom: var(--space-5); padding-right: 44px; }
+.mem-reader__thumb { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; border: 1px solid var(--hairline); flex: 0 0 auto; }
+.mem-reader__name { font-family: var(--font-display); font-size: 24px; line-height: 1.1; color: var(--warm-white); margin: 0; }
+.mem-reader__sub { font-family: var(--font-ui); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-secondary); margin: 4px 0 0; }
+.mem-reader__quote { overflow: auto; font-family: var(--font-body); font-style: italic; font-size: 18px; line-height: 1.62; color: rgba(245,237,224,0.92); padding-right: 10px; }
+.mem-reader__quote::-webkit-scrollbar { width: 8px; }
+.mem-reader__quote::-webkit-scrollbar-thumb { background: var(--glass-strong); border-radius: 999px; }
+
+@media (max-width: 560px) {
+  .mem-card { width: clamp(244px, 84vw, 280px); }
+  .mem-card-inner { height: 372px; }
+  .mem-front-name .mem-name { font-size: 21px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mem-track { animation: none; transform: none; }
+  .mem-marquee { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .mem-card { scroll-snap-align: center; }
+  .mem-card-inner { transition: none; }
+  .mem-overlay { transition: none; }
+}
+
+/* Board of Advisors: balance the row when card count is not a multiple of 4 */
+.advisors-grid { display: flex; flex-wrap: wrap; justify-content: center; }
+.advisors-grid > .advisor { flex: 0 1 calc((100% - 3 * var(--space-4)) / 4); }
+@media (max-width: 1000px) { .advisors-grid > .advisor { flex-basis: calc((100% - var(--space-4)) / 2); } }
+@media (max-width: 480px)  { .advisors-grid > .advisor { flex-basis: 100%; } }
+
 </style>
 </head>
 <body>
@@ -1436,6 +1580,129 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
         <div class="icon" aria-hidden="true">∞</div>
         <h3>The Legacy</h3>
         <p>An ongoing memorial to a friend, a son, a brother, a partner. The night writes the next chapter — your seat is part of it.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================
+     07.45 MEMORIES OF CHANDLER (flip-card marquee)
+     ========================= -->
+<section id="memories" class="memories" aria-labelledby="memories-heading">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">In His Memory</p>
+      <h2 id="memories-heading">The stories <em>they carry.</em></h2>
+      <p class="sub">Memories from the people who loved Chandler. Hover or tap to pause, flip a card to read it, or open any photo full size.</p>
+    </div>
+  </div>
+
+  <div class="mem-marquee reveal" data-mem-marquee>
+    <div class="mem-track" data-mem-track>
+      <article class="mem-card" data-name="Gene Crews" aria-label="Memory shared by Gene Crews">
+        <div class="mem-card-inner">
+          <!-- FRONT -->
+          <div class="mem-face mem-front">
+            <img class="mem-photo" src="images/memories/gene-crews.jpg" alt="Gene Crews with Chandler Walker Gayton" loading="lazy" decoding="async" />
+            <div class="mem-scrim" aria-hidden="true"></div>
+            <div class="mem-front-actions">
+              <button type="button" class="mem-iconbtn" data-action="zoom" aria-label="View the photo of Gene Crews and Chandler full size"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v4M15 4h4a1 1 0 0 1 1 1v4M9 20H5a1 1 0 0 1-1-1v-4M15 20h4a1 1 0 0 1 1-1v-4"/></svg></button>
+              <button type="button" class="mem-iconbtn" data-action="flip" aria-label="Flip card to read Gene Crews’s memory" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.3M21 4.5V9h-4.5"/></svg></button>
+            </div>
+            <div class="mem-front-name">
+              <span class="mem-name">Gene Crews</span>
+              <span class="mem-with">With Chandler</span>
+            </div>
+          </div>
+          <!-- BACK -->
+          <div class="mem-face mem-back">
+            <div class="mem-back-head">
+              <span class="mem-name">Gene Crews</span>
+              <button type="button" class="mem-iconbtn mem-iconbtn--sm" data-action="flip" aria-label="Flip card back to the photo" aria-pressed="true" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.3M21 4.5V9h-4.5"/></svg></button>
+            </div>
+            <p class="mem-quote" data-quote>The first time I took him to Comi Con. He could not stop smiling. I took him down to the Stars Wars exhibition and later to listen to Mark Hamil speak. Chandler didn't even care when I took him with me to see Sam Hueghan. And all those screaming women. He couldn't believe how loud it got for one man. Such a great day!</p>
+            <button type="button" class="mem-readmore" data-action="expand" hidden tabindex="-1">Read full memory</button>
+          </div>
+        </div>
+      </article>
+      <article class="mem-card" data-name="Terrell Pugh" aria-label="Memory shared by Terrell Pugh">
+        <div class="mem-card-inner">
+          <!-- FRONT -->
+          <div class="mem-face mem-front">
+            <img class="mem-photo" src="images/memories/terrell-pugh.jpg" alt="Terrell Pugh with Chandler Walker Gayton" loading="lazy" decoding="async" />
+            <div class="mem-scrim" aria-hidden="true"></div>
+            <div class="mem-front-actions">
+              <button type="button" class="mem-iconbtn" data-action="zoom" aria-label="View the photo of Terrell Pugh and Chandler full size"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v4M15 4h4a1 1 0 0 1 1 1v4M9 20H5a1 1 0 0 1-1-1v-4M15 20h4a1 1 0 0 1 1-1v-4"/></svg></button>
+              <button type="button" class="mem-iconbtn" data-action="flip" aria-label="Flip card to read Terrell Pugh’s memory" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.3M21 4.5V9h-4.5"/></svg></button>
+            </div>
+            <div class="mem-front-name">
+              <span class="mem-name">Terrell Pugh</span>
+              <span class="mem-with">With Chandler</span>
+            </div>
+          </div>
+          <!-- BACK -->
+          <div class="mem-face mem-back">
+            <div class="mem-back-head">
+              <span class="mem-name">Terrell Pugh</span>
+              <button type="button" class="mem-iconbtn mem-iconbtn--sm" data-action="flip" aria-label="Flip card back to the photo" aria-pressed="true" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.3M21 4.5V9h-4.5"/></svg></button>
+            </div>
+            <p class="mem-quote" data-quote>All the times we’d call each other an hour before Mariners 1st pitch, asking if the other wanted to attend the game. We’d meet up, have a celebratory beverage, then make our way to the stadium. As we watched the game, moving from section to section, viewpoint to viewpoint. Continuous banter was had about life, philosophy and general foolishness.</p>
+            <button type="button" class="mem-readmore" data-action="expand" hidden tabindex="-1">Read full memory</button>
+          </div>
+        </div>
+      </article>
+      <article class="mem-card" data-name="Chris Tolbert" aria-label="Memory shared by Chris Tolbert">
+        <div class="mem-card-inner">
+          <!-- FRONT -->
+          <div class="mem-face mem-front">
+            <img class="mem-photo" src="images/memories/chris-tolbert.jpg" alt="Chris Tolbert with Chandler Walker Gayton" loading="lazy" decoding="async" />
+            <div class="mem-scrim" aria-hidden="true"></div>
+            <div class="mem-front-actions">
+              <button type="button" class="mem-iconbtn" data-action="zoom" aria-label="View the photo of Chris Tolbert and Chandler full size"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v4M15 4h4a1 1 0 0 1 1 1v4M9 20H5a1 1 0 0 1-1-1v-4M15 20h4a1 1 0 0 1 1-1v-4"/></svg></button>
+              <button type="button" class="mem-iconbtn" data-action="flip" aria-label="Flip card to read Chris Tolbert’s memory" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.3M21 4.5V9h-4.5"/></svg></button>
+            </div>
+            <div class="mem-front-name">
+              <span class="mem-name">Chris Tolbert</span>
+              <span class="mem-with">With Chandler</span>
+            </div>
+          </div>
+          <!-- BACK -->
+          <div class="mem-face mem-back">
+            <div class="mem-back-head">
+              <span class="mem-name">Chris Tolbert</span>
+              <button type="button" class="mem-iconbtn mem-iconbtn--sm" data-action="flip" aria-label="Flip card back to the photo" aria-pressed="true" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.3M21 4.5V9h-4.5"/></svg></button>
+            </div>
+            <p class="mem-quote" data-quote>One of my favorite memories. CG flew up to MD on a whim to surprise me at my birthday gathering. He talked to me all week, even the morning of, just to throw me off. Walked through that door and this man on the grill outside cooking burgers, couldn’t believe it. He met so much of my family that day and I know they also felt the presence of someone truly selfless. Didn’t matter the distance or the timing, if it was for his people, he was there.</p>
+            <button type="button" class="mem-readmore" data-action="expand" hidden tabindex="-1">Read full memory</button>
+          </div>
+        </div>
+      </article>
+      <article class="mem-card" data-name="Joshua Jackai" aria-label="Memory shared by Joshua Jackai">
+        <div class="mem-card-inner">
+          <!-- FRONT -->
+          <div class="mem-face mem-front">
+            <img class="mem-photo" src="images/memories/joshua-jackai.jpg" alt="Joshua Jackai with Chandler Walker Gayton" loading="lazy" decoding="async" />
+            <div class="mem-scrim" aria-hidden="true"></div>
+            <div class="mem-front-actions">
+              <button type="button" class="mem-iconbtn" data-action="zoom" aria-label="View the photo of Joshua Jackai and Chandler full size"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4H5a1 1 0 0 0-1 1v4M15 4h4a1 1 0 0 1 1 1v4M9 20H5a1 1 0 0 1-1-1v-4M15 20h4a1 1 0 0 1 1-1v-4"/></svg></button>
+              <button type="button" class="mem-iconbtn" data-action="flip" aria-label="Flip card to read Joshua Jackai’s memory" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.3M21 4.5V9h-4.5"/></svg></button>
+            </div>
+            <div class="mem-front-name">
+              <span class="mem-name">Joshua Jackai</span>
+              <span class="mem-with">With Chandler</span>
+            </div>
+          </div>
+          <!-- BACK -->
+          <div class="mem-face mem-back">
+            <div class="mem-back-head">
+              <span class="mem-name">Joshua Jackai</span>
+              <button type="button" class="mem-iconbtn mem-iconbtn--sm" data-action="flip" aria-label="Flip card back to the photo" aria-pressed="true" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.3M21 4.5V9h-4.5"/></svg></button>
+            </div>
+            <p class="mem-quote" data-quote>One of my greatest memories of Chandler is one year invited me down for Easter or Thanksgiving. I don’t recall, but Carmen Chandler’s mother would always prepare for a soul food some soul food that is such a treasure for somebody like me as an American living in Vancouver Canada one of the things that she would often prepare for us was fried chicken, wings, homemade, and catfish and there was a part of Carmen’s tradition is to always send us back with goodie bags of food leftovers of our favorite food that should cook whatever your favorite food was. She would make sure to sit home just the status that’s how they stay and she had created a Chandler but also created leftover Bag for me and when we were leaving and taking to the airport, Carmen had a place all of the leftovers into It’s a one big bag that had me challenge food and when Chandler was getting ready to drop me off at the airport, we were in the car to separate the food and then he started to give me some of the bags of catfish some of the bags of chicken and he realized that he was giving me a little too much and he was like wait no you can’t have all that I want that to myself. I’m thinking a slow selfish boy we get his mom every day cracked or a few times here can you just let me have the bigger share so we’re driving and I’m just thinking about this in my mind and then pull up to the exit of the freeway and there’s a homeless person and the person who was asking for money or any deal that Chandler roll down his window and ask a person are you hungry when the person said yes Chan grabbed the whole bag and gave it to the homeless person and I thought to myself damn I should’ve told all the thing I love about that memory is that Chandler had a very giving heart Chandler knew that the Americans that lived in Vancouver that went to us a few didn’t have family for the holidays and he always made sure to invite us to have dinner with his family and Carmen and Carver and Meat his family. There wasn’t a year that went by the challenge didn’t invite me over for Easter or Thanksgiving. I’ll always love and cherish for that.</p>
+            <button type="button" class="mem-readmore" data-action="expand" hidden tabindex="-1">Read full memory</button>
+          </div>
+        </div>
       </article>
     </div>
   </div>
@@ -1653,6 +1920,14 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
         <div class="ad-portrait" style="border: 1px solid var(--hairline); overflow: hidden;"><img src="images/renee-rabb-martin.jpg" alt="Renee Rabb-Martin" loading="lazy" style="width:100%; height:100%; object-fit:cover;" /></div>
         <div class="ad-meta">
           <p class="ad-name">Renee Rabb-Martin</p>
+          <p class="ad-role">Board of Advisors</p>
+        </div>
+      </article>
+
+      <article class="advisor" aria-label="Roxie Floyd, Board of Advisors">
+        <div class="ad-portrait" style="border: 1px solid var(--hairline); overflow: hidden;"><img src="images/roxie-floyd.jpg" alt="Roxie Floyd" loading="lazy" style="width:100%; height:100%; object-fit:cover;" /></div>
+        <div class="ad-meta">
+          <p class="ad-name">Roxie Floyd</p>
           <p class="ad-role">Board of Advisors</p>
         </div>
       </article>
@@ -1887,6 +2162,31 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   </div>
 </footer>
 
+<!-- Memories: photo lightbox -->
+<div class="mem-overlay mem-lightbox" id="memLightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button type="button" class="mem-iconbtn mem-overlay__close" data-close aria-label="Close photo viewer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <figure class="mem-lightbox__fig">
+    <img class="mem-lightbox__img" id="memLightboxImg" src="" alt="" />
+    <figcaption class="mem-lightbox__cap" id="memLightboxCap"></figcaption>
+  </figure>
+</div>
+
+<!-- Memories: full-text reader (the frame extended) -->
+<div class="mem-overlay mem-reader" id="memReader" role="dialog" aria-modal="true" aria-labelledby="memReaderName" hidden>
+  <div class="mem-reader__panel">
+    <button type="button" class="mem-iconbtn mem-overlay__close" data-close aria-label="Close memory"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="mem-reader__head">
+      <img class="mem-reader__thumb" id="memReaderThumb" src="" alt="" />
+      <div>
+        <p class="mem-reader__name" id="memReaderName"></p>
+        <p class="mem-reader__sub">A memory of Chandler</p>
+      </div>
+    </div>
+    <div class="mem-reader__quote" id="memReaderQuote" tabindex="0"></div>
+  </div>
+</div>
+
+
 <script>
 (function () {
   // ---- Sticky nav with blur on scroll ----
@@ -1952,5 +2252,169 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   });
 })();
 </script>
+
+<script>
+/* Memories of Chandler: flip cards, marquee pause, photo lightbox, full-text reader */
+(function () {
+  var section = document.getElementById('memories');
+  if (!section) return;
+  var marquee = section.querySelector('[data-mem-marquee]');
+  var track = section.querySelector('[data-mem-track]');
+  if (!marquee || !track) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Seamless loop: clone the set once (skip when motion is reduced)
+  if (!reduce) {
+    Array.prototype.slice.call(track.children).forEach(function (card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute('data-clone', '');
+      track.appendChild(clone);
+    });
+  }
+  var cards = Array.prototype.slice.call(track.querySelectorAll('.mem-card'));
+
+  // ---- pause-state controller ----
+  var st = { hover: false, focus: false, touch: false, overlay: false, flips: 0 };
+  function sync() {
+    track.classList.toggle('is-paused', st.hover || st.focus || st.touch || st.overlay || st.flips > 0);
+  }
+  marquee.addEventListener('mouseenter', function () { st.hover = true; sync(); });
+  marquee.addEventListener('mouseleave', function () { st.hover = false; sync(); });
+  marquee.addEventListener('focusin', function () { st.focus = true; sync(); });
+  marquee.addEventListener('focusout', function () { st.focus = false; sync(); });
+  marquee.addEventListener('touchstart', function () { st.touch = true; sync(); }, { passive: true });
+  marquee.addEventListener('touchend', function () { setTimeout(function () { st.touch = false; sync(); }, 2600); }, { passive: true });
+
+  function setFaceFocusable(card, flipped) {
+    var front = card.querySelectorAll('.mem-front [data-action], .mem-front .mem-iconbtn');
+    var back = card.querySelectorAll('.mem-back [data-action], .mem-back .mem-iconbtn');
+    front.forEach(function (b) { b.tabIndex = flipped ? -1 : 0; });
+    back.forEach(function (b) { b.tabIndex = flipped ? 0 : -1; });
+    var rm = card.querySelector('.mem-readmore');
+    if (rm && !rm.hidden) rm.tabIndex = flipped ? 0 : -1;
+    card.querySelectorAll('[data-action="flip"]').forEach(function (b) { b.setAttribute('aria-pressed', String(flipped)); });
+  }
+
+  function measureClamp(card) {
+    var q = card.querySelector('.mem-quote');
+    var more = card.querySelector('.mem-readmore');
+    if (!q) return;
+    var over = (q.scrollHeight - q.clientHeight) > 4;
+    q.classList.toggle('is-clamped', over);
+    if (more) { more.hidden = !over; if (!over) more.tabIndex = -1; }
+  }
+
+  function flip(card, to) {
+    var now = card.classList.contains('is-flipped');
+    var next = (to === undefined) ? !now : to;
+    if (next === now) return;
+    card.classList.toggle('is-flipped', next);
+    st.flips += next ? 1 : -1;
+    if (st.flips < 0) st.flips = 0;
+    setFaceFocusable(card, next);
+    if (next) measureClamp(card);
+    sync();
+  }
+
+  cards.forEach(function (card) {
+    measureClamp(card);
+    setFaceFocusable(card, false);
+    // flip buttons
+    card.querySelectorAll('[data-action="flip"]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) { e.stopPropagation(); flip(card); });
+    });
+    // click front body (not a button) flips to back
+    var front = card.querySelector('.mem-front');
+    if (front) front.addEventListener('click', function (e) {
+      if (e.target.closest('.mem-iconbtn')) return;
+      flip(card, true);
+    });
+    // zoom -> lightbox
+    var zoom = card.querySelector('[data-action="zoom"]');
+    if (zoom) zoom.addEventListener('click', function (e) { e.stopPropagation(); openLightbox(card); });
+    // expand -> reader
+    var exp = card.querySelector('[data-action="expand"]');
+    if (exp) exp.addEventListener('click', function (e) { e.stopPropagation(); openReader(card); });
+  });
+  window.addEventListener('resize', function () { cards.forEach(measureClamp); });
+
+  // ---- overlays ----
+  var lightbox = document.getElementById('memLightbox');
+  var lbImg = document.getElementById('memLightboxImg');
+  var lbCap = document.getElementById('memLightboxCap');
+  var reader = document.getElementById('memReader');
+  var rdThumb = document.getElementById('memReaderThumb');
+  var rdName = document.getElementById('memReaderName');
+  var rdQuote = document.getElementById('memReaderQuote');
+  var lastFocus = null;
+
+  function cardData(card) {
+    return {
+      name: card.getAttribute('data-name') || '',
+      img: card.querySelector('.mem-photo') ? card.querySelector('.mem-photo').getAttribute('src') : '',
+      alt: card.querySelector('.mem-photo') ? card.querySelector('.mem-photo').getAttribute('alt') : '',
+      quote: card.querySelector('.mem-quote') ? card.querySelector('.mem-quote').textContent : ''
+    };
+  }
+  function openOverlay(el) {
+    lastFocus = document.activeElement;
+    el.hidden = false;
+    // force reflow so transition runs
+    void el.offsetWidth;
+    el.classList.add('is-open');
+    st.overlay = true; sync();
+    document.body.style.overflow = 'hidden';
+    var c = el.querySelector('[data-close]'); if (c) c.focus();
+    document.addEventListener('keydown', onKey);
+  }
+  function closeOverlay(el) {
+    el.classList.remove('is-open');
+    st.overlay = false; sync();
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKey);
+    var done = function () { el.hidden = true; el.removeEventListener('transitionend', done); };
+    el.addEventListener('transitionend', done);
+    setTimeout(function () { if (!el.classList.contains('is-open')) el.hidden = true; }, 320);
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function currentOpen() {
+    if (lightbox.classList.contains('is-open')) return lightbox;
+    if (reader.classList.contains('is-open')) return reader;
+    return null;
+  }
+  function onKey(e) {
+    var el = currentOpen(); if (!el) return;
+    if (e.key === 'Escape') { closeOverlay(el); return; }
+    if (e.key === 'Tab') {
+      var f = el.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
+      f = Array.prototype.filter.call(f, function (n) { return n.offsetParent !== null || n === document.activeElement; });
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  }
+  function openLightbox(card) {
+    var d = cardData(card);
+    lbImg.src = d.img; lbImg.alt = d.alt;
+    lbCap.textContent = d.name + ' with Chandler';
+    openOverlay(lightbox);
+  }
+  function openReader(card) {
+    var d = cardData(card);
+    rdThumb.src = d.img; rdThumb.alt = d.alt;
+    rdName.textContent = d.name;
+    rdQuote.textContent = d.quote;
+    rdQuote.scrollTop = 0;
+    openOverlay(reader);
+  }
+  [lightbox, reader].forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      if (e.target === el || e.target.closest('[data-close]')) closeOverlay(el);
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
