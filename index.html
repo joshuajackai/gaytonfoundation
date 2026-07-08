@@ -341,22 +341,22 @@ section {
   color: var(--ink);
 }
 .hero-bg {
-  position: absolute; inset: -60px;
+  position: absolute; inset: -80px;
   background: url('/images/cwg-hero-color.jpg') center/cover no-repeat;
-  filter: blur(36px) saturate(0.75) brightness(1.18);
+  filter: blur(48px) saturate(0.55) brightness(1.22);
   z-index: 0;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 .hero-bg::after {
-  content: ""; position: absolute; inset: 60px;
+  content: ""; position: absolute; inset: 80px;
   background:
-    linear-gradient(180deg, rgba(245,237,224,0.35) 0%, rgba(245,237,224,0.62) 55%, rgba(245,237,224,0.92) 100%),
-    radial-gradient(1000px 700px at 22% 18%, rgba(255,255,255,0.55), transparent 60%);
-  backdrop-filter: blur(22px) saturate(1.15);
-  -webkit-backdrop-filter: blur(22px) saturate(1.15);
+    linear-gradient(180deg, rgba(245,237,224,0.70) 0%, rgba(245,237,224,0.78) 50%, rgba(245,237,224,0.94) 100%),
+    radial-gradient(1200px 800px at 22% 18%, rgba(255,255,255,0.35), transparent 60%);
+  backdrop-filter: blur(30px) saturate(1.05);
+  -webkit-backdrop-filter: blur(30px) saturate(1.05);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.55),
-    inset 0 -1px 0 rgba(63,69,54,0.08);
+    inset 0 1px 0 rgba(255,255,255,0.65),
+    inset 0 -1px 0 rgba(63,69,54,0.10);
 }
 .hero .container { position: relative; z-index: 2; }
 .hero-eyebrow {
@@ -381,7 +381,7 @@ section {
   margin-bottom: var(--space-6);
   color: var(--ink);
 }
-.hero h1 em { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--saddle); display: block; }
+.hero h1 em { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--midnight); display: block; }
 .hero-sub {
   font-family: var(--font-body); font-weight: 300;
   font-size: clamp(20px, 2vw, 26px);
