@@ -260,6 +260,13 @@ em, i { font-style: italic; color: var(--text-secondary); }
   transition: color 200ms ease;
 }
 .nav-links a:hover { color: var(--warm-white); }
+.nav-cta-mobile { display: none; }
+@media (max-width: 880px) {
+  .nav-cta-mobile { display: block; margin-top: var(--space-3); }
+  .nav-cta-mobile .btn {
+    padding: 14px 24px; font-size: 12px;
+  }
+}
 .nav-toggle {
   display: none;
   width: 40px; height: 40px; min-width: 44px; min-height: 44px;
@@ -753,6 +760,7 @@ section {
         <li><a href="#initiatives">Initiatives</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#support">Support</a></li>
+        <li class="nav-cta-mobile"><a href="/event/" class="btn btn-primary btn-sm">Attend the Event <span aria-hidden="true">→</span></a></li>
       </ul>
     </nav>
 
