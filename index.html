@@ -232,8 +232,9 @@ em, i { font-style: italic; color: var(--text-secondary); }
 .nav {
   position: fixed;
   top: var(--space-5);
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin-inline: auto;
   z-index: 40;
   width: min(calc(100% - var(--gutter) * 2), var(--container));
   height: 72px;
