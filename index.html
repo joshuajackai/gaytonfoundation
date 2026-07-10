@@ -297,8 +297,10 @@ em, i { font-style: italic; color: var(--text-secondary); }
   .btn-cta-mobile-hide { display: none; }
   .nav.is-open .nav-links {
     display: flex; flex-direction: column; gap: var(--space-4);
-    position: fixed;
-    inset: calc(var(--space-5) + 72px + var(--space-3)) var(--gutter) auto var(--gutter);
+    position: absolute;
+    top: calc(72px + var(--space-3));
+    left: 0;
+    right: 0;
     background: rgba(14,9,5, 0.94);
     backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
     padding: var(--space-8) var(--space-6); align-items: flex-start;
