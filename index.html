@@ -230,17 +230,25 @@ em, i { font-style: italic; color: var(--text-secondary); }
    NAVIGATION
    ========================================================= */
 .nav {
-  position: fixed; inset: 0 0 auto 0; z-index: 40;
+  position: fixed;
+  top: var(--space-5);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  width: min(calc(100% - var(--gutter) * 2), var(--container));
   height: 72px;
-  background: rgba(14,9,5, 0.55);
+  border-radius: var(--radius-xl);
+  background: var(--glass-dark);
+  border: 1px solid var(--hairline);
+  box-shadow: var(--shadow-glass);
   backdrop-filter: blur(20px) saturate(1.1);
   -webkit-backdrop-filter: blur(20px) saturate(1.1);
-  transition: background 220ms ease, border-color 220ms ease;
-  border-bottom: 1px solid rgba(190,154,113, 0.10);
+  transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 .nav.is-scrolled {
-  background: rgba(14,9,5, 0.82);
-  border-bottom-color: var(--hairline);
+  background: rgba(14,9,5, 0.88);
+  border-color: var(--glow-border);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(245,237,224,0.08);
 }
 .nav .container {
   height: 100%;
@@ -288,11 +296,14 @@ em, i { font-style: italic; color: var(--text-secondary); }
   .btn-cta-mobile-hide { display: none; }
   .nav.is-open .nav-links {
     display: flex; flex-direction: column; gap: var(--space-4);
-    position: fixed; inset: 72px 0 auto 0;
+    position: fixed;
+    inset: calc(var(--space-5) + 72px + var(--space-3)) var(--gutter) auto var(--gutter);
     background: rgba(14,9,5, 0.94);
     backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-    padding: var(--space-8) var(--gutter); align-items: flex-start;
-    border-bottom: 1px solid var(--hairline);
+    padding: var(--space-8) var(--space-6); align-items: flex-start;
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-glass);
   }
   .nav.is-open .nav-links a { font-size: 14px; padding: 10px 0; }
   .nav.is-open .nav-links li { width: 100%; }
@@ -341,8 +352,35 @@ section {
   color: var(--ink);
 }
 .hero .container { position: relative; z-index: 2; }
+.hero-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-10);
+}
+.hero-header h1 {
+  flex: 1 1 440px;
+}
+.hero-header-side {
+  flex: 1 1 300px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.hero-header-side .hero-sub {
+  text-align: right;
+  max-width: 42ch;
+  margin: 0 0 var(--space-6);
+}
+.hero-header-side .hero-cta { justify-content: flex-end; }
+@media (max-width: 760px) {
+  .hero-header-side { align-items: flex-start; }
+  .hero-header-side .hero-sub { text-align: left; max-width: 56ch; }
+  .hero-header-side .hero-cta { justify-content: flex-start; }
+}
 .hero-visual {
-  position: relative;
   margin-top: var(--space-12);
 }
 .hero-image {
@@ -351,13 +389,6 @@ section {
   display: block;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-card);
-}
-.hero-explore {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%, 50%);
-  z-index: 3;
 }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -795,25 +826,25 @@ section {
      ========================================================= -->
 <section class="hero section--dark" aria-label="Hero">
   <div class="container">
-    <div class="hero-content reveal">
+    <div class="hero-header reveal">
       <h1>Honoring a life. <em>Extending his causes.</em></h1>
-      <p class="hero-sub">The Chandler Walker Gayton Foundation supports the community, housing, education, and elder-care work that mattered most to Chandler. We fund the people already doing that work well.</p>
-      <div class="hero-cta">
-        <a href="/event/" class="btn btn-primary btn-lg">Attend the Event <span aria-hidden="true">→</span></a>
-        <a href="#mission" class="btn btn-ghost btn-lg">Our Mission</a>
+      <div class="hero-header-side">
+        <p class="hero-sub">The Chandler Walker Gayton Foundation supports the community, housing, education, and elder-care work that mattered most to Chandler. We fund the people already doing that work well.</p>
+        <div class="hero-cta">
+          <a href="/event/" class="btn btn-primary btn-lg">Attend the Event <span aria-hidden="true">→</span></a>
+          <a href="#mission" class="btn btn-ghost btn-lg">Our Mission</a>
+        </div>
       </div>
-      <div class="hero-meta">
-        <div><strong>Chandler Walker Gayton</strong><br />1990 to 2024</div>
-        <div><strong>Founding Event</strong><br />Boots on the Ground · Dec 5, 2026</div>
-        <div><strong>Status</strong><br />501(c)(3) pending</div>
-      </div>
+    </div>
+
+    <div class="hero-meta reveal">
+      <div><strong>Chandler Walker Gayton</strong><br />1990 to 2024</div>
+      <div><strong>Founding Event</strong><br />Boots on the Ground · Dec 5, 2026</div>
+      <div><strong>Status</strong><br />501(c)(3) pending</div>
     </div>
 
     <div class="hero-visual reveal">
       <img class="hero-image" src="/images/cwg-hero-color.jpg" alt="Chandler Walker Gayton pictured across the chapters of his life, from youth football to graduation to a formal portrait to a cowboy hat, set against a monochrome heavenly gate backdrop" width="2400" height="893" loading="eager" fetchpriority="high" decoding="async" />
-      <div class="hero-explore">
-        <a href="#mission" class="btn btn-primary btn-sm">Explore <span aria-hidden="true">↓</span></a>
-      </div>
     </div>
   </div>
 </section>
