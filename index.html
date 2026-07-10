@@ -346,31 +346,78 @@ section {
    ========================================================= */
 .hero {
   min-height: 100vh; min-height: 100svh;
-  display: grid; grid-template-columns: 1fr;
-  align-items: center;
-  padding: 128px 0 var(--space-16);
   position: relative;
   overflow: hidden;
-  background: var(--paper);
-  color: var(--ink);
+  padding: 128px 0 var(--space-16);
+  background: var(--base);
+  color: var(--warm-white);
 }
+.hero-glow {
+  position: absolute;
+  top: -18%;
+  width: min(56vw, 640px);
+  height: min(56vw, 640px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(181,106,37,0.38) 0%, rgba(181,106,37,0.14) 45%, transparent 72%);
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-glow--left { left: -16%; }
+.hero-glow--right { right: -16%; }
 .hero .container { position: relative; z-index: 2; }
-.hero h1 {
-  font-size: clamp(30px, 4.4vw, 54px);
-  white-space: normal;
-  margin-bottom: 0;
-  color: var(--ink);
+.hero-copy {
+  text-align: center;
+  max-width: 760px;
+  margin-inline: auto;
 }
-.hero h1 em { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--midnight); }
+.hero h1 {
+  font-size: clamp(32px, 5vw, 66px);
+  margin-bottom: var(--space-6);
+  color: var(--warm-white);
+}
+.hero h1 em { font-family: var(--font-display); font-style: italic; font-weight: 400; color: var(--champagne); }
+.hero-sub {
+  font-family: var(--font-body); font-weight: 300;
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 56ch;
+  margin: 0 auto var(--space-8);
+}
+.hero-cta { display: flex; gap: var(--space-4); flex-wrap: wrap; justify-content: center; }
+.hero-meta {
+  margin-top: var(--space-10);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-8);
+  font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+}
+.hero-meta strong { color: var(--warm-white); font-weight: 700; }
 .hero-visual {
+  position: relative;
   margin-top: var(--space-12);
+  max-height: min(56vh, 560px);
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
 }
 .hero-image {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-card);
+}
+.hero-fade {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 45%;
+  background: linear-gradient(to bottom, rgba(14,9,5,0) 0%, var(--base) 88%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+@media (max-width: 640px) {
+  .hero-glow { width: 80vw; height: 80vw; }
 }
 
 /* =========================================================
@@ -760,11 +807,26 @@ section {
      HERO (dark)
      ========================================================= -->
 <section class="hero section--dark" aria-label="Hero">
+  <div class="hero-glow hero-glow--left" aria-hidden="true"></div>
+  <div class="hero-glow hero-glow--right" aria-hidden="true"></div>
   <div class="container">
-    <h1 class="reveal">Honoring a life. <em>Extending his causes.</em></h1>
+    <div class="hero-copy reveal">
+      <h1>Honoring a life. <em>Extending his causes.</em></h1>
+      <p class="hero-sub">The Chandler Walker Gayton Foundation supports the community, housing, education, and elder-care work that mattered most to Chandler. We fund the people already doing that work well.</p>
+      <div class="hero-cta">
+        <a href="/event/" class="btn btn-primary btn-lg">Attend the Event <span aria-hidden="true">→</span></a>
+        <a href="#mission" class="btn btn-ghost btn-lg">Our Mission</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>Chandler Walker Gayton</strong><br />1990 to 2024</div>
+        <div><strong>Founding Event</strong><br />Boots on the Ground · Dec 5, 2026</div>
+        <div><strong>Status</strong><br />501(c)(3) pending</div>
+      </div>
+    </div>
 
     <div class="hero-visual reveal">
       <img class="hero-image" src="/images/cwg-hero-color.jpg" alt="Chandler Walker Gayton pictured across the chapters of his life, from youth football to graduation to a formal portrait to a cowboy hat, set against a monochrome heavenly gate backdrop" width="2400" height="893" loading="eager" fetchpriority="high" decoding="async" />
+      <div class="hero-fade" aria-hidden="true"></div>
     </div>
   </div>
 </section>
