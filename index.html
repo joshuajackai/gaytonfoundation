@@ -805,6 +805,25 @@ section {
   #cwgHero .cwgh-portrait { animation: none; }
   #cwgHero .cwgh-copy { animation: none; }
 }
+
+/* ============ HERO MOBILE+TABLET ADJUSTMENTS (2026-07-12) ============
+   Applies to mobile + tablet only (matches existing #cwgHero breakpoint of 980px).
+   Desktop (>980px) is untouched.
+   1) Sliding background photos +20% (scale on <img> inside .cwgh-card, preserves object-fit)
+   2) Hero headline font-size +16% (overrides .hero h1 clamp min/mid)
+   3) Hero text block shifted 12% lower (padding-top on .cwgh-copy = 12vh)
+*/
+@media (max-width: 980px) {
+  /* 1) Background photos scaled 20% larger; card overflow:hidden clips edges, object-fit:cover preserved */
+  #cwgHero .cwgh-card img { transform: scale(1.2); transform-origin: center center; }
+
+  /* 2) Hero headline +16% (32*1.16=37.12 -> 37, 5vw*1.16=5.8vw, 66*1.16=76.56 -> 77) */
+  #cwgHero.hero h1 { font-size: clamp(37px, 5.8vw, 77px); }
+
+  /* 3) Text block shifted down 12% of hero height via padding-top */
+  #cwgHero .cwgh-copy { padding-top: 12vh; }
+}
+
 </style>
 </head>
 
