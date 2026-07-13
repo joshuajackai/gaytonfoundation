@@ -1305,6 +1305,7 @@ section {
   function metrics() {
     var sw = stage.clientWidth, sh = stage.clientHeight;
     spacing = Math.max(100, Math.min(300, sw * 0.16));
+    if (sw < 980) spacing *= 1.2;
     Wc = Math.round(spacing * 0.84); Hc = Math.round(Wc * 0.667);
     W = N * spacing; cx = sw / 2; cy = sh * (sw < 640 ? 0.35 : 0.38);
     autoSpeed = Math.max(0.25, sw * 0.00035);
