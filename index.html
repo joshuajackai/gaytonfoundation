@@ -12,7 +12,7 @@
 
 <link rel="canonical" href="https://gaytonfoundation.pages.dev/" />
 <link rel="icon" href="/images/cwgf-logo.svg" type="image/svg+xml" />
-<link rel="preload" as="image" href="/images/cwg-hero-color.jpg" fetchpriority="high" />
+<link rel="preload" as="image" href="/images/hero/chandler-hero-cutout.webp" fetchpriority="high" />
 
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Chandler Walker Gayton Foundation" />
@@ -768,6 +768,29 @@ section {
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ============ NEW 3D COVERFLOW HERO (scoped to #cwgHero) ============ */
+#cwgHero { padding: 0; }
+#cwgHero .cwgh-stage { position: absolute; inset: 0; z-index: 1; overflow: hidden; cursor: grab; touch-action: pan-y; perspective: 1700px; perspective-origin: 50% 36%; }
+#cwgHero .cwgh-stage.grabbing { cursor: grabbing; }
+#cwgHero .cwgh-track { position: absolute; inset: 0; transform-style: preserve-3d; }
+#cwgHero .cwgh-card { position: absolute; top: 0; left: 0; border-radius: 14px; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.5); transform-origin: center center; will-change: transform, opacity, filter; background: var(--midnight); }
+#cwgHero .cwgh-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+#cwgHero .cwgh-card::after { content: ""; position: absolute; inset: 0; border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(190,154,113,0.22); background: linear-gradient(180deg, rgba(14,9,5,0) 52%, rgba(14,9,5,0.4) 100%); pointer-events: none; }
+#cwgHero .cwgh-shadow { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(64% 74% at 8% 50%, rgba(14,9,5,0.9), rgba(14,9,5,0) 70%); }
+#cwgHero .cwgh-light { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(56% 64% at 69% 32%, rgba(181,106,37,0.46), rgba(181,106,37,0) 68%); }
+#cwgHero .cwgh-portrait { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); height: 86%; width: auto; max-width: none; z-index: 5; pointer-events: none; -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 80%, transparent 98%); mask-image: linear-gradient(to bottom, #000 0%, #000 80%, transparent 98%); filter: drop-shadow(-22px 20px 40px rgba(0,0,0,0.55)); }
+#cwgHero .cwgh-fade { position: absolute; inset: 0; z-index: 4; pointer-events: none; background: linear-gradient(to bottom, rgba(14,9,5,0) 46%, rgba(14,9,5,0.55) 72%, var(--base) 92%); }
+#cwgHero .cwgh-copy { position: absolute; left: 0; right: 0; bottom: 0; z-index: 6; padding: 0 var(--gutter) clamp(40px, 7vh, 84px); }
+#cwgHero .cwgh-copy .hero-copy { position: relative; }
+#cwgHero .hero-sub { max-width: none; }
+#cwgHero .cwgh-l2 { white-space: nowrap; }
+@media (max-width: 720px) {
+  #cwgHero .cwgh-shadow { background: radial-gradient(72% 60% at 8% 46%, rgba(14,9,5,0.9), rgba(14,9,5,0) 72%); }
+  #cwgHero .cwgh-light { background: radial-gradient(70% 56% at 74% 28%, rgba(181,106,37,0.46), rgba(181,106,37,0) 70%); }
+  #cwgHero .cwgh-portrait { height: 72%; }
+  #cwgHero .cwgh-l2 { white-space: normal; }
+}
 </style>
 </head>
 
@@ -804,27 +827,31 @@ section {
 <!-- =========================================================
      HERO (dark)
      ========================================================= -->
-<section class="hero section--dark" aria-label="Hero">
-  <div class="hero-glow hero-glow--left" aria-hidden="true"></div>
-  <div class="hero-glow hero-glow--right" aria-hidden="true"></div>
-  <div class="container">
-    <div class="hero-copy reveal">
-      <h1>Honoring a life. <em>Extending his causes.</em></h1>
-      <p class="hero-sub">The Chandler Walker Gayton Foundation supports the community, housing, education, and elder-care work that mattered most to Chandler. We fund the people already doing that work well.</p>
+<section class="hero section--dark" id="cwgHero" aria-label="Hero">
+  <div class="cwgh-stage" id="cwghStage">
+    <div class="cwgh-track" id="cwghTrack">
+      <figure class="cwgh-card"><img src="/images/hero/hero-1.webp" alt="Chandler Walker Gayton on a Seattle rooftop overlooking the waterfront" loading="eager" decoding="async" /></figure>
+      <figure class="cwgh-card"><img src="/images/hero/hero-2.webp" alt="Chandler with friends at a waterfront celebration" loading="lazy" decoding="async" /></figure>
+      <figure class="cwgh-card"><img src="/images/hero/hero-3.webp" alt="Chandler with his mother, Carmen" loading="lazy" decoding="async" /></figure>
+      <figure class="cwgh-card"><img src="/images/hero/hero-4.webp" alt="Chandler and family at a Clemson football game" loading="lazy" decoding="async" /></figure>
+      <figure class="cwgh-card"><img src="/images/hero/hero-5.webp" alt="Chandler with friends on a waterfront deck" loading="lazy" decoding="async" /></figure>
+      <figure class="cwgh-card"><img src="/images/hero/hero-6.webp" alt="Chandler and his mother at the waterfront" loading="lazy" decoding="async" /></figure>
+      <figure class="cwgh-card"><img src="/images/hero/hero-7.webp" alt="Chandler with his parents at Christmas" loading="lazy" decoding="async" /></figure>
+      <figure class="cwgh-card"><img src="/images/hero/hero-8.webp" alt="Chandler with family on graduation day" loading="lazy" decoding="async" /></figure>
+    </div>
+    <div class="cwgh-shadow" aria-hidden="true"></div>
+    <div class="cwgh-light" aria-hidden="true"></div>
+    <img class="cwgh-portrait" src="/images/hero/chandler-hero-cutout.webp" alt="Black-and-white portrait of Chandler Walker Gayton" fetchpriority="high" decoding="async" />
+    <div class="cwgh-fade" aria-hidden="true"></div>
+  </div>
+  <div class="cwgh-copy">
+    <div class="hero-copy">
+      <h1>Honoring a life.<br /><em>Extending his causes.</em></h1>
+      <p class="hero-sub">A son, a friend, and a light to all who knew him.<br /><span class="cwgh-l2">We carry Chandler&rsquo;s legacy forward through the people and the causes he loved.</span></p>
       <div class="hero-cta">
-        <a href="/event/" class="btn btn-primary btn-lg">Attend the Event <span aria-hidden="true">→</span></a>
+        <a href="/event/" class="btn btn-primary btn-lg">Attend the Event <span aria-hidden="true">&rarr;</span></a>
         <a href="#mission" class="btn btn-ghost btn-lg">Our Mission</a>
       </div>
-      <div class="hero-meta">
-        <div><strong>Chandler Walker Gayton</strong><br />1990 to 2024</div>
-        <div><strong>Founding Event</strong><br />Boots on the Ground · Dec 5, 2026</div>
-        <div><strong>Status</strong><br />501(c)(3) pending</div>
-      </div>
-    </div>
-
-    <div class="hero-visual reveal">
-      <img class="hero-image" src="/images/cwg-hero-color.jpg" alt="Chandler Walker Gayton pictured across the chapters of his life, from youth football to graduation to a formal portrait to a cowboy hat, set against a monochrome heavenly gate backdrop" width="2400" height="893" loading="eager" fetchpriority="high" decoding="async" />
-      <div class="hero-fade" aria-hidden="true"></div>
     </div>
   </div>
 </section>
@@ -1236,5 +1263,61 @@ section {
 })();
 </script>
 
+<script>
+(function () {
+  var stage = document.getElementById('cwghStage');
+  if (!stage) return;
+  var track = document.getElementById('cwghTrack');
+  var cards = [].slice.call(track.children);
+  var N = cards.length;
+  var offset = 0, vel = 0, dragging = false, lastX = 0, hovering = false;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var spacing, Wc, Hc, W, cx, cy, autoSpeed;
+  function metrics() {
+    var sw = stage.clientWidth, sh = stage.clientHeight;
+    spacing = Math.max(150, Math.min(340, sw / 6));
+    Wc = Math.round(spacing * 0.82); Hc = Math.round(Wc * 0.667);
+    W = N * spacing; cx = sw / 2; cy = sh * 0.38;
+    autoSpeed = Math.max(0.28, sw * 0.00035);
+    cards.forEach(function (c) { c.style.width = Wc + 'px'; c.style.height = Hc + 'px'; });
+  }
+  function frame() {
+    if (!dragging) {
+      if (!reduce && !hovering) offset += autoSpeed;
+      else if (Math.abs(vel) > 0.02) { offset -= vel; vel *= 0.92; } else vel = 0;
+    }
+    offset = ((offset % W) + W) % W;
+    for (var i = 0; i < N; i++) {
+      var x = (((i * spacing - offset) % W) + W) % W;
+      var sx = x - spacing;
+      var dx = sx - cx, adx = Math.abs(dx);
+      var r = Math.max(-52, Math.min(52, -dx * 0.045));
+      var z = -adx * 0.34;
+      var sc = Math.max(0.72, 1.05 - adx / (cx * 1.7) * 0.42);
+      var op = Math.max(0.10, 1 - adx / (cx * 1.55) * 0.98);
+      var br = Math.max(0.42, 1 - adx / (cx * 2.1) * 0.6);
+      var bl = Math.min(2.6, adx / cx * 2.1);
+      var left = sx - Wc / 2, top = cy - Hc / 2;
+      var c = cards[i];
+      c.style.transform = 'translate3d(' + left.toFixed(1) + 'px,' + top.toFixed(1) + 'px,' + z.toFixed(1) + 'px) rotateY(' + r.toFixed(2) + 'deg) scale(' + sc.toFixed(3) + ')';
+      c.style.opacity = op.toFixed(3);
+      c.style.filter = 'brightness(' + br.toFixed(3) + ') blur(' + bl.toFixed(2) + 'px)';
+      c.style.zIndex = String(1000 - Math.round(adx));
+    }
+    requestAnimationFrame(frame);
+  }
+  function down(x) { dragging = true; lastX = x; vel = 0; stage.classList.add('grabbing'); }
+  function move(x) { if (!dragging) return; var dx = x - lastX; lastX = x; offset -= dx; vel = dx; }
+  function up() { dragging = false; stage.classList.remove('grabbing'); }
+  stage.addEventListener('pointerdown', function (e) { down(e.clientX); });
+  window.addEventListener('pointermove', function (e) { move(e.clientX); });
+  window.addEventListener('pointerup', up);
+  window.addEventListener('pointercancel', up);
+  stage.addEventListener('mouseenter', function () { hovering = true; });
+  stage.addEventListener('mouseleave', function () { hovering = false; });
+  window.addEventListener('resize', metrics);
+  metrics(); requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
