@@ -770,7 +770,7 @@ section {
 }
 
 /* ============ NEW 3D COVERFLOW HERO (scoped to #cwgHero) ============ */
-#cwgHero { padding: 0; }
+#cwgHero { padding: 0; --ph: clamp(360px, 72vh, 680px); }
 #cwgHero .cwgh-stage { position: absolute; inset: 0; z-index: 1; overflow: hidden; cursor: grab; touch-action: pan-y; perspective: 1500px; perspective-origin: 50% 38%; }
 #cwgHero .cwgh-stage.grabbing { cursor: grabbing; }
 #cwgHero .cwgh-track { position: absolute; inset: 0; transform-style: preserve-3d; animation: cwghFade 1.1s ease both; }
@@ -779,7 +779,7 @@ section {
 #cwgHero .cwgh-card::after { content: ""; position: absolute; inset: 0; border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(190,154,113,0.22); background: linear-gradient(180deg, rgba(14,9,5,0) 52%, rgba(14,9,5,0.4) 100%); pointer-events: none; }
 #cwgHero .cwgh-shadow { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(64% 74% at 8% 50%, rgba(14,9,5,0.9), rgba(14,9,5,0) 70%); }
 #cwgHero .cwgh-light { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: radial-gradient(56% 64% at 69% 32%, rgba(181,106,37,0.46), rgba(181,106,37,0) 68%); }
-#cwgHero .cwgh-portrait { position: absolute; left: 50%; bottom: 10%; height: clamp(360px, 72vh, 680px); width: auto; max-width: 90vw; z-index: 5; pointer-events: none; -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,0.28) 84%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,0.28) 84%, transparent 100%); filter: drop-shadow(-22px 20px 40px rgba(0,0,0,0.55)); transform: translateX(-50%); animation: cwghPortraitIn 1.15s cubic-bezier(0.2,0.7,0.2,1) both; }
+#cwgHero .cwgh-portrait { position: absolute; left: 50%; bottom: 10%; height: var(--ph); width: auto; max-width: 90vw; z-index: 5; pointer-events: none; -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,0.28) 84%, transparent 100%); mask-image: linear-gradient(to bottom, #000 0%, #000 60%, rgba(0,0,0,0.28) 84%, transparent 100%); filter: drop-shadow(-22px 20px 40px rgba(0,0,0,0.55)); transform: translateX(-50%); animation: cwghPortraitIn 1.15s cubic-bezier(0.2,0.7,0.2,1) both; }
 #cwgHero .cwgh-fade { position: absolute; inset: 0; z-index: 6; pointer-events: none; background: linear-gradient(to bottom, rgba(14,9,5,0) 52%, rgba(14,9,5,0.5) 66%, rgba(14,9,5,0.94) 78%, var(--base) 89%); }
 #cwgHero .cwgh-copy { position: absolute; left: 0; right: 0; bottom: 0; z-index: 7; padding: 0 var(--gutter) clamp(48px, 9vh, 104px); animation: cwghFadeUp 1.15s cubic-bezier(0.2,0.7,0.2,1) 0.18s both; }
 #cwgHero .cwgh-copy .hero-copy { position: relative; }
@@ -787,14 +787,18 @@ section {
 @keyframes cwghPortraitIn { from { opacity: 0; transform: translateX(-50%) translateY(26px) scale(0.972); } to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); } }
 @keyframes cwghFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
 @media (max-width: 980px) {
-  #cwgHero .cwgh-portrait { height: clamp(340px, 64vh, 620px); bottom: 8%; }
-  #cwgHero .cwgh-fade { background: linear-gradient(to bottom, rgba(14,9,5,0) 50%, rgba(14,9,5,0.55) 66%, rgba(14,9,5,0.95) 79%, var(--base) 90%); }
+  #cwgHero { --ph: clamp(320px, 58vh, 560px); }
+  #cwgHero .cwgh-portrait { bottom: auto; top: calc(48% - var(--ph) * 0.34 - 52px); }
+  #cwgHero .cwgh-copy { bottom: auto; top: calc(48% + var(--ph) * 0.34 - 52px); padding: 0 var(--gutter); }
+  #cwgHero .cwgh-fade { background: linear-gradient(to bottom, rgba(14,9,5,0) 50%, rgba(14,9,5,0.5) 64%, rgba(14,9,5,0.92) 78%, var(--base) 92%); }
 }
 @media (max-width: 640px) {
   #cwgHero .cwgh-shadow { background: radial-gradient(80% 60% at 10% 42%, rgba(14,9,5,0.9), rgba(14,9,5,0) 74%); }
   #cwgHero .cwgh-light { background: radial-gradient(80% 56% at 72% 24%, rgba(181,106,37,0.44), rgba(181,106,37,0) 72%); }
-  #cwgHero .cwgh-portrait { height: clamp(320px, 60vh, 540px); bottom: 6.5%; max-width: 94vw; }
-  #cwgHero .cwgh-fade { background: linear-gradient(to bottom, rgba(14,9,5,0) 46%, rgba(14,9,5,0.6) 62%, rgba(14,9,5,0.96) 76%, var(--base) 88%); }
+  #cwgHero { --ph: clamp(300px, 54vh, 480px); }
+  #cwgHero .cwgh-portrait { max-width: 94vw; top: calc(48% - var(--ph) * 0.34 - 46px); }
+  #cwgHero .cwgh-copy { top: calc(48% + var(--ph) * 0.34 - 46px); }
+  #cwgHero .cwgh-fade { background: linear-gradient(to bottom, rgba(14,9,5,0) 48%, rgba(14,9,5,0.5) 62%, rgba(14,9,5,0.94) 77%, var(--base) 90%); }
 }
 @media (prefers-reduced-motion: reduce) {
   #cwgHero .cwgh-track { animation: none; }
