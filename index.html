@@ -783,6 +783,8 @@ section {
 #cwgHero .cwgh-fade { position: absolute; inset: 0; z-index: 6; pointer-events: none; background: linear-gradient(to bottom, rgba(14,9,5,0) 52%, rgba(14,9,5,0.5) 66%, rgba(14,9,5,0.94) 78%, var(--base) 89%); }
 #cwgHero .cwgh-copy { position: absolute; left: 0; right: 0; bottom: 0; z-index: 7; padding: 0 var(--gutter) clamp(48px, 9vh, 104px); animation: cwghFadeUp 1.15s cubic-bezier(0.2,0.7,0.2,1) 0.18s both; }
 #cwgHero .cwgh-copy .hero-copy { position: relative; }
+#cwgHero .cwgh-eyebrow { justify-content: center; margin: 0 0 var(--space-4); color: var(--champagne); }
+#cwgHero .cwgh-eyebrow::before { background: var(--rust); box-shadow: 0 0 10px var(--rust), 0 0 5px rgba(181,106,37,0.9); }
 @keyframes cwghFade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes cwghPortraitIn { from { opacity: 0; transform: translateX(-50%) translateY(26px) scale(0.972); } to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); } }
 @keyframes cwghFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
@@ -814,8 +816,8 @@ section {
    3) Hero text block shifted 12% lower (padding-top on .cwgh-copy = 12vh)
 */
 @media (max-width: 980px) {
-  /* 1) Background photos scaled 20% larger; card overflow:hidden clips edges, object-fit:cover preserved */
-  #cwgHero .cwgh-card img { transform: scale(1.44); transform-origin: center center; }
+  /* 1) Marquee photos enlarged via bigger card frames (JS spacing); no image zoom so faces are never cropped */
+  #cwgHero .cwgh-card img { transform: none; }
 
   /* 2) Hero headline +16% (32*1.16=37.12 -> 37, 5vw*1.16=5.8vw, 66*1.16=76.56 -> 77) */
   #cwgHero.hero h1 { font-size: clamp(37px, 5.8vw, 77px); }
@@ -879,6 +881,7 @@ section {
   </div>
   <div class="cwgh-copy">
     <div class="hero-copy">
+      <p class="eyebrow cwgh-eyebrow">Chandler Walker Gayton Foundation</p>
       <h1>Honoring a life.<br /><em>Extending his causes.</em></h1>
     </div>
   </div>
@@ -1301,14 +1304,19 @@ section {
   var N = cards.length;
   var offset = 0, vel = 0, dragging = false, lastX = 0, hovering = false;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var spacing, Wc, Hc, W, cx, cy, autoSpeed;
+  var spacing, Wc, Hc, W, cx, cy, autoSpeed, scMin, scF, opMin, opK, opF, brMin, brK, brF, blMax, blK;
   function metrics() {
     var sw = stage.clientWidth, sh = stage.clientHeight;
     spacing = Math.max(100, Math.min(300, sw * 0.16));
-    if (sw < 980) spacing *= 1.2;
+    if (sw < 980) spacing *= 1.4;
     Wc = Math.round(spacing * 0.84); Hc = Math.round(Wc * 0.667);
     W = N * spacing; cx = sw / 2; cy = sh * (sw < 640 ? 0.35 : 0.38);
     autoSpeed = Math.max(0.25, sw * 0.00035);
+    var narrow = sw < 980;
+    scMin = narrow ? 0.70 : 0.52; scF = narrow ? 0.42 : 0.72;
+    opMin = narrow ? 0.55 : 0.12; opK = narrow ? 2.6 : 1.5; opF = narrow ? 0.55 : 1.05;
+    brMin = narrow ? 0.62 : 0.36; brK = narrow ? 2.8 : 1.9; brF = narrow ? 0.40 : 0.72;
+    blMax = narrow ? 0.25 : 1.0; blK = narrow ? 0.3 : 0.75;
     cards.forEach(function (c) { c.style.width = Wc + 'px'; c.style.height = Hc + 'px'; });
   }
   function frame() {
@@ -1323,10 +1331,10 @@ section {
       var dx = sx - cx, adx = Math.abs(dx);
       var r = Math.max(-60, Math.min(60, -dx * 0.075));
       var z = -adx * 0.55;
-      var sc = Math.max(0.52, 1.16 - adx / cx * 0.72);
-      var op = Math.max(0.12, 1 - adx / (cx * 1.5) * 1.05);
-      var br = Math.max(0.36, 1 - adx / (cx * 1.9) * 0.72);
-      var bl = Math.min(3.2, adx / cx * 2.6);
+      var sc = Math.max(scMin, 1.16 - adx / cx * scF);
+      var op = Math.max(opMin, 1 - adx / (cx * opK) * opF);
+      var br = Math.max(brMin, 1 - adx / (cx * brK) * brF);
+      var bl = Math.min(blMax, adx / cx * blK);
       var left = sx - Wc / 2, top = cy - Hc / 2;
       var c = cards[i];
       c.style.transform = 'translate3d(' + left.toFixed(1) + 'px,' + top.toFixed(1) + 'px,' + z.toFixed(1) + 'px) rotateY(' + r.toFixed(2) + 'deg) scale(' + sc.toFixed(3) + ')';
