@@ -521,6 +521,26 @@ section {
   background: rgba(190,154,113, 0.06);
 }
 
+
+/* =========================================================
+   CHANDLER · service record (education / career / boards)
+   ========================================================= */
+.chandler-service { margin-top: var(--space-16); padding-top: var(--space-10); border-top: 1px solid var(--hairline); }
+.chandler-service h3 { font-family: var(--font-display); font-size: clamp(24px, 3vw, 32px); font-weight: 500; color: var(--warm-white); margin: 0 0 var(--space-3); }
+.chandler-service h3 em { font-style: italic; color: var(--champagne); }
+.chandler-service .service-intro { font-size: 16px; line-height: 1.6; color: var(--text-muted); max-width: 640px; margin: 0 0 var(--space-10); }
+.service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+@media (max-width: 980px) { .service-grid { grid-template-columns: 1fr; } }
+.service-col { padding: var(--space-6); background: var(--glass); border: 1px solid var(--hairline); border-radius: var(--radius-lg); }
+.service-col h4 { font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--champagne); margin: 0 0 var(--space-5); }
+.service-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); }
+.service-col li { padding-left: var(--space-4); border-left: 2px solid rgba(181,106,37, 0.45); }
+.service-col .org { display: block; font-size: 16px; font-weight: 600; color: var(--warm-white); line-height: 1.35; }
+.service-col .role { display: block; font-size: 14px; line-height: 1.5; color: var(--text-muted); margin-top: 3px; }
+.service-legacy { margin-top: var(--space-4); padding: var(--space-5) var(--space-6); background: var(--glass-purple); border: 1px solid rgba(180,143,224, 0.25); border-radius: var(--radius-lg); font-size: 15px; line-height: 1.65; color: var(--text-muted); }
+.service-legacy strong { font-family: var(--font-ui); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--lavender); display: block; margin-bottom: 6px; font-weight: 600; }
+.service-legacy .fund { color: var(--warm-white); }
+
 /* =========================================================
    INITIATIVES (light) · 4 program cards
    ========================================================= */
@@ -983,6 +1003,45 @@ section {
         </div>
       </div>
     </div>
+
+    <div class="chandler-service reveal" aria-label="Chandler's education, career, and community service">
+      <h3>The work he was <em>part of.</em></h3>
+      <p class="service-intro">From the classrooms that shaped him to the councils, boards, and neighborhoods he served, this is where Chandler put his time.</p>
+      <div class="service-grid">
+        <div class="service-col">
+          <h4>Education</h4>
+          <ul>
+            <li><span class="org">O&rsquo;Dea High School</span><span class="role">Football team captain his senior year</span></li>
+            <li><span class="org">Simon Fraser University</span><span class="role">BA, Faculty of Communication, Art and Technology. Safety on the football team</span></li>
+            <li><span class="org">University of Washington, Evans School of Public Policy &amp; Governance</span><span class="role">Master of Public Administration, Class of 2022. Dr. Constance W. and Norman B. Rice Endowed Graduate Fellowship recipient</span></li>
+          </ul>
+        </div>
+        <div class="service-col">
+          <h4>Public Service &amp; Career</h4>
+          <ul>
+            <li><span class="org">Windermere Real Estate</span><span class="role">Licensed broker</span></li>
+            <li><span class="org">King County Council</span><span class="role">Legislative aide to Councilmember Larry Gossett, beginning 2017</span></li>
+            <li><span class="org">King County Council</span><span class="role">Community outreach and communications for Councilmember Girmay Zahilay, focused on Skyway, affordable housing, and land use</span></li>
+            <li><span class="org">Office of Seattle Mayor Bruce Harrell</span><span class="role">Strategic advisor for public safety, beginning 2023</span></li>
+          </ul>
+        </div>
+        <div class="service-col">
+          <h4>Boards &amp; Community</h4>
+          <ul>
+            <li><span class="org">Homestead Community Land Trust</span><span class="role">Board member</span></li>
+            <li><span class="org">Treehouse for Kids</span><span class="role">Young Professionals Board</span></li>
+            <li><span class="org">O&rsquo;Dea High School</span><span class="role">Alumni Board</span></li>
+            <li><span class="org">Bellevue Police Department</span><span class="role">African American Citizens Council</span></li>
+            <li><span class="org">Youth Mentorship</span><span class="role">Mentor to local high school students</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="service-legacy">
+        <strong>Named in his memory</strong>
+        <span class="fund">Chandler Walker Gayton Scholarship Fund</span> at O&rsquo;Dea High School &middot; <span class="fund">Chandler Walker Gayton Legacy Fund</span> at the Renton Innovation Zone Partnership
+      </div>
+    </div>
+
   </div>
 </section>
 
