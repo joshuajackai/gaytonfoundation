@@ -184,8 +184,13 @@ Homepage-specific components:
 - **`.event-card`**, **`.event-details`**, **`.event-visual`** for the
   event teaser (purple accent).
 - **`.involve-card`**, **`.involve-icon`** in the get-involved section.
-- **`.legal-note`** for the 501(c)(3) pending disclaimer (paper surface,
-  rust left border).
+Shared footer component:
+
+- **`.footer-status`** is the quiet 501(c)(3) status line above
+  `.footer-tag` on both pages: champagne, Lato 10px / 0.18em uppercase with
+  an 11px check glyph, matching the `.footer-col h4` eyebrow treatment so it
+  reads as footer furniture rather than an announcement. Deliberately
+  understated and deliberately not linked to any document.
 
 Event page components (documented on the event page, retained here for
 cross-reference): `.host`, `.host-badge`, `.host-info`, `.advisor`,
