@@ -1,0 +1,3 @@
+# The IRS determination letter is intentionally NOT published.
+# Anything under /docs/ is sent back to the homepage.
+/docs/*  /  301
