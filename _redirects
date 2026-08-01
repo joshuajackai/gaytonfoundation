@@ -1,3 +1,9 @@
-# The IRS determination letter is intentionally NOT published.
-# Anything under /docs/ is sent back to the homepage.
+# Send all pages.dev traffic to the canonical .org domain.
+# The /*  catch-all preserves the full path via :splat and issues a permanent 301
+# so search engines transfer authority to gaytonfoundation.org.
+/*  https://gaytonfoundation.org/:splat  301
+
+# The IRS determination letter is intentionally NOT published on pages.dev.
+# The catch-all above already routes /docs/* to the .org copy, but the fallback
+# is kept for documented intent.
 /docs/*  /  301
