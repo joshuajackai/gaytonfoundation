@@ -1,6 +1,23 @@
+# Cloudflare Pages header rules.
+# Rules are evaluated top to bottom and a later match overrides an earlier one
+# for the same header name, which is why the catch-all stays first and the more
+# specific paths follow. The existing /docs/* override already relies on this.
+
+# Default for documents and anything not matched below. HTML must revalidate so
+# a new Pages deploy is served on the next request instead of a stale copy.
 /*
   Cache-Control: no-cache
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
 
+# Static imagery. 48 files, 4.05 MB on disk, and a single page load pulls 22 of
+# them on / and 24 on /event/. Under the catch-all no-cache every one of those
+# cost a revalidation round trip on every repeat visit. Filenames are stable and
+# a replacement ships under a new name, so a year with immutable is safe.
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# The IRS determination letter is intentionally NOT published.
 /docs/*
   Cache-Control: no-store
   X-Robots-Tag: noindex, noarchive
