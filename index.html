@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+<script>/* Deep-link guard: a visitor arriving at /#section must not land on a
+   reveal-on-scroll element still at opacity 0. Set before first paint. */
+if (window.location.hash) document.documentElement.classList.add("deep-link");</script>
 <meta name="theme-color" content="#0e0905" media="(prefers-color-scheme: dark)" />
 <meta name="theme-color" content="#f5ede0" media="(prefers-color-scheme: light)" />
 <meta name="color-scheme" content="dark light" />
@@ -782,6 +786,12 @@ section {
 /* Reveal-on-scroll */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 700ms ease, transform 700ms ease; }
 .reveal.in { opacity: 1; transform: none; }
+/* A fragment deep-link drops the browser mid-page after the reveal observer has
+   already run, so the target section sits at opacity 0 through the full fade and
+   reads as a blank screen on arrival. When the URL carries a hash, show every
+   reveal element immediately. Same end state the reduced-motion branch already
+   produces. Top-of-page visits keep the animation. */
+html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
