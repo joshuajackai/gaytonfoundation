@@ -1,0 +1,38 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Chandler Walker Gayton Foundation//Boots On The Ground Night//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:America/Los_Angeles
+BEGIN:DAYLIGHT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+TZOFFSETFROM:-0800
+TZOFFSETTO:-0700
+TZNAME:PDT
+END:DAYLIGHT
+BEGIN:STANDARD
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+TZOFFSETFROM:-0700
+TZOFFSETTO:-0800
+TZNAME:PST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:boots-on-the-ground-20261205@gaytonfoundation.org
+DTSTAMP:20260821T170000Z
+DTSTART;TZID=America/Los_Angeles:20261205T170000
+DTEND;TZID=America/Los_Angeles:20261206T000000
+SUMMARY:Boots On The Ground Night · An Evening of Legacy
+DESCRIPTION:A celebratory fundraiser honoring the life and legacy of Chand
+ ler Walker Gayton. A cowboy-themed evening of moonshine\, live auctions\, 
+ and the people who loved him. Black Tie Western. Details and tickets: htt
+ ps://gaytonfoundation.org/event/
+LOCATION:D-Squared\, 4105 Airport Way S.\, Seattle\, WA 98108
+URL:https://gaytonfoundation.org/event/
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

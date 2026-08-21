@@ -515,6 +515,122 @@ main, header, footer { position: relative; z-index: 1; }
 }
 
 /* =========================================================
+   03b — SAVE THE DATE
+   ========================================================= */
+.std { padding-block: clamp(56px, 8vw, 96px); }
+.std-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  background: var(--glass);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  padding: clamp(28px, 4.5vw, 56px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.std-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 120% at 8% 0%, rgba(181,106,37,0.12), transparent 65%);
+  pointer-events: none;
+}
+.std-info, .std-form-wrap { position: relative; z-index: 1; }
+.std-info h2 { font-size: clamp(30px, 4vw, 44px); margin-top: 12px; }
+.std-info h2 em { font-style: italic; color: var(--champagne); white-space: nowrap; }
+.std-sub { color: var(--text-muted); max-width: 46ch; margin-top: 14px; }
+.std-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-6) 0 0;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--hairline);
+}
+.std-facts dt {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+.std-facts dd { margin: 0; font-size: 16px; color: var(--text-primary); }
+.std-cal { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--space-6); }
+.std-cal .btn svg { width: 15px; height: 15px; flex: none; }
+.std-form-wrap {
+  background: rgba(25,16,10,0.55);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  padding: clamp(22px, 3vw, 34px);
+  align-self: start;
+}
+.std-form-title { font-size: 22px; }
+.std-form-sub { color: var(--text-muted); font-size: 15px; margin-top: 6px; }
+.std-form { margin-top: var(--space-5); display: grid; gap: 14px; }
+.std-form[hidden] { display: none; }
+.std-label {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: -6px;
+}
+.std-label .std-opt { text-transform: none; letter-spacing: 0.04em; color: var(--text-muted); }
+.std-input {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--hairline);
+  background: rgba(14,9,5,0.55);
+  color: var(--warm-white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+.std-input::placeholder { color: var(--text-muted); }
+.std-input:focus { border-color: var(--glow-border); background: rgba(14,9,5,0.75); }
+.std-input[aria-invalid="true"] { border-color: rgba(196,90,60,0.7); }
+.std-error {
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+  color: #e8b4a0;
+  background: rgba(196,90,60,0.12);
+  border: 1px solid rgba(196,90,60,0.35);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+}
+.std-submit { width: 100%; }
+.std-submit[disabled] { opacity: 0.65; cursor: wait; transform: none; }
+.std-privacy { font-size: 13px; color: var(--text-muted); text-align: center; }
+.std-success {
+  margin-top: var(--space-5);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: rgba(63,69,54,0.30);
+  border: 1px solid rgba(190,154,113,0.30);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+}
+.std-success[hidden] { display: none; }
+.std-success svg { width: 22px; height: 22px; flex: none; color: var(--champagne); margin-top: 2px; }
+.std-success p { font-size: 16px; color: var(--text-primary); }
+.std-success p strong { font-weight: 500; color: var(--champagne); }
+@media (max-width: 900px) {
+  .std-card { grid-template-columns: 1fr; }
+  .std-facts { grid-template-columns: 1fr; gap: var(--space-3); }
+  .std-facts > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .std-facts dt { margin: 0; }
+  .std-facts dd { text-align: right; }
+}
+
+/* =========================================================
    SECTION DEFAULTS
    ========================================================= */
 section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
@@ -1605,6 +1721,74 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
 </div>
 
 <!-- =========================
+     03b SAVE THE DATE
+     ========================= -->
+<section id="save-the-date" class="std" aria-labelledby="std-heading">
+  <div class="container">
+    <div class="std-card reveal">
+      <div class="std-info">
+        <p class="eyebrow" style="display:block;">Save the Date</p>
+        <h2 id="std-heading">Hold the night of <em>December 5.</em></h2>
+        <p class="std-sub">One evening, one room, and everyone who loved him. Add it to your calendar now, and we will let you know the moment tickets open.</p>
+
+        <dl class="std-facts">
+          <div>
+            <dt>Date</dt>
+            <dd>Saturday, December 5, 2026</dd>
+          </div>
+          <div>
+            <dt>Time</dt>
+            <dd>5:00 PM to 12:00 AM</dd>
+          </div>
+          <div>
+            <dt>Venue</dt>
+            <dd>D-Squared, 4105 Airport Way S., Seattle</dd>
+          </div>
+        </dl>
+
+        <div class="std-cal" role="group" aria-label="Add to your calendar">
+          <a class="btn btn-ghost btn-sm" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Boots%20On%20The%20Ground%20Night%20%C2%B7%20An%20Evening%20of%20Legacy&amp;dates=20261206T010000Z/20261206T080000Z&amp;details=A%20celebratory%20fundraiser%20honoring%20the%20life%20and%20legacy%20of%20Chandler%20Walker%20Gayton.%20Black%20Tie%20Western.%20Details%20and%20tickets%3A%20https%3A%2F%2Fgaytonfoundation.org%2Fevent%2F&amp;location=D-Squared%2C%204105%20Airport%20Way%20S.%2C%20Seattle%2C%20WA%2098108" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>
+            Google Calendar
+          </a>
+          <a class="btn btn-ghost btn-sm" href="/event/boots-on-the-ground-night.ics" download="boots-on-the-ground-night.ics">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>
+            Apple Calendar
+          </a>
+          <a class="btn btn-ghost btn-sm" href="/event/boots-on-the-ground-night.ics" download="boots-on-the-ground-night.ics">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>
+            Outlook
+          </a>
+        </div>
+      </div>
+
+      <div class="std-form-wrap">
+        <h3 class="std-form-title">Get notified when tickets open</h3>
+        <p class="std-form-sub" id="stdFormSub">Join the save-the-date list. A couple of emails as the night approaches, nothing more.</p>
+
+        <form class="std-form" id="stdForm" novalidate>
+          <label class="std-label" for="stdName">Full name <span class="std-opt">(optional)</span></label>
+          <input class="std-input" id="stdName" name="name" type="text" autocomplete="name" placeholder="Your name" />
+
+          <label class="std-label" for="stdEmail">Email</label>
+          <input class="std-input" id="stdEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com" aria-describedby="stdError" />
+
+          <p class="std-error" id="stdError" role="alert" hidden></p>
+
+          <button class="btn btn-primary std-submit" type="submit" id="stdSubmit">Keep Me Posted</button>
+          <p class="std-privacy">Used only for Boots On The Ground Night updates.</p>
+        </form>
+
+        <div class="std-success" id="stdSuccess" role="status" tabindex="-1" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.6 2.6L16 9.5"/></svg>
+          <p><strong>You are on the list.</strong> We will email you the moment tickets open. Add the night to your calendar so it is already yours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
      04 ABOUT / TRIBUTE
      ========================= -->
 <section id="tribute" aria-labelledby="tribute-heading">
@@ -2148,7 +2332,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <li>Silent &amp; live auction participation</li>
           <li>Commemorative keepsake</li>
         </ul>
-        <a href="#" class="btn btn-ghost">Select Pass</a>
+        <a href="#save-the-date" class="btn btn-ghost">Get Notified</a>
       </article>
 
       <article class="ticket ticket--featured">
@@ -2162,7 +2346,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <li>Priority live auction access</li>
           <li>Engraved legacy memento</li>
         </ul>
-        <a href="#" class="btn btn-primary">Reserve Seat</a>
+        <a href="#save-the-date" class="btn btn-primary">Get Notified</a>
       </article>
 
       <article class="ticket">
@@ -2241,6 +2425,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       <div class="footer-col">
         <h4>Take Part</h4>
         <ul>
+          <li><a href="#save-the-date">Save the Date</a></li>
           <li><a href="#tickets">Get Tickets</a></li>
           <li><a href="#sponsor">Sponsor the Night</a></li>
           <li><a href="#">Donate to the Fund</a></li>
@@ -2522,6 +2707,65 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     el.addEventListener('click', function (e) {
       if (e.target === el || e.target.closest('[data-close]')) closeOverlay(el);
     });
+  });
+})();
+
+/* Save the Date: email capture posts to the foundation's Google Form list */
+(function () {
+  var form = document.getElementById('stdForm');
+  if (!form) return;
+  var nameEl = document.getElementById('stdName');
+  var emailEl = document.getElementById('stdEmail');
+  var errEl = document.getElementById('stdError');
+  var btn = document.getElementById('stdSubmit');
+  var successEl = document.getElementById('stdSuccess');
+  var subEl = document.getElementById('stdFormSub');
+  var ENDPOINT = 'https://docs.google.com/forms/d/e/1FAIpQLSce3BxUDSnjlq5n5PsRo1XmMQHa_QjrK0dmfk8ALJWA7liF9g/formResponse';
+
+  function showError(msg) {
+    errEl.textContent = msg;
+    errEl.hidden = false;
+    emailEl.setAttribute('aria-invalid', 'true');
+  }
+  function clearError() {
+    errEl.hidden = true;
+    errEl.textContent = '';
+    emailEl.removeAttribute('aria-invalid');
+  }
+  emailEl.addEventListener('input', clearError);
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearError();
+    var email = emailEl.value.trim();
+    if (!email) {
+      showError('Please enter your email address.');
+      emailEl.focus();
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      showError('That email does not look right. Please double-check it.');
+      emailEl.focus();
+      return;
+    }
+    btn.disabled = true;
+    var original = btn.textContent;
+    btn.textContent = 'Adding you…';
+    var data = new FormData();
+    data.append('entry.458888016', nameEl.value.trim());
+    data.append('entry.313703972', email);
+    fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: data })
+      .then(function () {
+        form.hidden = true;
+        if (subEl) subEl.hidden = true;
+        successEl.hidden = false;
+        successEl.focus();
+      })
+      .catch(function () {
+        btn.disabled = false;
+        btn.textContent = original;
+        showError('Something went wrong sending that. Please check your connection and try again.');
+      });
   });
 })();
 </script>
