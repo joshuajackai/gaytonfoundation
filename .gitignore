@@ -1,3 +1,6 @@
 .DS_Store
 node_modules/
 .wrangler/
+# Local design prototypes: working files, never shipped to Pages
+light-*.html
+_to_delete/
