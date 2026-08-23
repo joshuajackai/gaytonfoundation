@@ -645,6 +645,8 @@ main, header, footer { position: relative; z-index: 1; }
    SECTION DEFAULTS
    ========================================================= */
 section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
+/* Anchor jumps must clear the fixed nav (was tucking headings under it on mobile). */
+section[id], [id]:target { scroll-margin-top: 96px; }
 .section-head {
   display: grid;
   gap: var(--space-3);
@@ -1024,9 +1026,11 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 .host-info .role {
   font-family: var(--font-ui);
   font-size: 10px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.18em;
+  line-height: 1.45;
   text-transform: uppercase;
   color: var(--text-secondary);
+  text-wrap: pretty;
 }
 
 @media (max-width: 1000px) { .hosts-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -2094,7 +2098,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         <img src="/images/carmen-gayton.jpg" alt="Carmen Gayton" loading="lazy" />
         <div class="host-info">
           <p class="name">Carmen Gayton</p>
-          <p class="role">Mother</p>
+          <p class="role">Mother &middot; Honorary Chair</p>
         </div>
         <span class="host-badge">Family · Host</span>
       </article>
@@ -2104,39 +2108,39 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         <img src="/images/carver-gayton.jpg" alt="Carver Gayton" loading="lazy" />
         <div class="host-info">
           <p class="name">Carver Gayton</p>
-          <p class="role">Father</p>
+          <p class="role">Honorary Chair</p>
         </div>
         <span class="host-badge">Family · Host</span>
       </article>
 
-      <!-- Atif Saad — Sponsorships Director, Close Friend -->
-      <article class="host" aria-label="Atif Saad, host">
+      <!-- Atif Saad — VP of Corporate Relations, Close Friend -->
+      <article class="host" aria-label="Atif Saad, organizer">
         <img src="/images/atif-saad.jpg" alt="Atif Saad" loading="lazy" />
         <div class="host-info">
           <p class="name">Atif Saad</p>
-          <p class="role">Host</p>
+          <p class="role">Close Friend &middot; VP of Corporate Relations</p>
         </div>
-        <span class="host-badge">Host</span>
+        <span class="host-badge">Organizer</span>
       </article>
 
       <!-- Nate Koweda — Close Friend -->
-      <article class="host" aria-label="Nate Koweda, host">
+      <article class="host" aria-label="Nate Koweda, organizer">
         <img src="/images/nate-koweda.jpg" alt="Nate Koweda" loading="lazy" />
         <div class="host-info">
           <p class="name">Nate Koweda</p>
-          <p class="role">Close Friend</p>
+          <p class="role">Close Friend &middot; Treasurer</p>
         </div>
-        <span class="host-badge">Host</span>
+        <span class="host-badge">Organizer</span>
       </article>
 
       <!-- Joshua Jackai — Close Friend -->
-      <article class="host" aria-label="Joshua Jackai, host">
+      <article class="host" aria-label="Joshua Jackai, organizer">
         <img src="/images/joshua-jackai.jpg" alt="Joshua Jackai" loading="lazy" />
         <div class="host-info">
           <p class="name">Joshua Jackai</p>
-          <p class="role">Close Friend</p>
+          <p class="role">Close Friend &middot; Vice President</p>
         </div>
-        <span class="host-badge">Host</span>
+        <span class="host-badge">Organizer</span>
       </article>
     </div>
   </div>

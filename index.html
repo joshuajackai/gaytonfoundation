@@ -36,7 +36,7 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Lato:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
 
 <!-- Google tag (gtag.js) -- GA4 property G-0QYY5SR4MY. Placed after the critical
      preloads/fonts so it never competes with the LCP image; async, so it does
@@ -58,15 +58,19 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
   --flame:#cf5a0a;                   /* vibrant orange, headline gradient start */
   --flame-mid:#a8460b;
   --ember-deep:#6b2508;              /* dark orange, gradient end */
-  --font-display:'Playfair Display', Georgia, serif;
-  --font-body:'Cormorant Garamond', Georgia, serif;
-  --font-ui:'Lato', system-ui, -apple-system, sans-serif;
+  --font-display:'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-body:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-ui:'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 *, *::before, *::after { box-sizing:border-box; margin:0; }
 html { -webkit-text-size-adjust:100%; }
 body {
   font-family:var(--font-body); color:var(--ink);
   background:var(--off-white);
+  font-weight:300;
+  letter-spacing:0.005em;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
   overflow-x:hidden;
 }
 
@@ -449,7 +453,63 @@ h2 em, .chandler-service h3 em {
 }
 .team-meta { flex:1; }
 .team-meta .name { font-family:var(--font-display); font-size:19px; font-weight:500; color:var(--ink); margin:0 0 4px; }
-.team-meta .role { font-family:var(--font-ui); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--flame-mid); margin:0; }
+.team-meta .role {
+  font-family:var(--font-ui); font-size:10px; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--flame-mid); margin:0; line-height:1.45;
+  /* two-line roles must not shove the name off the row baseline */
+  min-height:2.9em; text-wrap:pretty;
+}
+
+/* Real portraits replace the dashed placeholder tile. */
+.team-portrait--photo {
+  padding:0; border:1px solid rgba(207,90,10,0.30); background:var(--elevated);
+  box-shadow:0 1px 4px rgba(63,69,54,0.10);
+}
+.team-portrait--photo img {
+  width:100%; height:100%; display:block; border-radius:999px;
+  object-fit:cover; object-position:center;
+}
+.team-portrait--initials {
+  font-family:var(--font-display); font-size:23px; font-weight:500;
+  letter-spacing:0.02em; text-transform:none; color:var(--flame-mid);
+}
+
+/* Sub-group headers inside Board & Officers. */
+.team-subhead { margin:56px 0 22px; display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; }
+.team-subhead h3 {
+  font-family:var(--font-ui); font-size:10.5px; font-weight:700; letter-spacing:0.22em;
+  text-transform:uppercase; color:var(--flame-mid); margin:0; white-space:nowrap;
+}
+.team-subhead p { font-size:15px; line-height:1.5; color:var(--ink-soft); margin:0; flex:1; min-width:230px; }
+
+/* Advisors read as a lighter tier than officers. */
+.advisor-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+@media (max-width:900px) { .advisor-grid { grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:480px) { .advisor-grid { grid-template-columns:1fr; } }
+.advisor-card {
+  display:flex; align-items:center; gap:14px; padding:12px 16px; border-radius:var(--r-md);
+  border:1px solid var(--hairline); background:rgba(255,255,255,0.34);
+  transition:transform 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+.advisor-card:hover { transform:translateY(-2px); border-color:rgba(207,90,10,0.42); background:rgba(255,255,255,0.66); }
+.advisor-card img {
+  flex:0 0 56px; width:56px; height:56px; border-radius:999px;
+  object-fit:cover; object-position:center; border:1px solid rgba(207,90,10,0.24);
+}
+.advisor-card .name { font-family:var(--font-display); font-size:16.5px; font-weight:500; color:var(--ink); margin:0; line-height:1.25; }
+
+/* Counsel and accountants. */
+.pro-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:18px; }
+@media (max-width:720px) { .pro-grid { grid-template-columns:1fr; } }
+.pro-card {
+  padding:24px 26px; border-radius:var(--r-lg); border:1px solid var(--hairline);
+  background:rgba(255,255,255,0.55); box-shadow:var(--rest);
+  transition:transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+.pro-card:hover { transform:translateY(-3px); border-color:rgba(207,90,10,0.45); box-shadow:var(--lift); }
+.pro-tag { font-family:var(--font-ui); font-size:9.5px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--flame-mid); margin:0 0 9px; }
+.pro-card h4 { font-family:var(--font-display); font-size:20px; font-weight:500; letter-spacing:0; color:var(--ink); margin:0 0 7px; }
+.pro-card p { font-size:14.5px; line-height:1.55; color:var(--ink-soft); margin:0; }
 .team-note {
   margin-top:32px; padding:20px 24px; border-radius:var(--r-md);
   border:1px solid var(--hairline); background:rgba(252,248,240,0.45);
@@ -776,8 +836,8 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
     <h1>Honoring a life.<br /><em>Extending his causes.</em></h1>
     <p class="sub">Supporting community, housing, early childhood education, and elder care in Chandler's memory.</p>
     <div class="cta">
-      <a class="btn btn-primary" href="/event/">Attend the Event &nbsp;&rarr;</a>
-      <a class="btn btn-ghost" href="#mission">Our Mission</a>
+      <a class="btn btn-primary" href="#support">Contribute &nbsp;&rarr;</a>
+      <a class="btn btn-ghost" href="/event/">Attend the Event</a>
     </div>
   </div>
 
@@ -975,57 +1035,127 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
     <div class="section-head reveal">
       <p class="eyebrow">Board &amp; Officers</p>
       <h2 id="team-heading">The people <em>carrying the work.</em></h2>
-      <p class="sub">The foundation is governed by a small board of directors and officers. Full portraits and biographies will land here as the team formalizes.</p>
+      <p class="sub">The foundation is governed by a board of directors and officers, guided by a council of advisors, and supported by counsel and accountants who keep the work accountable.</p>
     </div>
 
     <div class="team-grid reveal">
-      <!-- TEAM PLACEHOLDER 1 -->
       <article class="team-card">
-        <div class="team-portrait" aria-hidden="true">Photo · Director</div>
+        <div class="team-portrait team-portrait--photo"><img src="/images/carmen-gayton.jpg" alt="Carmen Gayton" loading="lazy" decoding="async" width="78" height="78" /></div>
         <div class="team-meta">
-          <p class="name">Director Name</p>
-          <p class="role">President · Board of Directors</p>
+          <p class="name">Carmen Gayton</p>
+          <p class="role">Mother &middot; Honorary Chair</p>
         </div>
       </article>
-      <!-- TEAM PLACEHOLDER 2 -->
+
       <article class="team-card">
-        <div class="team-portrait" aria-hidden="true">Photo · Officer</div>
+        <div class="team-portrait team-portrait--photo"><img src="/images/carver-gayton.jpg" alt="Carver Gayton" loading="lazy" decoding="async" width="78" height="78" /></div>
+        <div class="team-meta">
+          <p class="name">Carver Gayton</p>
+          <p class="role">Honorary Chair</p>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-portrait team-portrait--photo"><img src="/images/joshua-jackai.jpg" alt="Joshua Jackai" loading="lazy" decoding="async" width="78" height="78" /></div>
+        <div class="team-meta">
+          <p class="name">Joshua Jackai</p>
+          <p class="role">Close Friend &middot; Vice President</p>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-portrait team-portrait--photo"><img src="/images/atif-saad.jpg" alt="Atif Saad" loading="lazy" decoding="async" width="78" height="78" /></div>
+        <div class="team-meta">
+          <p class="name">Atif Saad</p>
+          <p class="role">Close Friend &middot; VP of Corporate Relations</p>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-portrait team-portrait--photo"><img src="/images/nate-koweda.jpg" alt="Nate Koweda" loading="lazy" decoding="async" width="78" height="78" /></div>
+        <div class="team-meta">
+          <p class="name">Nate Koweda</p>
+          <p class="role">Close Friend &middot; Treasurer</p>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-portrait team-portrait--initials" aria-hidden="true">HC</div>
         <div class="team-meta">
           <p class="name">Howard Choder</p>
           <p class="role">Secretary</p>
         </div>
       </article>
-      <!-- TEAM PLACEHOLDER 3 -->
-      <article class="team-card">
-        <div class="team-portrait" aria-hidden="true">Photo · Officer</div>
-        <div class="team-meta">
-          <p class="name">Officer Name</p>
-          <p class="role">Treasurer</p>
-        </div>
+    </div>
+
+    <div class="team-subhead reveal">
+      <h3>Board of Advisors</h3>
+      <p>Mentors, family friends, and longtime allies who guide what the foundation takes on, year over year.</p>
+    </div>
+
+    <div class="advisor-grid reveal">
+      <article class="advisor-card">
+        <img src="/images/wanda-herndon.jpg" alt="Wanda Herndon" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Wanda Herndon</p>
       </article>
-      <!-- TEAM PLACEHOLDER 4 -->
-      <article class="team-card">
-        <div class="team-portrait" aria-hidden="true">Photo · Director</div>
-        <div class="team-meta">
-          <p class="name">Director Name</p>
-          <p class="role">Board of Directors</p>
-        </div>
+
+      <article class="advisor-card">
+        <img src="/images/susan-simpson-heydt.jpg" alt="Susan Simpson Heydt" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Susan Simpson Heydt</p>
       </article>
-      <!-- TEAM PLACEHOLDER 5 -->
-      <article class="team-card">
-        <div class="team-portrait" aria-hidden="true">Photo · Director</div>
-        <div class="team-meta">
-          <p class="name">Director Name</p>
-          <p class="role">Board of Directors</p>
-        </div>
+
+      <article class="advisor-card">
+        <img src="/images/roxie-floyd.jpg" alt="Roxie Floyd" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Roxie Floyd</p>
       </article>
-      <!-- TEAM PLACEHOLDER 6 -->
-      <article class="team-card">
-        <div class="team-portrait" aria-hidden="true">Photo · Director</div>
-        <div class="team-meta">
-          <p class="name">Director Name</p>
-          <p class="role">Board of Directors</p>
-        </div>
+
+      <article class="advisor-card">
+        <img src="/images/renee-rabb-martin.jpg" alt="Renee Rabb-Martin" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Renee Rabb-Martin</p>
+      </article>
+
+      <article class="advisor-card">
+        <img src="/images/katy-olweiler.jpg" alt="Katy Olweiler" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Katy Olweiler</p>
+      </article>
+
+      <article class="advisor-card">
+        <img src="/images/vicki-fabre.jpg" alt="Vicki Fabré" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Vicki Fabré</p>
+      </article>
+
+      <article class="advisor-card">
+        <img src="/images/micki-flowers.jpg" alt="Micki Flowers" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Micki Flowers</p>
+      </article>
+
+      <article class="advisor-card">
+        <img src="/images/rhoda-mckinney.jpg" alt="Rhoda McKinney Jones" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Rhoda McKinney Jones</p>
+      </article>
+
+      <article class="advisor-card">
+        <img src="/images/dana-frank.jpg" alt="Dana Frank" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Dana Frank</p>
+      </article>
+    </div>
+
+    <div class="team-subhead reveal">
+      <h3>Counsel &amp; Accounting</h3>
+      <p>The professional firms representing the foundation and keeping its books.</p>
+    </div>
+
+    <div class="pro-grid reveal">
+      <article class="pro-card">
+        <p class="pro-tag">Legal Counsel</p>
+        <h4>Socius Law Group, PLLC</h4>
+        <p>Counsel to the Chandler Walker Gayton Foundation.</p>
+      </article>
+
+      <article class="pro-card">
+        <p class="pro-tag">Accounting</p>
+        <h4>Oliver Capital Management</h4>
+        <p>Mark Oliver and Marcus Dewan serve as accountants to the foundation.</p>
       </article>
     </div>
 
@@ -1085,7 +1215,7 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
         </div>
         <h4>Volunteer</h4>
         <p>Lend time, skill, or a room to a foundation gathering. We need help with events, outreach, and administration.</p>
-        <a href="#" aria-label="Volunteer with the foundation">Get in Touch <span aria-hidden="true">→</span></a>
+        <a href="#updates" aria-label="Volunteer with the foundation">Get in Touch <span aria-hidden="true">→</span></a>
       </div>
 
       <div class="involve-card">
@@ -1103,7 +1233,7 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
         </div>
         <h4>Contact the Family</h4>
         <p>For partnership inquiries, sponsorship, or a note for the Gayton family, we welcome the conversation.</p>
-        <a href="#" aria-label="Contact the foundation">Reach Out <span aria-hidden="true">→</span></a>
+        <a href="#updates" aria-label="Contact the foundation">Reach Out <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
@@ -1145,7 +1275,7 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
         <p class="footer-tag">A Washington nonprofit corporation. EIN 42-3129149.<br />PO Box 99371, Seattle, WA 98139-0371.</p>
         <div class="social-row" aria-label="Social links">
           <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2 .4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.3-.3.9-.4 2-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2 .2.5.4.9.8 1.3.4.4.8.6 1.3.8.3.2.9.3 2 .4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.3.3-.9.4-2 .1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.3-.2-.9-.3-2-.4-1.2-.1-1.6-.1-4.7-.1zM12 7.4a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2zm0 1.8a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6zm5-2.3a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg></a>
-          <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2L12 12.3 19.4 7H4.6zM4 8.5V18h16V8.5l-8 5.7L4 8.5z"/></svg></a>
+          <a href="mailto:joshua@gaytonfoundation.org" aria-label="Email the foundation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2L12 12.3 19.4 7H4.6zM4 8.5V18h16V8.5l-8 5.7L4 8.5z"/></svg></a>
           <a href="#" aria-label="Phone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.4 2.2.6 3.4.6a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.3.6 3.4a1 1 0 0 1-.25 1L6.6 10.8z"/></svg></a>
         </div>
       </div>
