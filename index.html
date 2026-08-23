@@ -122,14 +122,18 @@ body {
 }
 
 /* ---------- Nav · dark glass over the copper top ---------- */
+/* Framed and positioned like /event/: full-bleed bar, transparent at rest,
+   glass once the page scrolls. Content is held by the shared .container. */
 .nav {
-  position:fixed; top:20px; left:0; right:0; margin-inline:auto;
-  width:min(calc(100% - 40px), 1240px); height:72px; z-index:40;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:0 32px; border-radius:28px;
-  background:rgba(20,9,2,0.45); border:1px solid rgba(190,154,113,0.22);
-  box-shadow:inset 0 1px 0 rgba(245,237,224,0.08), 0 8px 32px rgba(10,4,1,0.35);
-  backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  position:fixed; inset:0 0 auto 0; z-index:40;
+  height:72px; display:flex; align-items:center;
+  border-bottom:1px solid transparent;
+}
+.nav .container {
+  /* width:100% matters: as a flex item the container would otherwise
+     shrink to its content and stop spanning the bar (same rule /event/ uses). */
+  width:100%;
+  display:flex; align-items:center; justify-content:space-between; gap:32px;
 }
 .brand-logo { width:clamp(104px, 12vw, 128px); display:block; }
 .nav-links { display:flex; gap:28px; list-style:none; padding:0; }
@@ -613,11 +617,17 @@ h2 em, .chandler-service h3 em {
 .footer-bottom a:hover { color:#fdf6ea; }
 
 /* ---------- Nav: dark glass over the hero, light glass over the page ---------- */
-.nav { transition:background 260ms ease, border-color 260ms ease, box-shadow 260ms ease; }
-.nav.is-light {
-  background:rgba(252,248,240,0.82);
-  border-color:var(--hairline);
-  box-shadow:inset 0 1px 0 rgba(252,248,240,0.6), 0 10px 34px rgba(63,69,54,0.13);
+.nav { transition:background 320ms ease, backdrop-filter 320ms ease, border-color 320ms ease; }
+/* Over the ember hero. */
+.nav.is-scrolled {
+  background:rgba(20,9,2,0.72);
+  backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+  border-bottom-color:rgba(190,154,113,0.22);
+}
+/* Past the hero, on the cream. */
+.nav.is-light.is-scrolled {
+  background:rgba(252,248,240,0.86);
+  border-bottom-color:var(--hairline);
 }
 .nav.is-light .nav-links a { color:var(--ink-soft); }
 .nav.is-light .nav-links a:hover { color:var(--ink); }
@@ -640,11 +650,11 @@ h2 em, .chandler-service h3 em {
 @media (max-width:900px) {
   .nav-links { display:none; }
   .nav-toggle { display:flex; }
-  /* .nav has backdrop-filter, which makes it the containing block — the
-     dropdown must be absolute against .nav, never fixed to the viewport. */
+  /* .nav/.container create the containing block — the dropdown must be
+     absolute against .container, never fixed to the viewport. */
   .nav.is-open .nav-links {
     display:flex; flex-direction:column; align-items:flex-start; gap:4px;
-    position:absolute; top:calc(100% + 10px); left:0; right:0;
+    position:absolute; top:calc(100% + 14px); left:var(--gutter); right:var(--gutter);
     padding:20px 24px; border-radius:var(--r-lg);
     background:rgba(24,11,4,0.95); border:1px solid rgba(190,154,113,0.22);
     box-shadow:0 20px 50px rgba(12,5,2,0.4);
@@ -699,43 +709,22 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
    Givebutter dashboard. A fourth line of copy inside the panel would read
    as a duplicate. The panel carries the brand instead: our surface, our
    hairline, our radius, our shadow. */
-.signup-form givebutter-widget { display:block; width:100%; margin:0 auto; }
-
-/* Givebutter theming note: the widget's internal chrome (field styling,
-   button fill, title and description type) is set on the campaign in the
-   Givebutter dashboard, not from page CSS. The rules below only reach the
-   markup if the embed renders inline into this document; they are a
-   graceful upgrade, never the thing the design depends on. Inherited
-   properties (font-family, color) do cross into a shadow root, so type
-   lands on ours either way. */
+/* The widget renders into nested OPEN shadow roots:
+     givebutter-widget > givebutter-signup-form > givebutter-iframe > <iframe>
+   Page CSS cannot cross a shadow boundary, so the rules that used to live
+   here (.signup-form input / button) never matched anything. The title,
+   description and card wrapper live in the shadow tree and ARE reachable —
+   they get restyled by the adopted-stylesheet injection further down the
+   page. The fields, submit button and legal line live inside a cross-origin
+   iframe on givebutter.com and cannot be typeset from here at all; their
+   only knobs are button-text-color / button-background-color / border-radius
+   in the Givebutter dashboard. Custom properties DO inherit through shadow
+   boundaries, which is why the injected CSS can use var(--font-display). */
 .signup-form givebutter-widget {
-  font-family:var(--font-ui), system-ui, sans-serif;
+  display:block; width:100%; margin:0 auto;
+  font-family:var(--font-ui);
   color:var(--ink);
 }
-.signup-form input[type="email"],
-.signup-form input[type="text"] {
-  width:100%; padding:13px 16px;
-  font-family:var(--font-ui); font-size:14px; color:var(--ink);
-  background:rgba(252,248,240,0.9);
-  border:1px solid var(--hairline); border-radius:999px;
-  outline:none; transition:border-color 200ms ease, box-shadow 200ms ease;
-}
-.signup-form input[type="email"]:focus,
-.signup-form input[type="text"]:focus {
-  border-color:var(--flame); box-shadow:0 0 0 3px rgba(207,90,10,0.14);
-}
-.signup-form button,
-.signup-form [type="submit"] {
-  font-family:var(--font-ui); font-size:11.5px; font-weight:700;
-  letter-spacing:0.18em; text-transform:uppercase;
-  padding:14px 26px; border-radius:999px; border:1px solid transparent; cursor:pointer;
-  color:#f7ead6;
-  background:linear-gradient(135deg, var(--flame) 0%, var(--ember-deep) 100%);
-  box-shadow:0 10px 26px rgba(10,4,1,0.18);
-  transition:transform 200ms ease, box-shadow 200ms ease;
-}
-.signup-form button:hover,
-.signup-form [type="submit"]:hover { transform:translateY(-1px); box-shadow:0 14px 32px rgba(10,4,1,0.24); }
 
 .signup-fallback p { margin:0; font-family:var(--font-body); font-size:16px; line-height:1.6; color:var(--ink-soft); }
 .signup-fallback a { color:var(--flame-mid); font-weight:600; text-decoration:underline; text-underline-offset:3px; }
@@ -792,21 +781,23 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
 <body>
 
 <header class="nav" id="nav">
-  <a href="/" aria-label="Chandler Walker Gayton Foundation">
-    <img class="brand-logo" src="/images/cwgf-logo.svg" alt="Chandler Walker Gayton Foundation" width="1040" height="356" />
-  </a>
-  <nav aria-label="Primary">
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#mission">Mission</a></li>
-      <li><a href="#chandler">Chandler</a></li>
-      <li><a href="#initiatives">Initiatives</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#support">Support</a></li>
-      <li class="nav-cta-mobile"><a class="btn btn-primary btn-sm" href="/event/">Attend the Event &nbsp;&rarr;</a></li>
-    </ul>
-  </nav>
-  <a class="btn btn-primary btn-sm btn-desktop" href="/event/">Attend the Event &nbsp;&rarr;</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+  <div class="container">
+    <a class="brand" href="/" aria-label="Chandler Walker Gayton Foundation">
+      <img class="brand-logo" src="/images/cwgf-logo.svg" alt="Chandler Walker Gayton Foundation" width="1040" height="356" />
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#chandler">Chandler</a></li>
+        <li><a href="#initiatives">Initiatives</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#support">Support</a></li>
+        <li class="nav-cta-mobile"><a class="btn btn-primary btn-sm" href="#support">Contribute &nbsp;&rarr;</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-primary btn-sm btn-desktop" href="#support">Contribute &nbsp;&rarr;</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks"><span></span></button>
+  </div>
 </header>
 
 <main id="top">
@@ -1051,7 +1042,7 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
         <div class="team-portrait team-portrait--photo"><img src="/images/carver-gayton.jpg" alt="Carver Gayton" loading="lazy" decoding="async" width="78" height="78" /></div>
         <div class="team-meta">
           <p class="name">Carver Gayton</p>
-          <p class="role">Honorary Chair</p>
+          <p class="role">Father &middot; Honorary Chair</p>
         </div>
       </article>
 
@@ -1460,6 +1451,7 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
     ticking = true;
     requestAnimationFrame(function () {
       nav.classList.toggle('is-light', window.scrollY > flipAt);
+      nav.classList.toggle('is-scrolled', window.scrollY > 8);
       ticking = false;
     });
   }
@@ -1516,6 +1508,78 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
   var obs = new MutationObserver(function () { if (painted()) { clearTimeout(t); sync(); obs.disconnect(); } });
   obs.observe(host, { childList: true, subtree: true, attributes: true });
   setTimeout(function () { obs.disconnect(); sync(); }, 15000);
+})();
+</script>
+
+<script>
+/* ------------------------------------------------------------------
+   Typeset the Givebutter signup widget in the site's own type system.
+
+   The widget builds itself inside nested OPEN shadow roots, so ordinary
+   page CSS cannot reach it. Open roots do accept stylesheets from the
+   outside, so we append one to each. Custom properties inherit across a
+   shadow boundary, which is why var(--font-display) resolves in there.
+
+   Reachable: the card wrapper, the title, the description.
+   Not reachable: the fields, the submit button and the legal line — those
+   are a cross-origin iframe on givebutter.com. Their colours are set on the
+   campaign in the Givebutter dashboard; their typeface is not configurable.
+   ------------------------------------------------------------------ */
+(function () {
+  var CARD_CSS = [
+    /* The form itself is a cross-origin iframe with a white page behind it,
+       so the wrapper has to stay white — going transparent just exposes a
+       raw white rectangle. Keep it white, drop their shadow and 420px cap,
+       and give it our radius so the iframe corners clip to the design. */
+    '.bg-white{box-shadow:none!important;border-radius:var(--r-lg,20px)!important;',
+    'overflow:hidden!important;max-width:none!important;margin-right:0!important;}',
+    '.p-6{padding:20px!important;}',
+    /* Title: Playfair, like every other heading on the page. */
+    'h1{font-family:var(--font-display,Georgia,serif)!important;',
+    'font-size:clamp(23px,2.2vw,28px)!important;font-weight:400!important;',
+    'letter-spacing:0!important;line-height:1.14!important;',
+    'color:var(--ink,#19100a)!important;}',
+    /* Description: Cormorant at the same weight as our body copy. */
+    'h1+p{font-family:var(--font-body,Georgia,serif)!important;',
+    'font-size:17px!important;font-weight:300!important;line-height:1.5!important;',
+    'letter-spacing:0.005em!important;color:var(--ink-soft,#3f4536)!important;',
+    'margin-top:10px!important;}'
+  ].join('');
+  var IFRAME_CSS = 'iframe{width:100%!important;border:0!important;}';
+
+  function build(css) {
+    try { var sheet = new CSSStyleSheet(); sheet.replaceSync(css); return sheet; }
+    catch (e) { return null; }
+  }
+  function apply(root, css) {
+    if (!root || root.__cwgfTypeset) return false;
+    var sheet = build(css);
+    if (sheet && root.adoptedStyleSheets) {
+      root.adoptedStyleSheets = root.adoptedStyleSheets.concat(sheet);
+    } else {
+      var el = document.createElement('style');
+      el.textContent = css;
+      root.appendChild(el);
+    }
+    root.__cwgfTypeset = true;
+    return true;
+  }
+
+  var tries = 0;
+  var timer = setInterval(function () {
+    tries++;
+    var widget = document.querySelector('.signup-form givebutter-widget');
+    var wRoot = widget && widget.shadowRoot;
+    var form = wRoot && wRoot.querySelector('givebutter-signup-form');
+    var fRoot = form && form.shadowRoot;
+    if (fRoot) {
+      apply(fRoot, CARD_CSS);
+      var frame = fRoot.querySelector('givebutter-iframe');
+      if (frame && frame.shadowRoot) apply(frame.shadowRoot, IFRAME_CSS);
+    }
+    /* Stop once styled, or give up after ~30s rather than polling forever. */
+    if ((fRoot && fRoot.__cwgfTypeset) || tries > 120) clearInterval(timer);
+  }, 250);
 })();
 </script>
 </body>
