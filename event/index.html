@@ -11,13 +11,13 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
 <link rel="preload" as="image" href="/images/hero.jpg" fetchpriority="high" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Chandler Walker Gayton Foundation" />
-<meta property="og:url" content="https://gaytonfoundation.org/event/" />
-<link rel="canonical" href="https://gaytonfoundation.org/event/" />
+<meta property="og:url" content="https://gaytonfoundation.pages.dev/event/" />
+<link rel="canonical" href="https://gaytonfoundation.pages.dev/event/" />
 <link rel="icon" href="/images/cwgf-logo.svg" type="image/svg+xml" />
 <meta property="og:title" content="Boots on the Ground · An Evening of Legacy" />
 <meta property="og:description" content="A celebratory fundraiser honoring the legacy of Chandler Walker Gayton (1990–2024). December 5, 2026 · D-Squared, Seattle." />
-<meta property="og:image" content="https://gaytonfoundation.org/images/og-hero.jpg" />
-<meta property="og:image:secure_url" content="https://gaytonfoundation.org/images/og-hero.jpg" />
+<meta property="og:image" content="https://gaytonfoundation.pages.dev/images/og-hero.jpg" />
+<meta property="og:image:secure_url" content="https://gaytonfoundation.pages.dev/images/og-hero.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
@@ -25,8 +25,8 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Boots on the Ground · An Evening of Legacy" />
 <meta name="twitter:description" content="Honoring the legacy of Chandler Walker Gayton. December 5, 2026 · D-Squared, Seattle." />
-<meta name="twitter:image" content="https://gaytonfoundation.org/images/og-hero.jpg" />
-<title>Boots on the Ground · An Evening of Legacy · Honoring Chandler Walker Gayton</title>
+<meta name="twitter:image" content="https://gaytonfoundation.pages.dev/images/og-hero.jpg" />
+<title>Boots on the Ground — An Evening of Legacy · Honoring Chandler Walker Gayton</title>
 <meta name="description" content="A celebratory fundraiser honoring the legacy of Chandler Walker Gayton (1990–2024). Saturday, December 5, 2026 · D-Squared on Airport Way, Seattle, WA. Cowboy-themed evening of moonshine, live auctions, and community." />
 
 <!-- Preconnect / Fonts -->
@@ -34,17 +34,6 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://images.unsplash.com" />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
-
-<!-- Google tag (gtag.js) -- GA4 property G-0QYY5SR4MY. Placed after the critical
-     preloads/fonts so it never competes with the LCP image; async, so it does
-     not block parsing or rendering. -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QYY5SR4MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-0QYY5SR4MY');
-</script>
 
 <style>
 /* =========================================================
@@ -113,7 +102,7 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
    RESET / BASE
    ========================================================= */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 88px; scroll-padding-bottom: 120px; }
 body {
   margin: 0;
   background: var(--bg-base);
@@ -526,127 +515,9 @@ main, header, footer { position: relative; z-index: 1; }
 }
 
 /* =========================================================
-   03b — SAVE THE DATE
-   ========================================================= */
-.std { padding-block: clamp(56px, 8vw, 96px); }
-.std-card {
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: clamp(32px, 5vw, 64px);
-  background: var(--glass);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-xl);
-  padding: clamp(28px, 4.5vw, 56px);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-.std-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(60% 120% at 8% 0%, rgba(181,106,37,0.12), transparent 65%);
-  pointer-events: none;
-}
-.std-info, .std-form-wrap { position: relative; z-index: 1; }
-.std-info h2 { font-size: clamp(30px, 4vw, 44px); margin-top: 12px; }
-.std-info h2 em { font-style: italic; color: var(--champagne); white-space: nowrap; }
-.std-sub { color: var(--text-muted); max-width: 46ch; margin-top: 14px; }
-.std-facts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-4);
-  margin: var(--space-6) 0 0;
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--hairline);
-}
-.std-facts dt {
-  font-family: var(--font-ui);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
-}
-.std-facts dd { margin: 0; font-size: 16px; color: var(--text-primary); }
-.std-cal { display: flex; flex-wrap: wrap; gap: 12px; margin-top: var(--space-6); }
-.std-cal .btn svg { width: 15px; height: 15px; flex: none; }
-.std-form-wrap {
-  background: rgba(25,16,10,0.55);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-lg);
-  padding: clamp(22px, 3vw, 34px);
-  align-self: start;
-}
-.std-form-title { font-size: 22px; }
-.std-form-sub { color: var(--text-muted); font-size: 15px; margin-top: 6px; }
-.std-form { margin-top: var(--space-5); display: grid; gap: 14px; }
-.std-form[hidden] { display: none; }
-.std-label {
-  font-family: var(--font-ui);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: -6px;
-}
-.std-label .std-opt { text-transform: none; letter-spacing: 0.04em; color: var(--text-muted); }
-.std-input {
-  width: 100%;
-  padding: 13px 16px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--hairline);
-  background: rgba(14,9,5,0.55);
-  color: var(--warm-white);
-  font-family: var(--font-body);
-  font-size: 16px;
-  transition: border-color 200ms ease, background 200ms ease;
-}
-.std-input::placeholder { color: var(--text-muted); }
-.std-input:focus { border-color: var(--glow-border); background: rgba(14,9,5,0.75); }
-.std-input[aria-invalid="true"] { border-color: rgba(196,90,60,0.7); }
-.std-error {
-  font-family: var(--font-ui);
-  font-size: 12.5px;
-  letter-spacing: 0.02em;
-  color: #e8b4a0;
-  background: rgba(196,90,60,0.12);
-  border: 1px solid rgba(196,90,60,0.35);
-  border-radius: var(--radius-sm);
-  padding: 9px 12px;
-}
-.std-submit { width: 100%; }
-.std-submit[disabled] { opacity: 0.65; cursor: wait; transform: none; }
-.std-privacy { font-size: 13px; color: var(--text-muted); text-align: center; }
-.std-success {
-  margin-top: var(--space-5);
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  background: rgba(63,69,54,0.30);
-  border: 1px solid rgba(190,154,113,0.30);
-  border-radius: var(--radius-md);
-  padding: 18px 20px;
-}
-.std-success[hidden] { display: none; }
-.std-success svg { width: 22px; height: 22px; flex: none; color: var(--champagne); margin-top: 2px; }
-.std-success p { font-size: 16px; color: var(--text-primary); }
-.std-success p strong { font-weight: 500; color: var(--champagne); }
-@media (max-width: 900px) {
-  .std-card { grid-template-columns: 1fr; }
-  .std-facts { grid-template-columns: 1fr; gap: var(--space-3); }
-  .std-facts > div { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-  .std-facts dt { margin: 0; }
-  .std-facts dd { text-align: right; }
-}
-
-/* =========================================================
    SECTION DEFAULTS
    ========================================================= */
 section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
-/* Anchor jumps must clear the fixed nav (was tucking headings under it on mobile). */
-section[id], [id]:target { scroll-margin-top: 96px; }
 .section-head {
   display: grid;
   gap: var(--space-3);
@@ -1026,11 +897,9 @@ section[id], [id]:target { scroll-margin-top: 96px; }
 .host-info .role {
   font-family: var(--font-ui);
   font-size: 10px;
-  letter-spacing: 0.18em;
-  line-height: 1.45;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-secondary);
-  text-wrap: pretty;
 }
 
 @media (max-width: 1000px) { .hosts-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -1225,109 +1094,276 @@ section[id], [id]:target { scroll-margin-top: 96px; }
 /* =========================================================
    09 — TICKETS (3-tier)
    ========================================================= */
-.tickets-grid {
+/* Lane selector */
+.lane-pick { display: grid; gap: var(--space-3); margin-bottom: var(--space-8); }
+@media (min-width: 720px) { .lane-pick { grid-template-columns: 1fr 1fr; } }
+.lane-pick button {
+  text-align: left; cursor: pointer; color: inherit; font-family: var(--font-ui);
+  border: 1px solid var(--hairline); border-radius: var(--radius-lg);
+  background: var(--glass); padding: var(--space-5) var(--space-6);
+  display: grid; gap: 6px;
+  transition: border-color 240ms ease, background 240ms ease, transform 240ms ease;
+}
+.lane-pick button:hover { border-color: var(--glow-border); transform: translateY(-2px); }
+.lane-pick button[aria-pressed="true"] {
+  border-color: var(--glow-border); background: var(--glass-strong);
+  box-shadow: var(--shadow-glow);
+}
+.lane-pick .band {
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-secondary); font-variant-numeric: tabular-nums;
+}
+.lane-pick .who { font-family: var(--font-display); font-size: 21px; font-weight: 500; color: var(--warm-white); }
+.lane-pick .what { font-size: 13px; color: rgba(245,237,224,0.72); line-height: 1.45; }
+.lane-panel[hidden] { display: none; }
+
+/* Price accordion */
+.price-acc { display: grid; gap: var(--space-3); }
+.price-item {
+  border: 1px solid var(--hairline); border-radius: var(--radius-lg);
+  background: var(--glass); overflow: hidden;
+  transition: border-color 260ms ease, background 260ms ease;
+}
+.price-item.is-open { border-color: var(--glow-border); background: var(--glass-strong); }
+.price-row { display: flex; align-items: stretch; }
+.price-btn {
+  flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: var(--space-5);
+  padding: var(--space-5) var(--space-6);
+  background: none; border: 0; cursor: pointer; text-align: left;
+  color: inherit; font-family: var(--font-ui);
+}
+.price-btn:hover .price-name { color: var(--warm-white); }
+.price-main { flex: 1 1 auto; min-width: 0; display: grid; gap: 4px; }
+.price-kicker {
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.price-name {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(19px, 2.1vw, 24px); line-height: 1.2;
+  color: var(--text-primary); transition: color 200ms ease;
+}
+.price-badge {
+  display: inline-flex; align-items: center; gap: 7px; margin-top: 5px;
+  font-family: var(--font-ui); font-size: 10.5px; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--champagne);
+  border: 1px solid var(--glow-border); background: rgba(181,106,37,0.12);
+  border-radius: 999px; padding: 4px 11px;
+  justify-self: start; align-self: start;
+}
+.price-amt {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 30px); line-height: 1;
+  color: var(--warm-white); white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.price-amt sup { font-size: 0.55em; color: var(--text-secondary); vertical-align: 0.75em; margin-right: 1px; }
+.price-amt .per {
+  display: block; font-family: var(--font-ui); font-size: 10px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-muted); margin-top: 6px; text-align: right;
+}
+.price-chev {
+  flex: 0 0 auto; width: 30px; height: 30px; border-radius: 50%;
+  border: 1px solid var(--hairline); display: grid; place-items: center;
+  transition: transform 300ms ease, border-color 300ms ease, background 300ms ease;
+}
+.price-chev svg {
+  width: 13px; height: 13px; stroke: var(--champagne); fill: none;
+  stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
+}
+.is-open .price-chev { transform: rotate(180deg); border-color: var(--glow-border); background: rgba(181,106,37,0.14); }
+.price-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 340ms cubic-bezier(.4,0,.2,1); }
+.is-open .price-panel { grid-template-rows: 1fr; }
+.price-panel > .inner { overflow: hidden; }
+.price-body {
+  padding: var(--space-5) var(--space-6) var(--space-6);
+  border-top: 1px solid var(--hairline); margin-top: 1px;
+}
+.price-incl { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); }
+.price-incl li {
+  display: grid; grid-template-columns: 16px 1fr; gap: 12px; align-items: start;
+  font-size: 16px; color: rgba(245,237,224,0.78); line-height: 1.45;
+}
+.price-incl li::before { content: "\2726"; color: var(--rust); font-size: 12px; line-height: 1.55; }
+.price-cta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); margin-top: var(--space-6); }
+.price-cta .cta-note { font-family: var(--font-ui); font-size: 12px; color: var(--text-muted); }
+
+/* Compare control */
+.cmp-btn {
+  flex: 0 0 auto; display: flex; align-items: center; gap: 8px;
+  margin-block: var(--space-4); padding: 0 var(--space-5);
+  border: 0; border-left: 1px solid var(--hairline); background: none; cursor: pointer;
+  font-family: var(--font-ui); font-size: 10px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-muted); transition: color 200ms ease;
+}
+.cmp-btn:hover { color: var(--champagne); }
+.cmp-btn .box {
+  width: 18px; height: 18px; border-radius: 5px; border: 1px solid var(--hairline);
+  display: grid; place-items: center; transition: background 200ms ease, border-color 200ms ease;
+}
+.cmp-btn .box svg {
+  width: 11px; height: 11px; stroke: var(--warm-white); fill: none; stroke-width: 3;
+  stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 180ms ease;
+}
+.cmp-btn[aria-pressed="true"] { color: var(--champagne); }
+.cmp-btn[aria-pressed="true"] .box { background: var(--rust); border-color: var(--rust); }
+.cmp-btn[aria-pressed="true"] .box svg { opacity: 1; }
+
+/* Compare tray */
+.has-tray .price-acc { padding-bottom: 104px; }
+@media (max-width: 640px) { .has-tray .price-acc { padding-bottom: 150px; } }
+.tray {
+  position: sticky; bottom: 0; z-index: 30; margin-top: var(--space-6);
+  border: 1px solid var(--glow-border); border-radius: var(--radius-lg);
+  background: rgba(25,16,10,0.94);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.55);
+}
+.tray[hidden] { display: none; }
+.tray-bar { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; padding: var(--space-4) var(--space-5); }
+.tray-count { font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--champagne); }
+.tray-names { flex: 1 1 auto; display: flex; gap: var(--space-2); flex-wrap: wrap; min-width: 0; }
+.tray-pill {
+  font-family: var(--font-ui); font-size: 11px; color: rgba(245,237,224,0.72);
+  border: 1px solid var(--hairline); border-radius: 999px; padding: 4px 11px; white-space: nowrap;
+}
+.tray-body { border-top: 1px solid var(--hairline); padding: var(--space-5); }
+.tray-body[hidden] { display: none; }
+
+/* Comparison matrix */
+.mx-wrap { border: 1px solid var(--hairline); border-radius: var(--radius-md); overflow: auto; max-height: 70vh; }
+.mx { width: 100%; border-collapse: collapse; font-family: var(--font-ui); font-size: 13.5px; min-width: 520px; }
+.mx th, .mx td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--hairline); vertical-align: top; }
+.mx thead th { position: sticky; top: 0; background: var(--midnight); z-index: 2; border-bottom: 1px solid var(--glow-border); }
+.mx .rowlab {
+  color: var(--text-secondary); font-size: 11px; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 400; white-space: nowrap;
+  position: sticky; left: 0; background: var(--midnight); z-index: 1;
+}
+.mx thead .rowlab { z-index: 3; }
+.mx .tiername { font-family: var(--font-display); font-size: 18px; font-weight: 500; color: var(--warm-white); display: block; line-height: 1.2; }
+.mx .tierprice { font-family: var(--font-ui); font-size: 12px; color: var(--champagne); font-variant-numeric: tabular-nums; display: block; margin-top: 4px; }
+.mx td { color: rgba(245,237,224,0.78); }
+.mx .y { color: #7fa06a; font-size: 15px; }
+.mx .n { color: rgba(245,237,224,0.22); }
+.mx-hint { font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); margin-top: var(--space-3); }
+
+@media (max-width: 640px) {
+  /* Stack the row: label, then name beside price, then the badge full width,
+     with Compare as its own clearly labelled strip underneath. */
+  .price-row { flex-direction: column; align-items: stretch; }
+  .price-btn {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas:
+      "kicker kicker kicker"
+      "name   price  chev"
+      "badge  badge  badge";
+    align-items: center; gap: 8px 12px;
+    padding: var(--space-5) var(--space-5) var(--space-4);
+  }
+  .price-main { display: contents; }
+  .price-kicker { grid-area: kicker; }
+  .price-name { grid-area: name; }
+  .price-amt { grid-area: price; font-size: 22px; text-align: right; }
+  .price-amt .per { text-align: right; }
+  .price-chev { grid-area: chev; }
+  .price-badge {
+    grid-area: badge; justify-self: stretch; justify-content: center;
+    text-align: center; line-height: 1.4; padding: 6px 12px;
+  }
+  .price-body { padding-inline: var(--space-5); }
+  .cmp-btn {
+    width: 100%; margin: 0; padding: var(--space-3) var(--space-5);
+    border-left: 0; border-top: 1px solid var(--hairline);
+    justify-content: center;
+  }
+  .cmp-btn .label { font-size: 10px; }
+  /* Fit two levels side by side on a phone; comparison is the point. */
+  .tray-body { padding: var(--space-3); }
+  .mx-wrap { max-height: 58vh; }
+  .mx { min-width: 430px; font-size: 12.5px; }
+  .mx th, .mx td { padding: 9px 8px; }
+  .mx .rowlab { max-width: 100px; white-space: normal; font-size: 9px; letter-spacing: 0.06em; }
+  .mx .tiername { font-size: 15px; }
+  .mx .tierprice { font-size: 11px; }
+}
+
+/* =========================================================
+   9B - MATCHING GIFTS
+   ========================================================= */
+.match-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-5);
-  align-items: stretch;
+  margin-bottom: var(--space-8);
 }
-.ticket {
-  position: relative;
+.match-step {
   padding: var(--space-8);
   background: var(--glass);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-xl);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
   transition: transform 280ms ease, border-color 280ms ease;
 }
-.ticket .tier {
+.match-step:hover { transform: translateY(-4px); border-color: var(--glow-border); }
+.match-step .num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--champagne);
+}
+.match-step h3 {
+  font-family: var(--font-display);
+  font-size: 21px;
+  margin: 0;
+}
+.match-step p { font-size: 15px; color: rgba(245,237,224,0.70); line-height: 1.5; margin: 0; }
+
+.match-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-8);
+  background: linear-gradient(165deg, rgba(181,106,37,0.10), rgba(63,69,54,0.18));
+  border: 1px solid var(--glow-border);
+  border-radius: var(--radius-xl);
+}
+.match-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5) var(--space-10);
+}
+.match-fact { display: grid; gap: 4px; }
+.match-fact .label {
   font-family: var(--font-ui);
   font-size: 10px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   color: var(--text-secondary);
 }
-.ticket h3 {
-  font-family: var(--font-display);
-  font-size: 28px;
-  margin-bottom: 0;
+.match-fact .value { font-size: 16px; color: var(--warm-white); line-height: 1.4; }
+.match-info .btn { flex-shrink: 0; }
+.match-note {
+  margin-top: var(--space-5);
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 74ch;
+  line-height: 1.55;
 }
-.ticket .price {
-  font-family: var(--font-display);
-  font-size: 56px;
-  font-weight: 400;
-  line-height: 1;
-  color: var(--warm-white);
-  display: flex;
-  align-items: flex-start;
-  gap: 4px;
-}
-.ticket .price sup {
-  font-family: var(--font-display);
-  font-size: 22px;
-  color: var(--text-secondary);
-  margin-top: 8px;
-}
-.ticket ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: var(--space-3);
-  border-top: 1px solid var(--hairline);
-  padding-top: var(--space-5);
-  flex-grow: 1;
-}
-.ticket li {
-  display: grid;
-  grid-template-columns: 18px 1fr;
-  gap: 12px;
-  align-items: start;
-  font-size: 15px;
-  color: rgba(245,237,224,0.78);
-  line-height: 1.45;
-}
-.ticket li::before {
-  content: "✦";
-  color: var(--rust);
-  font-size: 13px;
-  line-height: 1.6;
-}
-.ticket .btn { width: 100%; }
-
-.ticket--featured {
-  background: linear-gradient(165deg, rgba(181,106,37,0.10), rgba(63,69,54,0.18));
-  border-color: var(--glow-border);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-8px);
-}
-.ticket--featured .price { color: var(--warm-white); }
-.ticket--featured::before {
-  content: "★ Most Personal";
-  position: absolute;
-  top: -14px; left: 50%;
-  transform: translateX(-50%);
-  padding: 6px 14px;
-  background: linear-gradient(135deg, var(--rust), var(--saddle));
-  border-radius: 999px;
-  font-family: var(--font-ui);
-  font-size: 9.5px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--warm-white);
-  white-space: nowrap;
-}
-.ticket:hover { transform: translateY(-12px); border-color: var(--glow-border); }
-.ticket--featured:hover { transform: translateY(-16px); }
-
+.match-note a { color: var(--champagne); border-bottom: 1px solid var(--hairline); transition: color 200ms ease, border-color 200ms ease; }
+.match-note a:hover { color: var(--warm-white); border-color: var(--glow-border); }
 @media (max-width: 1000px) {
-  .tickets-grid { grid-template-columns: 1fr; }
-  .ticket--featured { transform: none; }
-  .ticket--featured:hover { transform: translateY(-4px); }
+  .match-grid { grid-template-columns: 1fr; }
+  .match-info { flex-direction: column; align-items: flex-start; }
+  .match-info .btn { width: 100%; }
 }
 
 /* =========================================================
@@ -1394,7 +1430,6 @@ section[id], [id]:target { scroll-margin-top: 96px; }
   align-items: start;
 }
 .footer .brand { margin-bottom: var(--space-3); }
-.footer-tag .nb { white-space:nowrap; }
 .footer-tag { color: var(--text-muted); font-size: 16px; max-width: 36ch; }
 .footer-status {
   display: inline-flex; align-items: center; gap: 6px;
@@ -1659,12 +1694,12 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         <li><a href="#hosts">Hosts</a></li>
         <li><a href="#advisors">Advisors</a></li>
         <li><a href="#agenda">Agenda</a></li>
-        <li><a href="#tickets">Tickets</a></li>
+        <li><a href="#tickets">Attend</a></li>
         <li><a href="#sponsor">Sponsor</a></li>
       </ul>
     </nav>
 
-    <a href="#tickets" class="btn btn-primary btn-sm btn-cta-mobile-hide">Get Tickets <span aria-hidden="true">→</span></a>
+    <a href="#tickets" class="btn btn-primary btn-sm btn-cta-mobile-hide">Reserve <span aria-hidden="true">→</span></a>
 
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" id="navToggle"><span></span></button>
   </div>
@@ -1693,7 +1728,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     <p class="hero-sub">A celebratory fundraiser honoring the life and legacy of <em>Chandler Walker Gayton</em> — a cowboy-themed evening of moonshine, live auctions, and the people who loved him.</p>
 
     <div class="hero-cta">
-      <a href="#tickets" class="btn btn-primary btn-lg">Get Your Ticket</a>
+      <a href="#tickets" class="btn btn-primary btn-lg">Reserve Your Place</a>
       <a href="#tribute" class="btn btn-ghost btn-lg">Read His Story</a>
     </div>
 
@@ -1735,74 +1770,6 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     <span>Black Tie Western</span><span class="star">✦</span>
   </div>
 </div>
-
-<!-- =========================
-     03b SAVE THE DATE
-     ========================= -->
-<section id="save-the-date" class="std" aria-labelledby="std-heading">
-  <div class="container">
-    <div class="std-card reveal">
-      <div class="std-info">
-        <p class="eyebrow" style="display:block;">Save the Date</p>
-        <h2 id="std-heading">Hold the night of <em>December 5.</em></h2>
-        <p class="std-sub">One evening, one room, and everyone who loved him. Add it to your calendar now, and we will let you know the moment tickets open.</p>
-
-        <dl class="std-facts">
-          <div>
-            <dt>Date</dt>
-            <dd>Saturday, December 5, 2026</dd>
-          </div>
-          <div>
-            <dt>Time</dt>
-            <dd>5:00 PM to 12:00 AM</dd>
-          </div>
-          <div>
-            <dt>Venue</dt>
-            <dd>D-Squared, 4105 Airport Way S., Seattle</dd>
-          </div>
-        </dl>
-
-        <div class="std-cal" role="group" aria-label="Add to your calendar">
-          <a class="btn btn-ghost btn-sm" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Boots%20On%20The%20Ground%20Night%20%C2%B7%20An%20Evening%20of%20Legacy&amp;dates=20261206T010000Z/20261206T080000Z&amp;details=A%20celebratory%20fundraiser%20honoring%20the%20life%20and%20legacy%20of%20Chandler%20Walker%20Gayton.%20Black%20Tie%20Western.%20Details%20and%20tickets%3A%20https%3A%2F%2Fgaytonfoundation.org%2Fevent%2F&amp;location=D-Squared%2C%204105%20Airport%20Way%20S.%2C%20Seattle%2C%20WA%2098108" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>
-            Google Calendar
-          </a>
-          <a class="btn btn-ghost btn-sm" href="/event/boots-on-the-ground-night.ics" download="boots-on-the-ground-night.ics">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>
-            Apple Calendar
-          </a>
-          <a class="btn btn-ghost btn-sm" href="/event/boots-on-the-ground-night.ics" download="boots-on-the-ground-night.ics">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18M12 14v4M10 16h4"/></svg>
-            Outlook
-          </a>
-        </div>
-      </div>
-
-      <div class="std-form-wrap">
-        <h3 class="std-form-title">Get notified when tickets open</h3>
-        <p class="std-form-sub" id="stdFormSub">Join the save-the-date list. A couple of emails as the night approaches, nothing more.</p>
-
-        <form class="std-form" id="stdForm" novalidate>
-          <label class="std-label" for="stdName">Full name <span class="std-opt">(optional)</span></label>
-          <input class="std-input" id="stdName" name="name" type="text" autocomplete="name" placeholder="Your name" />
-
-          <label class="std-label" for="stdEmail">Email</label>
-          <input class="std-input" id="stdEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com" aria-describedby="stdError" />
-
-          <p class="std-error" id="stdError" role="alert" hidden></p>
-
-          <button class="btn btn-primary std-submit" type="submit" id="stdSubmit">Keep Me Posted</button>
-          <p class="std-privacy">Used only for Boots On The Ground Night updates.</p>
-        </form>
-
-        <div class="std-success" id="stdSuccess" role="status" tabindex="-1" hidden>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.6 2.6L16 9.5"/></svg>
-          <p><strong>You are on the list.</strong> We will email you the moment tickets open. Add the night to your calendar so it is already yours.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- =========================
      04 ABOUT / TRIBUTE
@@ -2099,7 +2066,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         <img src="/images/carmen-gayton.jpg" alt="Carmen Gayton" loading="lazy" />
         <div class="host-info">
           <p class="name">Carmen Gayton</p>
-          <p class="role">Mother &middot; Honorary Chair</p>
+          <p class="role">Mother</p>
         </div>
         <span class="host-badge">Family · Host</span>
       </article>
@@ -2109,39 +2076,39 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         <img src="/images/carver-gayton.jpg" alt="Carver Gayton" loading="lazy" />
         <div class="host-info">
           <p class="name">Carver Gayton</p>
-          <p class="role">Father &middot; Honorary Chair</p>
+          <p class="role">Father</p>
         </div>
         <span class="host-badge">Family · Host</span>
       </article>
 
-      <!-- Atif Saad — VP of Corporate Relations, Close Friend -->
-      <article class="host" aria-label="Atif Saad, organizer">
+      <!-- Atif Saad — Sponsorships Director, Close Friend -->
+      <article class="host" aria-label="Atif Saad, host">
         <img src="/images/atif-saad.jpg" alt="Atif Saad" loading="lazy" />
         <div class="host-info">
           <p class="name">Atif Saad</p>
-          <p class="role">Close Friend &middot; VP of Corporate Relations</p>
+          <p class="role">Host</p>
         </div>
-        <span class="host-badge">Organizer</span>
+        <span class="host-badge">Host</span>
       </article>
 
       <!-- Nate Koweda — Close Friend -->
-      <article class="host" aria-label="Nate Koweda, organizer">
+      <article class="host" aria-label="Nate Koweda, host">
         <img src="/images/nate-koweda.jpg" alt="Nate Koweda" loading="lazy" />
         <div class="host-info">
           <p class="name">Nate Koweda</p>
-          <p class="role">Close Friend &middot; Treasurer</p>
+          <p class="role">Close Friend</p>
         </div>
-        <span class="host-badge">Organizer</span>
+        <span class="host-badge">Host</span>
       </article>
 
       <!-- Joshua Jackai — Close Friend -->
-      <article class="host" aria-label="Joshua Jackai, organizer">
+      <article class="host" aria-label="Joshua Jackai, host">
         <img src="/images/joshua-jackai.jpg" alt="Joshua Jackai" loading="lazy" />
         <div class="host-info">
           <p class="name">Joshua Jackai</p>
-          <p class="role">Close Friend &middot; Vice President</p>
+          <p class="role">Close Friend</p>
         </div>
-        <span class="host-badge">Organizer</span>
+        <span class="host-badge">Host</span>
       </article>
     </div>
   </div>
@@ -2327,57 +2294,344 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
 </section>
 
 <!-- =========================
-     09 TICKETS
+     09 RESERVE YOUR PLACE
      ========================= -->
 <section id="tickets" aria-labelledby="tickets-heading">
   <div class="container">
     <div class="section-head reveal" style="text-align:center; margin-inline:auto;">
-      <p class="eyebrow" style="display:block;">Reserve Your Seat</p>
-      <h2 id="tickets-heading">Three ways to <em>join the room.</em></h2>
-      <p class="sub" style="margin-inline:auto;">Every ticket directly supports the Chandler Walker Gayton Memorial Fund. Limited to 280 guests — reserve early.</p>
+      <p class="eyebrow" style="display:block;">Reserve Your Place</p>
+      <h2 id="tickets-heading">Who&rsquo;s coming <em>on December 5?</em></h2>
+      <p class="sub" style="margin-inline:auto;">Pick the one that sounds like you, then tick any levels you want to compare. Every seat and every table supports the Chandler Walker Gayton Foundation. The room holds 280.</p>
     </div>
 
-    <div class="tickets-grid reveal">
-      <article class="ticket">
-        <p class="tier">General Admission</p>
-        <h3>Legacy Pass</h3>
-        <p class="price"><sup>$</sup>150</p>
-        <ul>
-          <li>Event entry &amp; printed program</li>
+    <div class="reveal" data-pricing>
+      <div class="lane-pick" role="group" aria-label="Who is attending">
+        <button type="button" data-lane="seats" aria-pressed="true" aria-controls="lane-seats">
+          <span class="band">$150 &ndash; $1,000</span>
+          <span class="who">Just me</span>
+          <span class="what">One seat, or two. Come as a guest.</span>
+        </button>
+        <button type="button" data-lane="packages" aria-pressed="false" aria-controls="lane-packages">
+          <span class="band">$2,500 &ndash; $25,000</span>
+          <span class="who">A table, or a partnership</span>
+          <span class="what">Seats up to ten of your people, and your name on the night.</span>
+        </button>
+      </div>
+
+      <div class="lane-panel" id="lane-seats" data-panel="seats">
+        <div class="price-acc">
+      <div class="price-item" data-tier="legacy">
+        <div class="price-row">
+          <button class="price-btn" type="button" aria-expanded="false" aria-controls="p-legacy">
+            <span class="price-main">
+              <span class="price-kicker">General admission</span>
+              <span class="price-name">Legacy Pass</span>
+              
+            </span>
+            <span class="price-amt"><sup>$</sup>150</span>
+            <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="legacy" aria-label="Add Legacy Pass to comparison">
+            <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
+          </button>
+        </div>
+        <div class="price-panel" id="p-legacy"><div class="inner"><div class="price-body">
+          <ul class="price-incl">
+          <li>Entry to the full evening and the printed program</li>
           <li>Moonshine welcome drink</li>
-          <li>Silent &amp; live auction participation</li>
+          <li>Silent auction and raffle access</li>
           <li>Commemorative keepsake</li>
-        </ul>
-        <a href="#save-the-date" class="btn btn-ghost">Get Notified</a>
-      </article>
+          </ul>
+          <div class="price-cta">
+            <a href="#" class="btn btn-ghost">Select Pass</a>
+          </div>
+        </div></div></div>
+      </div>
+      <div class="price-item" data-tier="supporter">
+        <div class="price-row">
+          <button class="price-btn" type="button" aria-expanded="false" aria-controls="p-supporter">
+            <span class="price-main">
+              <span class="price-kicker">Priority seating</span>
+              <span class="price-name">Supporter Seat</span>
+              
+            </span>
+            <span class="price-amt"><sup>$</sup>250</span>
+            <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="supporter" aria-label="Add Supporter Seat to comparison">
+            <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
+          </button>
+        </div>
+        <div class="price-panel" id="p-supporter"><div class="inner"><div class="price-body">
+          <ul class="price-incl">
+          <li>Everything in the Legacy Pass</li>
+          <li>Priority seating nearer the program</li>
+          <li>Two drink tickets</li>
+          </ul>
+          <div class="price-cta">
+            <a href="#" class="btn btn-ghost">Select Seat</a>
+          </div>
+        </div></div></div>
+      </div>
+      <div class="price-item" data-tier="patron">
+        <div class="price-row">
+          <button class="price-btn" type="button" aria-expanded="false" aria-controls="p-patron">
+            <span class="price-main">
+              <span class="price-kicker">Seat at a hosted table</span>
+              <span class="price-name">Patron Seat</span>
+              
+            </span>
+            <span class="price-amt"><sup>$</sup>500</span>
+            <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="patron" aria-label="Add Patron Seat to comparison">
+            <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
+          </button>
+        </div>
+        <div class="price-panel" id="p-patron"><div class="inner"><div class="price-body">
+          <ul class="price-incl">
+          <li>Everything above</li>
+          <li>Reserved seat at a hosted table</li>
+          <li>Open bar through the evening</li>
+          <li>Priority live auction paddle</li>
+          </ul>
+          <div class="price-cta">
+            <a href="#" class="btn btn-ghost">Select Seat</a>
+          </div>
+        </div></div></div>
+      </div>
+      <div class="price-item" data-tier="founder">
+        <div class="price-row">
+          <button class="price-btn" type="button" aria-expanded="false" aria-controls="p-founder">
+            <span class="price-main">
+              <span class="price-kicker">Premier seating</span>
+              <span class="price-name">Founder&rsquo;s Seat</span>
+              
+            </span>
+            <span class="price-amt"><sup>$</sup>1,000</span>
+            <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="founder" aria-label="Add Founder's Seat to comparison">
+            <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
+          </button>
+        </div>
+        <div class="price-panel" id="p-founder"><div class="inner"><div class="price-body">
+          <ul class="price-incl">
+          <li>Everything above</li>
+          <li>Premier table seat at the front of the room</li>
+          <li>Pre-event reception with the family</li>
+          <li>Recognition in the printed program</li>
+          </ul>
+          <div class="price-cta">
+            <a href="#" class="btn btn-primary">Reserve Seat</a>
+          </div>
+        </div></div></div>
+      </div>
+        </div>
+      </div>
 
-      <article class="ticket ticket--featured">
-        <p class="tier">VIP Experience</p>
-        <h3>Chandler's Table</h3>
-        <p class="price"><sup>$</sup>350</p>
-        <ul>
-          <li>Reserved front-row seating</li>
-          <li>Open bar all evening</li>
-          <li>Meet &amp; greet with the family</li>
-          <li>Priority live auction access</li>
-          <li>Engraved legacy memento</li>
-        </ul>
-        <a href="#save-the-date" class="btn btn-primary">Get Notified</a>
-      </article>
+      <div class="lane-panel" id="lane-packages" data-panel="packages" hidden>
+        <div class="price-acc">
+      <div class="price-item" data-tier="friend">
+        <div class="price-row">
+          <button class="price-btn" type="button" aria-expanded="false" aria-controls="p-friend">
+            <span class="price-main">
+              <span class="price-kicker">Seats up to 10 &middot; 3 available</span>
+              <span class="price-name">Friend of Chandler</span>
+              <span class="price-badge">Table for up to 10 + sponsorship package</span>
+            </span>
+            <span class="price-amt"><sup>$</sup>2,500<span class="per">from $250 a seat</span></span>
+            <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="friend" aria-label="Add Friend of Chandler to comparison">
+            <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
+          </button>
+        </div>
+        <div class="price-panel" id="p-friend"><div class="inner"><div class="price-body">
+          <ul class="price-incl">
+          <li>A reserved table seating up to 10, RSVP as many as you have</li>
+          <li>Supporter Seat benefits for every guest</li>
+          <li>Your name on the table card</li>
+          <li>Name in the printed program</li>
+          </ul>
+          <div class="price-cta">
+            <a href="#" class="btn btn-ghost">Reserve Package</a>
+          </div>
+        </div></div></div>
+      </div>
+      <div class="price-item" data-tier="supporting">
+        <div class="price-row">
+          <button class="price-btn" type="button" aria-expanded="false" aria-controls="p-supporting">
+            <span class="price-main">
+              <span class="price-kicker">Seats up to 10 &middot; 5 available</span>
+              <span class="price-name">Supporting Partner</span>
+              <span class="price-badge">Table for up to 10 + sponsorship package</span>
+            </span>
+            <span class="price-amt"><sup>$</sup>5,000<span class="per">from $500 a seat</span></span>
+            <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="supporting" aria-label="Add Supporting Partner to comparison">
+            <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
+          </button>
+        </div>
+        <div class="price-panel" id="p-supporting"><div class="inner"><div class="price-body">
+          <ul class="price-incl">
+          <li>A reserved table for up to 10, near the program</li>
+          <li>Patron Seat benefits for every guest</li>
+          <li>Open bar for the table</li>
+          <li>Name in the printed program</li>
+          <li>Logo on event signage and screens</li>
+          </ul>
+          <div class="price-cta">
+            <a href="#" class="btn btn-ghost">Reserve Package</a>
+          </div>
+        </div></div></div>
+      </div>
+      <div class="price-item" data-tier="legacyp">
+        <div class="price-row">
+          <button class="price-btn" type="button" aria-expanded="false" aria-controls="p-legacyp">
+            <span class="price-main">
+              <span class="price-kicker">Seats up to 10 &middot; 2 available</span>
+              <span class="price-name">Legacy Partner</span>
+              <span class="price-badge">Table for up to 10 + sponsorship package</span>
+            </span>
+            <span class="price-amt"><sup>$</sup>10,000<span class="per">from $1,000 a seat</span></span>
+            <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="legacyp" aria-label="Add Legacy Partner to comparison">
+            <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
+          </button>
+        </div>
+        <div class="price-panel" id="p-legacyp"><div class="inner"><div class="price-body">
+          <ul class="price-incl">
+          <li>A table for up to 10 at the front of the room</li>
+          <li>Founder&rsquo;s Seat benefits for every guest</li>
+          <li>Open bar for the table</li>
+          <li>Pre-event reception with the family</li>
+          <li>Logo on event signage, screens and the event page</li>
+          <li>Named from the stage</li>
+          </ul>
+          <div class="price-cta">
+            <a href="#" class="btn btn-primary">Reserve Package</a>
+          </div>
+        </div></div></div>
+      </div>
+      <div class="price-item" data-tier="founding">
+        <div class="price-row">
+          <button class="price-btn" type="button" aria-expanded="false" aria-controls="p-founding">
+            <span class="price-main">
+              <span class="price-kicker">Seats up to 10 &middot; one available</span>
+              <span class="price-name">Founding Partner</span>
+              <span class="price-badge">Table for up to 10 + sponsorship package</span>
+            </span>
+            <span class="price-amt"><sup>$</sup>15,000<span class="per">from $1,500 a seat</span></span>
+            <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="founding" aria-label="Add Founding Partner to comparison">
+            <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
+          </button>
+        </div>
+        <div class="price-panel" id="p-founding"><div class="inner"><div class="price-body">
+          <ul class="price-incl">
+          <li>A premier table for up to 10 at the front of the room</li>
+          <li>Founder&rsquo;s Seat benefits for every guest</li>
+          <li>Open bar for the table</li>
+          <li>Pre-event reception with the family</li>
+          <li>Valet arrival for your guests</li>
+          <li>Logo on event signage, screens and the event page</li>
+          <li>Named from the stage</li>
+          </ul>
+          <div class="price-cta">
+            <a href="#" class="btn btn-primary">Talk to Atif</a><span class="cta-note">or atif@analog-digital.co</span>
+          </div>
+        </div></div></div>
+      </div>
+      <div class="price-item" data-tier="presenting">
+        <div class="price-row">
+          <button class="price-btn" type="button" aria-expanded="false" aria-controls="p-presenting">
+            <span class="price-main">
+              <span class="price-kicker">Presenting sponsor &middot; one available</span>
+              <span class="price-name">Presenting Partner</span>
+              <span class="price-badge">Table for up to 10 + sponsorship package</span>
+            </span>
+            <span class="price-amt"><sup>$</sup>25,000<span class="per">from $2,500 a seat</span></span>
+            <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+          </button>
+          <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="presenting" aria-label="Add Presenting Partner to comparison">
+            <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
+          </button>
+        </div>
+        <div class="price-panel" id="p-presenting"><div class="inner"><div class="price-body">
+          <ul class="price-incl">
+          <li>A presenting table for up to 10, front and center</li>
+          <li>Founder&rsquo;s Seat benefits for every guest</li>
+          <li>Open bar for the table</li>
+          <li>Pre-event reception with the family</li>
+          <li>Valet arrival for your guests</li>
+          <li>Presenting billing across all event materials</li>
+          <li>Named from the stage by the MC</li>
+          </ul>
+          <div class="price-cta">
+            <a href="#" class="btn btn-primary">Talk to Atif</a><span class="cta-note">or atif@analog-digital.co</span>
+          </div>
+        </div></div></div>
+      </div>
+        </div>
+      </div>
 
-      <article class="ticket">
-        <p class="tier">Corporate Sponsor</p>
-        <h3>Patron Table</h3>
-        <p class="price"><sup>$</sup>1,500</p>
-        <ul>
-          <li>Table of 10 guests</li>
-          <li>Logo on event materials</li>
-          <li>All VIP perks included</li>
-          <li>Speaking opportunity</li>
-        </ul>
-        <a href="#sponsor" class="btn btn-ghost">Sponsor Event</a>
+      <div class="tray" hidden>
+        <div class="tray-bar">
+          <span class="tray-count"></span>
+          <span class="tray-names"></span>
+          <button class="btn btn-primary" type="button" data-act="open">Compare</button>
+          <button class="btn btn-ghost" type="button" data-act="clear">Clear</button>
+        </div>
+        <div class="tray-body" hidden></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================
+     9B MATCHING GIFTS
+     ========================= -->
+<section id="matching" aria-labelledby="matching-heading">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center; margin-inline:auto;">
+      <p class="eyebrow" style="display:block;">Double Your Impact</p>
+      <h2 id="matching-heading">Your employer can <em>match your gift.</em></h2>
+      <p class="sub" style="margin-inline:auto;">Thousands of companies match the charitable gifts their employees make, many dollar for dollar and some even better. A few minutes with your HR team can turn one gift into two.</p>
+    </div>
+
+    <div class="match-grid reveal">
+      <article class="match-step">
+        <p class="num" aria-hidden="true">01</p>
+        <h3>Check with your employer</h3>
+        <p>Ask HR or check your company's giving portal (Benevity, YourCause, Bright Funds, or similar) to see if they match employee donations.</p>
+      </article>
+      <article class="match-step">
+        <p class="num" aria-hidden="true">02</p>
+        <h3>Submit your match request</h3>
+        <p>After you give, file a match request with your gift receipt. Search for us by name or EIN. Most programs take five minutes or less.</p>
+      </article>
+      <article class="match-step">
+        <p class="num" aria-hidden="true">03</p>
+        <h3>Your gift doubles</h3>
+        <p>Your employer confirms the gift with the foundation and sends the match. Twice the impact, at no extra cost to you.</p>
       </article>
     </div>
+
+    <div class="match-info reveal">
+      <div class="match-facts">
+        <div class="match-fact"><span class="label">Legal Name</span><span class="value">Chandler Walker Gayton Foundation</span></div>
+        <div class="match-fact"><span class="label">EIN</span><span class="value">42-3129149</span></div>
+        <div class="match-fact"><span class="label">Status</span><span class="value">IRS-approved 501(c)(3) public charity</span></div>
+        <div class="match-fact"><span class="label">Mailing Address</span><span class="value">2107 NW 201st St, Shoreline, WA 98177</span></div>
+      </div>
+      <a href="mailto:jackaijoshua@gmail.com?subject=Matching%20Gift%20Verification%20%C2%B7%20Chandler%20Walker%20Gayton%20Foundation" class="btn btn-ghost">Send Us a Match Form</a>
+    </div>
+
+    <p class="match-note reveal">Most programs match direct donations, and some also match the tax-deductible portion of event tickets. Your HR team can confirm what qualifies. If your employer needs a verification form signed or you have any questions, write to <a href="mailto:jackaijoshua@gmail.com">jackaijoshua@gmail.com</a> and we will turn it around quickly.</p>
   </div>
 </section>
 
@@ -2419,7 +2673,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <span class="brand-tag">An Evening of Legacy</span>
         </a>
         <p class="footer-status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>501(c)(3) Approved</p>
-        <p class="footer-tag">Chandler Walker Gayton Foundation, a Washington Nonprofit Corporation. <span class="nb">EIN 42-3129149</span>.<br />Registered: <span class="nb">2107 NW 201st St, Shoreline, WA 98177</span>.<br />Mail to: <span class="nb">PO Box 99371, Seattle, WA 98139-0371</span>.</p>
+        <p class="footer-tag">Chandler Walker Gayton Foundation, a Washington Nonprofit Corporation. EIN 42-3129149.<br />2107 NW 201st St, Shoreline, WA 98177.</p>
         <div class="social-row" aria-label="Social links">
           <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1.1.1-1.7.2-2 .4-.5.2-.9.4-1.3.8-.4.4-.6.8-.8 1.3-.2.3-.3.9-.4 2-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.7.4 2 .2.5.4.9.8 1.3.4.4.8.6 1.3.8.3.2.9.3 2 .4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.7-.2 2-.4.5-.2.9-.4 1.3-.8.4-.4.6-.8.8-1.3.2-.3.3-.9.4-2 .1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.7-.4-2-.2-.5-.4-.9-.8-1.3-.4-.4-.8-.6-1.3-.8-.3-.2-.9-.3-2-.4-1.2-.1-1.6-.1-4.7-.1zM12 7.4a4.6 4.6 0 1 1 0 9.2 4.6 4.6 0 0 1 0-9.2zm0 1.8a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6zm5-2.3a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"/></svg></a>
           <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2L12 12.3 19.4 7H4.6zM4 8.5V18h16V8.5l-8 5.7L4 8.5z"/></svg></a>
@@ -2441,8 +2695,8 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       <div class="footer-col">
         <h4>Take Part</h4>
         <ul>
-          <li><a href="#save-the-date">Save the Date</a></li>
-          <li><a href="#tickets">Get Tickets</a></li>
+          <li><a href="#tickets">Reserve Your Place</a></li>
+          <li><a href="#matching">Matching Gifts</a></li>
           <li><a href="#sponsor">Sponsor the Night</a></li>
           <li><a href="#">Donate to the Fund</a></li>
           <li><a href="#">Contact the Family</a></li>
@@ -2725,66 +2979,195 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     });
   });
 })();
-
-/* Save the Date: email capture posts to the foundation's Google Form list */
+</script>
+<script>
+/* Reserve Your Place — lane switch, accordion, compare tray */
 (function () {
-  var form = document.getElementById('stdForm');
-  if (!form) return;
-  var nameEl = document.getElementById('stdName');
-  var emailEl = document.getElementById('stdEmail');
-  var errEl = document.getElementById('stdError');
-  var btn = document.getElementById('stdSubmit');
-  var successEl = document.getElementById('stdSuccess');
-  var subEl = document.getElementById('stdFormSub');
-  var ENDPOINT = 'https://docs.google.com/forms/d/e/1FAIpQLSce3BxUDSnjlq5n5PsRo1XmMQHa_QjrK0dmfk8ALJWA7liF9g/formResponse';
+  var root = document.querySelector('[data-pricing]');
+  if (!root) return;
 
-  function showError(msg) {
-    errEl.textContent = msg;
-    errEl.hidden = false;
-    emailEl.setAttribute('aria-invalid', 'true');
-  }
-  function clearError() {
-    errEl.hidden = true;
-    errEl.textContent = '';
-    emailEl.removeAttribute('aria-invalid');
-  }
-  emailEl.addEventListener('input', clearError);
+  /* Feature grid used only by the comparison tray. The accordion panels are
+     static HTML above, so prices and benefits render without JavaScript. */
+  var ROWS = {
+    seats: [
+      ['placement', 'Seating'],
+      ['bar', 'Bar'],
+      ['welcome', 'Moonshine welcome drink'],
+      ['auction', 'Silent auction & raffle'],
+      ['paddle', 'Priority live auction paddle'],
+      ['keepsake', 'Commemorative keepsake'],
+      ['reception', 'Pre-event reception with the family'],
+      ['named', 'Name in the printed program']
+    ],
+    packages: [
+      ['seatcount', 'Seats at your table'],
+      ['guest', 'Guest level for every seat'],
+      ['placement', 'Table placement'],
+      ['bar', 'Open bar for the table'],
+      ['reception', 'Pre-event reception with the family'],
+      ['named', 'Name in the printed program'],
+      ['signage', 'Logo on event signage & screens'],
+      ['web', 'Logo on the event page'],
+      ['stage', 'Named from the stage'],
+      ['valet', 'Valet arrival for your guests'],
+      ['billing', 'Presenting billing on all materials'],
+      ['avail', 'How many available']
+    ]
+  };
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    clearError();
-    var email = emailEl.value.trim();
-    if (!email) {
-      showError('Please enter your email address.');
-      emailEl.focus();
-      return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-      showError('That email does not look right. Please double-check it.');
-      emailEl.focus();
-      return;
-    }
-    btn.disabled = true;
-    var original = btn.textContent;
-    btn.textContent = 'Adding you…';
-    var data = new FormData();
-    data.append('entry.458888016', nameEl.value.trim());
-    data.append('entry.313703972', email);
-    fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: data })
-      .then(function () {
-        form.hidden = true;
-        if (subEl) subEl.hidden = true;
-        successEl.hidden = false;
-        successEl.focus();
-      })
-      .catch(function () {
-        btn.disabled = false;
-        btn.textContent = original;
-        showError('Something went wrong sending that. Please check your connection and try again.');
-      });
+  var TIERS = {
+    legacy:    {lane:'seats', name:'Legacy Pass', price:'$150',
+      f:{placement:'Open seating', bar:false, welcome:true, auction:true,
+         paddle:false, keepsake:true, reception:false, named:false}},
+    supporter: {lane:'seats', name:'Supporter Seat', price:'$250',
+      f:{placement:'Priority, nearer the program', bar:'Two drink tickets', welcome:true,
+         auction:true, paddle:false, keepsake:true, reception:false, named:false}},
+    patron:    {lane:'seats', name:'Patron Seat', price:'$500',
+      f:{placement:'Reserved at a hosted table', bar:'Open bar', welcome:true,
+         auction:true, paddle:true, keepsake:true, reception:false, named:false}},
+    founder:   {lane:'seats', name:'Founder’s Seat', price:'$1,000',
+      f:{placement:'Premier, front of the room', bar:'Open bar', welcome:true,
+         auction:true, paddle:true, keepsake:true, reception:true, named:true}},
+
+    friend:     {lane:'packages', name:'Friend of Chandler', price:'$2,500 · $250 a seat',
+      f:{seatcount:'Up to 10', guest:'Supporter Seat', placement:'Reserved', bar:false,
+         reception:false, named:true, signage:false, web:false, stage:false,
+         valet:false, billing:false, avail:'3'}},
+    supporting: {lane:'packages', name:'Supporting Partner', price:'$5,000 · $500 a seat',
+      f:{seatcount:'Up to 10', guest:'Patron Seat', placement:'Reserved, near the program', bar:true,
+         reception:false, named:true, signage:true, web:false, stage:false,
+         valet:false, billing:false, avail:'5'}},
+    legacyp:    {lane:'packages', name:'Legacy Partner', price:'$10,000 · $1,000 a seat',
+      f:{seatcount:'Up to 10', guest:'Founder’s Seat', placement:'Front of the room', bar:true,
+         reception:true, named:true, signage:true, web:true, stage:true,
+         valet:false, billing:false, avail:'2'}},
+    founding:   {lane:'packages', name:'Founding Partner', price:'$15,000 · $1,500 a seat',
+      f:{seatcount:'Up to 10', guest:'Founder’s Seat', placement:'Premier, front of the room', bar:true,
+         reception:true, named:true, signage:true, web:true, stage:true,
+         valet:true, billing:false, avail:'One only'}},
+    presenting: {lane:'packages', name:'Presenting Partner', price:'$25,000 · $2,500 a seat',
+      f:{seatcount:'Up to 10', guest:'Founder’s Seat', placement:'Presenting, front and center', bar:true,
+         reception:true, named:true, signage:true, web:true, stage:true,
+         valet:true, billing:true, avail:'One only'}}
+  };
+
+  var lane = 'seats';
+  var picked = [];
+  var tray = root.querySelector('.tray');
+  var trayBody = tray.querySelector('.tray-body');
+  var openBtn = tray.querySelector('[data-act="open"]');
+
+  function esc(v) {
+    return String(v).replace(/[&<>"]/g, function (c) {
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c];
+    });
+  }
+
+  /* ---- accordion, one open at a time within a lane ---- */
+  root.querySelectorAll('.price-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.closest('.price-item');
+      var acc = btn.closest('.price-acc');
+      var open = item.classList.contains('is-open');
+      if (!open) {
+        acc.querySelectorAll('.price-item.is-open').forEach(function (o) {
+          o.classList.remove('is-open');
+          o.querySelector('.price-btn').setAttribute('aria-expanded', 'false');
+        });
+      }
+      item.classList.toggle('is-open', !open);
+      btn.setAttribute('aria-expanded', String(!open));
+    });
   });
+
+  /* ---- lane switch ---- */
+  root.querySelectorAll('.lane-pick button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      lane = b.dataset.lane;
+      root.querySelectorAll('.lane-pick button').forEach(function (o) {
+        o.setAttribute('aria-pressed', String(o === b));
+      });
+      root.querySelectorAll('.lane-panel').forEach(function (p) {
+        p.hidden = p.dataset.panel !== lane;
+      });
+      clearPicks();
+    });
+  });
+
+  /* ---- comparison matrix ---- */
+  function matrix(ids) {
+    var rows = ROWS[lane];
+    var head = '<tr><th class="rowlab">Level</th>' + ids.map(function (id) {
+      var t = TIERS[id];
+      return '<th><span class="tiername">' + esc(t.name) +
+             '</span><span class="tierprice">' + esc(t.price) + '</span></th>';
+    }).join('') + '</tr>';
+
+    var body = rows.map(function (r) {
+      return '<tr><th class="rowlab" scope="row">' + r[1] + '</th>' +
+        ids.map(function (id) {
+          var v = TIERS[id].f[r[0]], cell;
+          if (v === true) cell = '<span class="y" aria-label="Included">&#10003;</span>';
+          else if (v === false || v == null) cell = '<span class="n" aria-label="Not included">&mdash;</span>';
+          else cell = esc(v);
+          return '<td>' + cell + '</td>';
+        }).join('') + '</tr>';
+    }).join('');
+
+    return '<div class="mx-wrap"><table class="mx"><thead>' + head +
+           '</thead><tbody>' + body + '</tbody></table></div>' +
+           '<p class="mx-hint" hidden>Scroll the table sideways to see every column.</p>';
+  }
+
+  function draw() {
+    trayBody.innerHTML = picked.length > 1
+      ? matrix(picked)
+      : '<p class="mx-hint">Tick a second level to see them side by side.</p>';
+    var wrap = trayBody.querySelector('.mx-wrap');
+    var hint = trayBody.querySelector('.mx-hint[hidden]');
+    if (wrap && hint && wrap.scrollWidth > wrap.clientWidth + 1) hint.hidden = false;
+  }
+
+  function sync() {
+    tray.hidden = picked.length === 0;
+    root.classList.toggle('has-tray', picked.length > 0);
+    tray.querySelector('.tray-count').textContent =
+      picked.length + (picked.length === 1 ? ' level' : ' levels');
+    tray.querySelector('.tray-names').innerHTML = picked.map(function (id) {
+      return '<span class="tray-pill">' + esc(TIERS[id].name) + '</span>';
+    }).join('');
+    if (!trayBody.hidden) draw();
+  }
+
+  function clearPicks() {
+    picked = [];
+    trayBody.hidden = true;
+    openBtn.textContent = 'Compare';
+    root.querySelectorAll('.cmp-btn').forEach(function (b) {
+      b.setAttribute('aria-pressed', 'false');
+    });
+    sync();
+  }
+
+  root.querySelectorAll('.cmp-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.dataset.cmp, i = picked.indexOf(id);
+      if (i > -1) picked.splice(i, 1); else picked.push(id);
+      btn.setAttribute('aria-pressed', String(i === -1));
+      sync();
+    });
+  });
+
+  openBtn.addEventListener('click', function () {
+    trayBody.hidden = !trayBody.hidden;
+    openBtn.textContent = trayBody.hidden ? 'Compare' : 'Hide';
+    if (!trayBody.hidden) draw();
+  });
+
+  tray.querySelector('[data-act="clear"]').addEventListener('click', clearPicks);
 })();
 </script>
+
 
 </body>
 </html>
