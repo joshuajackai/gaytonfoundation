@@ -744,7 +744,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 }
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-6);
   text-align: center;
 }
@@ -813,7 +813,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 }
 
 @media (max-width: 880px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-10) var(--space-4); }
+  .stats-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-10) var(--space-3); }
   .fullbleed { aspect-ratio: 4/5; max-height: 640px; }
 }
 
@@ -1552,6 +1552,13 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
   transition: transform 640ms cubic-bezier(.2,.7,.2,1);
 }
 .mem-card.is-flipped .mem-card-inner { transform: rotateY(180deg); }
+/* Safari/WebKit: children promoted to their own layers (backdrop-filter icon
+   buttons, the scrollable quote) ignore the face's backface-visibility, so the
+   hidden face bleeds through mirrored. Explicitly hide the away-facing face at
+   the flip midpoint (~90deg on the flip easing curve). */
+.mem-front, .mem-back { transition: opacity 0s linear 100ms; }
+.mem-card.is-flipped .mem-front { opacity: 0; pointer-events: none; }
+.mem-card:not(.is-flipped):not(.is-expanded) .mem-back { opacity: 0; pointer-events: none; }
 .mem-face {
   position: absolute; inset: 0;
   border-radius: var(--radius-lg);
@@ -1664,6 +1671,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
   .mem-marquee { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
   .mem-card { scroll-snap-align: center; }
   .mem-card-inner { transition: none; }
+  .mem-front, .mem-back { transition: none; }
   .mem-overlay { transition: none; }
 }
 
@@ -1739,11 +1747,11 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       </div>
       <div>
         <dt>Venue</dt>
-        <dd>D-Squared · Airport Way, Seattle, WA</dd>
+        <dd>D-Squared · <span style="white-space:nowrap;">4105 Airport Way S,</span> <span style="white-space:nowrap;">Seattle, WA 98108</span></dd>
       </div>
       <div>
         <dt>Dress Code</dt>
-        <dd>Black Tie Western</dd>
+        <dd>Your Finest Western Attire</dd>
       </div>
     </dl>
   </div>
@@ -1761,13 +1769,13 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     <span>Honoring Chandler Walker Gayton</span><span class="star">✦</span>
     <span>Moonshine Bar</span><span class="star">✦</span>
     <span>Live Auctions</span><span class="star">✦</span>
-    <span>Black Tie Western</span><span class="star">✦</span>
+    <span>Your Finest Western Attire</span><span class="star">✦</span>
     <span>Boots on the Ground</span><span class="star">✦</span>
     <span>An Evening of Legacy</span><span class="star">✦</span>
     <span>Honoring Chandler Walker Gayton</span><span class="star">✦</span>
     <span>Moonshine Bar</span><span class="star">✦</span>
     <span>Live Auctions</span><span class="star">✦</span>
-    <span>Black Tie Western</span><span class="star">✦</span>
+    <span>Your Finest Western Attire</span><span class="star">✦</span>
   </div>
 </div>
 
@@ -1803,7 +1811,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       <article class="feature">
         <div class="icon" aria-hidden="true">✦</div>
         <h3>The Cause</h3>
-        <p>100% of net proceeds from tickets, auction, and sponsorships support the Chandler Walker Gayton Memorial Fund — directed by his family.</p>
+        <p>This year, donations will go towards providing housing for the unhoused with Homestead.</p>
       </article>
       <article class="feature">
         <div class="icon" aria-hidden="true">♪</div>
@@ -1813,7 +1821,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       <article class="feature">
         <div class="icon" aria-hidden="true">∞</div>
         <h3>The Legacy</h3>
-        <p>An ongoing memorial to a friend, a son, a brother, a partner. The night writes the next chapter — your seat is part of it.</p>
+        <p>An ongoing memorial to someone we always want to be remembered. The night writes the next chapter, and your seat is part of it.</p>
       </article>
     </div>
   </div>
@@ -2020,7 +2028,6 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       <div class="stats-grid reveal" role="list">
         <div class="stat" role="listitem"><span class="num" data-count="33">33</span><span class="label">Years of Life</span></div>
         <div class="stat" role="listitem"><span class="num" data-count="280">280</span><span class="label">Guests Expected</span></div>
-        <div class="stat" role="listitem"><span class="num" data-count="15">15+</span><span class="label">Auction Items</span></div>
         <div class="stat" role="listitem"><span class="num">∞</span><span class="label">His Legacy</span></div>
       </div>
     </div>
