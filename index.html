@@ -10,10 +10,13 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
 <meta name="theme-color" content="#23100a" />
 <meta name="color-scheme" content="light" />
 
-<title>Prototype B · Impact First · Chandler Walker Gayton Foundation</title>
+<title>Chandler Walker Gayton Foundation · Honoring a Life, Extending His Causes</title>
 <meta name="description" content="The Chandler Walker Gayton Foundation supports community, housing, early childhood education, and social justice in Chandler Gayton's memory. A Washington nonprofit corporation with 501(c)(3) tax-exempt status. Based in Seattle, WA." />
 
+<link rel="canonical" href="https://gaytonfoundation.org/" />
 <link rel="icon" href="/images/cwgf-logo.svg" type="image/svg+xml" />
+<link rel="preload" as="image" href="/images/hero/chandler-hero-cutout.webp" fetchpriority="high" />
+
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Chandler Walker Gayton Foundation" />
 <meta property="og:url" content="https://gaytonfoundation.org/" />
@@ -75,6 +78,14 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
 <!-- Google tag (gtag.js) -- GA4 property G-0QYY5SR4MY. Placed after the critical
      preloads/fonts so it never competes with the LCP image; async, so it does
      not block parsing or rendering. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QYY5SR4MY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0QYY5SR4MY');
+</script>
+
 <style>
 :root {
   --forest:#3f4536; --champagne:#be9a71; --saddle:#926f54; --rust:#b56a25;
