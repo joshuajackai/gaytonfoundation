@@ -10,18 +10,15 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
 <meta name="theme-color" content="#23100a" />
 <meta name="color-scheme" content="light" />
 
-<title>Chandler Walker Gayton Foundation · Honoring a Life, Extending His Causes</title>
-<meta name="description" content="The Chandler Walker Gayton Foundation supports community, housing, early childhood education, and elder care in Chandler Gayton's memory. A Washington nonprofit corporation with 501(c)(3) tax-exempt status. Based in Seattle, WA." />
+<title>Prototype B · Impact First · Chandler Walker Gayton Foundation</title>
+<meta name="description" content="The Chandler Walker Gayton Foundation supports community, housing, early childhood education, and social justice in Chandler Gayton's memory. A Washington nonprofit corporation with 501(c)(3) tax-exempt status. Based in Seattle, WA." />
 
-<link rel="canonical" href="https://gaytonfoundation.org/" />
 <link rel="icon" href="/images/cwgf-logo.svg" type="image/svg+xml" />
-<link rel="preload" as="image" href="/images/hero/chandler-hero-cutout.webp" fetchpriority="high" />
-
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Chandler Walker Gayton Foundation" />
 <meta property="og:url" content="https://gaytonfoundation.org/" />
 <meta property="og:title" content="Chandler Walker Gayton Foundation" />
-<meta property="og:description" content="Supporting community, housing, early childhood education, and elder care in Chandler Gayton's memory. A Washington nonprofit corporation with 501(c)(3) tax-exempt status." />
+<meta property="og:description" content="Supporting community, housing, early childhood education, and social justice in Chandler Gayton's memory. A Washington nonprofit corporation with 501(c)(3) tax-exempt status." />
 <meta property="og:image" content="https://gaytonfoundation.org/images/og-foundation.jpg" />
 <meta property="og:image:secure_url" content="https://gaytonfoundation.org/images/og-foundation.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
@@ -49,7 +46,7 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
   "url": "https://gaytonfoundation.org/",
   "logo": "https://gaytonfoundation.org/images/cwgf-logo.svg",
   "image": "https://gaytonfoundation.org/images/og-foundation.jpg",
-  "description": "The Chandler Walker Gayton Foundation supports community, housing, early childhood education, and elder care in Chandler Gayton's memory. A Washington nonprofit corporation with 501(c)(3) tax-exempt status.",
+  "description": "The Chandler Walker Gayton Foundation supports community, housing, early childhood education, and social justice in Chandler Gayton's memory. A Washington nonprofit corporation with 501(c)(3) tax-exempt status.",
   "taxID": "42-3129149",
   "nonprofitStatus": "Nonprofit501c3",
   "email": "joshua@gaytonfoundation.org",
@@ -78,14 +75,6 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
 <!-- Google tag (gtag.js) -- GA4 property G-0QYY5SR4MY. Placed after the critical
      preloads/fonts so it never competes with the LCP image; async, so it does
      not block parsing or rendering. -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0QYY5SR4MY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-0QYY5SR4MY');
-</script>
-
 <style>
 :root {
   --forest:#3f4536; --champagne:#be9a71; --saddle:#926f54; --rust:#b56a25;
@@ -814,6 +803,302 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
    reads as light type on the scrim, the way the original card intended. */
 .chandler-photo.moodfade::after { display:none; }   /* the baked scrim replaces it */
 
+
+/* =========================================================
+   PROTOTYPE ADDITIONS - built on the existing token system.
+   ========================================================= */
+
+/* ----- A · legacy timeline ----- */
+.legacy-path { margin-top:clamp(46px, 6vw, 82px); padding-top:clamp(30px, 4vw, 48px); border-top:1px solid var(--hairline); }
+.legacy-path h3 {
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(24px, 2.9vw, 34px); line-height:1.18; color:var(--ink); margin:0 0 12px;
+}
+.legacy-path h3 em {
+  font-style:italic; color:var(--flame-mid);
+  background:linear-gradient(104deg, var(--flame) 0%, var(--flame-mid) 52%, var(--ember-deep) 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  padding-inline:0.06em; margin-inline:-0.06em;
+}
+.legacy-path-grid { display:grid; grid-template-columns:1.25fr 1fr; gap:clamp(26px, 3.4vw, 52px); align-items:start; }
+@media (max-width:980px) { .legacy-path-grid { grid-template-columns:1fr; } }
+.timeline { list-style:none; margin:0; padding:4px 0 0; }
+.timeline li { position:relative; padding:0 0 26px 34px; }
+.timeline li:last-child { padding-bottom:0; }
+.timeline li::before {
+  content:""; position:absolute; left:8px; top:14px; bottom:-4px; width:1px;
+  background:linear-gradient(180deg, rgba(207,90,10,0.42), rgba(63,69,54,0.16));
+}
+.timeline li:last-child::before { display:none; }
+.timeline li::after {
+  content:""; position:absolute; left:4px; top:7px; width:9px; height:9px; border-radius:999px;
+  background:linear-gradient(140deg, var(--flame) 0%, var(--ember-deep) 100%);
+  box-shadow:0 0 0 4px rgba(207,90,10,0.13);
+}
+.tl-year {
+  display:block; font-family:var(--font-ui); font-size:10px; font-weight:700;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--flame-mid); margin-bottom:5px;
+}
+.tl-org { display:block; font-size:16.5px; font-weight:600; color:var(--ink); line-height:1.35; }
+.tl-role { display:block; font-size:14px; line-height:1.55; color:rgba(25,16,10,0.68); margin-top:3px; }
+.legacy-aside { display:grid; gap:16px; }
+
+/* ----- A · promise list ----- */
+.promise-list { list-style:none; margin:0; padding:0; display:grid; gap:14px; }
+.promise-item {
+  display:flex; gap:18px; padding:22px 24px; border-radius:var(--r-lg);
+  background:rgba(252,248,240,0.58); border:1px solid var(--hairline); box-shadow:var(--rest);
+  transition:transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+.promise-item:hover { transform:translateY(-3px); border-color:rgba(207,90,10,0.45); box-shadow:var(--lift); }
+.promise-num {
+  flex:none; min-width:42px; padding-top:2px;
+  font-family:var(--font-display); font-style:italic; font-size:27px; line-height:1;
+  color:var(--flame-mid);
+  background:linear-gradient(104deg, var(--flame) 0%, var(--flame-mid) 52%, var(--ember-deep) 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.promise-item h4 { font-family:var(--font-display); font-size:19px; font-weight:500; margin:0 0 6px; color:var(--ink); }
+.promise-item p { font-size:15.5px; line-height:1.52; color:var(--ink-soft); margin:0; }
+
+.pullquote {
+  margin-top:28px; padding:22px 28px;
+  border-left:2px solid rgba(207,90,10,0.5);
+  background:rgba(252,248,240,0.45);
+  border-radius:0 var(--r-lg) var(--r-lg) 0;
+  font-family:var(--font-display); font-style:italic;
+  font-size:clamp(19px, 1.9vw, 24px); line-height:1.42; color:var(--ink);
+}
+.pullquote em {
+  font-style:italic; color:var(--flame-mid);
+  background:linear-gradient(104deg, var(--flame) 0%, var(--flame-mid) 52%, var(--ember-deep) 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+
+/* ----- A · legacy in motion rows ----- */
+.motion-list { display:grid; gap:22px; }
+.motion-row {
+  display:grid; grid-template-columns:1fr 1.15fr; gap:clamp(24px, 3.4vw, 48px); align-items:center;
+  padding:clamp(20px, 2.4vw, 30px); border-radius:var(--r-xl);
+  background:rgba(252,248,240,0.62); border:1px solid var(--hairline); box-shadow:var(--rest);
+  transition:transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+.motion-row:hover { transform:translateY(-4px); box-shadow:var(--lift); border-color:rgba(207,90,10,0.45); }
+.motion-row--flip { grid-template-columns:1.15fr 1fr; }
+.motion-row--flip .motion-photo { order:2; }
+.motion-photo { aspect-ratio:4/3; position:relative; overflow:hidden; border-radius:var(--r-lg); background:var(--elevated); }
+.motion-photo img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 420ms ease; }
+.motion-row:hover .motion-photo img { transform:scale(1.03); }
+.motion-photo::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, transparent 62%, rgba(35,16,10,0.16) 100%); }
+.motion-num { display:block; font-family:var(--font-ui); font-size:10px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase; color:var(--flame-mid); margin-bottom:10px; }
+.motion-body h3 { font-family:var(--font-display); font-size:clamp(21px, 2.1vw, 26px); font-weight:500; margin:0 0 10px; color:var(--ink); }
+.motion-body p { font-size:16px; line-height:1.6; color:var(--ink-soft); margin:0 0 14px; }
+.motion-tag { font-family:var(--font-ui); font-size:9.5px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--flame-mid); }
+@media (max-width:860px) {
+  .motion-row, .motion-row--flip { grid-template-columns:1fr; }
+  .motion-row--flip .motion-photo { order:0; }
+}
+
+/* ----- A · support duo ----- */
+.support-duo { display:grid; grid-template-columns:1.2fr 1fr; gap:20px; align-items:stretch; }
+@media (max-width:900px) { .support-duo { grid-template-columns:1fr; } }
+.donate-panel {
+  display:flex; flex-direction:column; padding:clamp(28px, 3.2vw, 44px); border-radius:var(--r-xl);
+  border:1px solid rgba(207,90,10,0.28);
+  background:linear-gradient(135deg, rgba(207,90,10,0.10), rgba(252,248,240,0.60));
+  box-shadow:var(--rest);
+}
+.donate-panel h3 { font-family:var(--font-display); font-size:clamp(23px, 2.4vw, 30px); font-weight:500; margin:0 0 10px; color:var(--ink); }
+.donate-panel > p { font-size:16px; line-height:1.6; color:var(--ink-soft); margin:0 0 22px; max-width:46ch; }
+.donate-panel .give-mail { margin-top:auto; }
+.donate-note {
+  margin:18px 0 22px; font-family:var(--font-ui); font-size:11px; line-height:1.7;
+  letter-spacing:0.05em; color:var(--ink-soft); max-width:40ch;
+}
+.mini-stack { display:grid; gap:14px; align-content:stretch; }
+
+/* ----- B · fact strip ----- */
+.fact-strip { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; margin:0 0 clamp(34px, 4vw, 52px); }
+@media (max-width:980px) { .fact-strip { grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:520px) { .fact-strip { grid-template-columns:1fr; } }
+.fact-tile {
+  padding:22px 24px; border-radius:var(--r-lg);
+  background:rgba(252,248,240,0.58); border:1px solid var(--hairline); box-shadow:var(--rest);
+  transition:transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+.fact-tile:hover { transform:translateY(-3px); border-color:rgba(207,90,10,0.45); box-shadow:var(--lift); }
+.fact-num {
+  display:block; font-family:var(--font-display); font-size:clamp(30px, 2.9vw, 40px); line-height:1;
+  margin-bottom:10px; color:var(--flame-mid);
+  background:linear-gradient(104deg, var(--flame) 0%, var(--flame-mid) 52%, var(--ember-deep) 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.fact-label { display:block; font-family:var(--font-ui); font-size:10.5px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink); margin-bottom:6px; }
+.fact-note { font-size:13.5px; line-height:1.5; color:var(--ink-soft); margin:0; }
+
+/* B focus cards ride the pillar styling, four across on desktop */
+.impact-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+@media (max-width:1000px) { .impact-grid { grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:520px)  { .impact-grid { grid-template-columns:1fr; } }
+
+/* photo-led focus cards: moody copper thumbnails of Chandler */
+.pillar--photo { padding:0; overflow:hidden; display:flex; flex-direction:column; }
+.pillar-photo { aspect-ratio:4/5; position:relative; overflow:hidden; background:var(--elevated); }
+.pillar-photo img { width:100%; height:100%; object-fit:cover; object-position:center 32%; display:block; transition:transform 420ms ease; }
+.pillar--photo:hover .pillar-photo img { transform:scale(1.03); }
+.pillar-photo::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, transparent 62%, rgba(35,16,10,0.18) 100%); }
+.pillar-body { padding:18px 20px 22px; }
+.pillar-body h4 { font-family:var(--font-display); font-size:19px; font-weight:500; margin:0 0 6px; color:var(--ink); }
+.pillar-body p { font-size:15.5px; line-height:1.52; color:var(--ink-soft); margin:0; }
+
+/* ----- B · path cards ----- */
+.path-num { display:block; font-family:var(--font-ui); font-size:9.5px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase; color:var(--flame-mid); margin-bottom:8px; }
+.path-serves { margin-top:auto; padding-top:12px; border-top:1px solid var(--hairline); font-family:var(--font-ui); font-size:9.5px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--flame-mid); }
+.path-serves span { color:var(--ink-soft); font-weight:400; letter-spacing:0.16em; }
+
+/* ----- B · relationship preheader on team cards ----- */
+.team-meta .kin {
+  font-family:var(--font-ui); font-size:9px; font-weight:700;
+  letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--ink-soft); opacity:0.75; margin:0 0 4px;
+}
+
+/* ----- B · read-more accordions ----- */
+details.hc-more summary {
+  list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-ui); font-size:10.5px; font-weight:700;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--flame-mid); margin-top:4px;
+}
+details.hc-more summary::-webkit-details-marker { display:none; }
+details.hc-more summary:hover { color:var(--ember-deep); }
+details.hc-more summary svg { width:12px; height:12px; flex:none; transition:transform 240ms ease; }
+details.hc-more[open] summary svg { transform:rotate(180deg); }
+details.hc-more .less { display:none; }
+details.hc-more[open] .less { display:inline; }
+details.hc-more[open] .more { display:none; }
+details.hc-more .hc-more-body { padding-top:14px; }
+details.hc-more.closing summary svg { transform:rotate(0deg); }
+details.hc-more.closing .less { display:none; }
+details.hc-more.closing .more { display:inline; }
+.hc-about details.hc-more { margin-bottom:18px; }
+.hc-about details.hc-more summary { color:#ffc681; }
+.hc-about details.hc-more summary:hover { color:#fdf6ea; }
+
+/* ----- B · How We Contribute: Homestead focus ----- */
+.hc-award {
+  display:grid; grid-template-columns:0.72fr 1.28fr; gap:clamp(26px, 4vw, 56px); align-items:center;
+  padding:clamp(24px, 3vw, 40px); border-radius:var(--r-xl);
+  background:rgba(252,248,240,0.62); border:1px solid var(--hairline); box-shadow:var(--rest);
+}
+@media (max-width:900px) { .hc-award { grid-template-columns:1fr; } }
+.hc-award-photo { border-radius:var(--r-lg); overflow:hidden; border:1px solid rgba(207,90,10,0.28); box-shadow:0 18px 44px rgba(63,69,54,0.18); }
+.hc-award-photo img { display:block; width:100%; height:auto; }
+.hc-kicker { display:block; font-family:var(--font-ui); font-size:10px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase; color:var(--flame-mid); margin-bottom:10px; }
+.hc-award-body h3 { font-family:var(--font-display); font-weight:400; font-size:clamp(24px, 2.8vw, 34px); line-height:1.16; color:var(--ink); margin:0 0 16px; }
+.hc-award-body h3 em {
+  font-style:italic; color:var(--flame-mid);
+  background:linear-gradient(104deg, var(--flame) 0%, var(--flame-mid) 52%, var(--ember-deep) 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  padding-inline:0.06em; margin-inline:-0.06em;
+}
+.hc-award-body p { font-size:15.5px; line-height:1.62; color:var(--ink-soft); margin:0 0 16px; }
+.hc-award-body p:last-child { margin-bottom:0; }
+.hc-note { font-family:var(--font-ui); font-size:11px; line-height:1.6; letter-spacing:0.04em; color:rgba(25,16,10,0.55); border-top:1px solid var(--hairline); padding-top:14px; }
+.hc-about {
+  margin-top:20px; display:grid; grid-template-columns:0.9fr 1.6fr; gap:clamp(26px, 4vw, 64px); align-items:center;
+  padding:clamp(28px, 3.6vw, 52px); border-radius:var(--r-xl); overflow:hidden;
+  color:#f7ead6; border:1px solid rgba(245,237,224,0.18);
+  background-image:url('/images/grain-overlay.png'), linear-gradient(150deg, #1b0c04 0%, #4a1c06 55%, #7d3609 100%);
+  background-repeat:repeat, no-repeat;
+  box-shadow:0 24px 60px rgba(12,5,2,0.28);
+}
+@media (max-width:900px) { .hc-about { grid-template-columns:1fr; gap:26px; } }
+.hc-about-logo img { display:block; width:100%; max-width:340px; height:auto; }
+.hc-about-body h3 { font-family:var(--font-display); font-weight:400; font-size:clamp(22px, 2.4vw, 30px); color:#fdf6ea; margin:0 0 14px; }
+.hc-about-body p { font-size:15.5px; line-height:1.62; color:rgba(247,234,214,0.82); margin:0 0 16px; }
+.hc-about .btn-ghost { background:rgba(252,248,240,0.09); border-color:rgba(245,237,224,0.32); color:#fdf6ea; }
+.hc-about .btn-ghost:hover { background:rgba(252,248,240,0.16); border-color:#ffc681; }
+
+/* ----- B · why grid ----- */
+.why-grid { display:grid; grid-template-columns:0.85fr 1.15fr; gap:clamp(30px, 4.6vw, 68px); align-items:center; }
+@media (max-width:900px) { .why-grid { grid-template-columns:1fr; gap:40px; } }
+
+/* ----- B · "the work he was part of" vertical marquee ----- */
+.legacy-marquee { margin-top:clamp(36px, 4.6vw, 58px); padding-top:clamp(26px, 3.4vw, 40px); border-top:1px solid var(--hairline); }
+.lm-grid { display:grid; grid-template-columns:1fr; gap:clamp(22px, 3vw, 34px); }
+.lm-copy h3 {
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(23px, 2.8vw, 32px); line-height:1.18; color:var(--ink); margin:0 0 12px;
+}
+.lm-copy h3 em {
+  font-style:italic; color:var(--flame-mid);
+  background:linear-gradient(104deg, var(--flame) 0%, var(--flame-mid) 52%, var(--ember-deep) 100%);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  padding-inline:0.06em; margin-inline:-0.06em;
+}
+.lm-copy .service-intro { margin-bottom:0; }
+.lm-window {
+  position:relative; height:clamp(340px, 44vh, 440px); overflow:hidden;
+  border:1px solid var(--hairline); border-radius:var(--r-xl);
+  background:rgba(252,248,240,0.5); box-shadow:var(--rest);
+  -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+  mask-image:linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+}
+.lm-track { display:flex; flex-direction:column; padding:0 clamp(22px, 2.4vw, 32px); animation:lm-scroll 48s linear infinite; will-change:transform; }
+.lm-window:hover .lm-track { animation-play-state:paused; }
+@keyframes lm-scroll { from { transform:translateY(0); } to { transform:translateY(-50%); } }
+.lm-stream { display:grid; gap:18px; padding:9px 0; }
+.lm-label {
+  font-family:var(--font-ui); font-size:10px; font-weight:700;
+  letter-spacing:0.24em; text-transform:uppercase; color:var(--flame-mid); margin-top:10px;
+}
+.lm-stream .lm-label:first-child { margin-top:0; }
+.lm-item { padding-left:14px; border-left:2px solid rgba(207,90,10,0.42); }
+.lm-item .org { display:block; font-size:15.5px; font-weight:600; color:var(--ink); line-height:1.35; }
+.lm-item .role { display:block; font-size:13.5px; line-height:1.5; color:rgba(25,16,10,0.68); margin-top:3px; }
+@media (prefers-reduced-motion: reduce) {
+  .lm-track { animation:none; }
+  .lm-window { overflow-y:auto; -webkit-mask-image:none; mask-image:none; }
+  .lm-stream--dupe { display:none; }
+}
+
+/* ----- B · team additions ----- */
+.team-subhead--first { margin-top:0; }
+.advisor-avatar {
+  flex:0 0 56px; width:56px; height:56px; border-radius:999px;
+  display:flex; align-items:center; justify-content:center;
+  border:1px dashed rgba(207,90,10,0.42); background:var(--elevated);
+  font-family:var(--font-display); font-size:16px; font-weight:500; color:var(--flame-mid);
+}
+
+/* ----- B · event venue address line ----- */
+.venue-addr {
+  display:block; margin-top:4px;
+  font-family:var(--font-ui); font-size:11.5px; font-weight:400;
+  letter-spacing:0.05em; color:rgba(247,234,214,0.78);
+}
+
+/* ----- B · two-up get involved grid ----- */
+.involve-grid--two { grid-template-columns:repeat(2, 1fr); }
+@media (max-width:640px) { .involve-grid--two { grid-template-columns:1fr; } }
+
+/* ----- B · give band + action trio ----- */
+.give-band {
+  display:grid; grid-template-columns:1.4fr 1fr; gap:clamp(24px, 4vw, 56px); align-items:center;
+  padding:clamp(28px, 3.6vw, 48px); border-radius:var(--r-xl); margin-bottom:18px;
+  border:1px solid rgba(207,90,10,0.28);
+  background:linear-gradient(135deg, rgba(207,90,10,0.12), rgba(252,248,240,0.55));
+  box-shadow:var(--rest);
+}
+@media (max-width:900px) { .give-band { grid-template-columns:1fr; } }
+.give-band h3 { font-family:var(--font-display); font-size:clamp(24px, 2.6vw, 32px); font-weight:500; margin:0 0 10px; color:var(--ink); }
+.give-band p { font-size:16px; line-height:1.6; color:var(--ink-soft); margin:0 0 22px; max-width:46ch; }
+.give-band .give-mail {
+  margin:0; padding:20px 24px; border-top:none; border:1px solid var(--hairline);
+  border-radius:var(--r-lg); background:rgba(252,248,240,0.62);
+}
+.action-trio { display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; }
+@media (max-width:900px) { .action-trio { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
@@ -826,8 +1111,8 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
     <nav aria-label="Primary">
       <ul class="nav-links" id="navLinks">
         <li><a href="#mission">Mission</a></li>
-        <li><a href="#chandler">Chandler</a></li>
         <li><a href="#initiatives">Initiatives</a></li>
+        <li><a href="#chandler">Chandler</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#support">Support</a></li>
         <li class="nav-cta-mobile"><a class="btn btn-primary btn-sm" href="#support">Contribute &nbsp;&rarr;</a></li>
@@ -863,7 +1148,7 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
   <div class="copy">
     <p class="eyebrow">Chandler Walker Gayton Foundation</p>
     <h1>Honoring a life.<br /><em>Extending his causes.</em></h1>
-    <p class="sub">Supporting community, housing, early childhood education, and elder care in Chandler's memory.</p>
+    <p class="sub">Supporting community, housing, early childhood education, and social justice in Chandler's memory.</p>
     <div class="cta">
       <a class="btn btn-primary" href="#support">Contribute &nbsp;&rarr;</a>
       <a class="btn btn-ghost" href="/event/">Attend the Event</a>
@@ -877,48 +1162,114 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
     <div class="section-head reveal">
       <p class="eyebrow">Our Mission</p>
       <h2 id="mission-heading">Fund the work Chandler <em>believed in.</em></h2>
+      <p class="sub">The Chandler Walker Gayton Foundation supports charitable organizations doing the work Chandler cared about most.</p>
     </div>
 
-    <div class="mission-grid">
-      <div class="mission-copy reveal">
-        <p class="lede">The Chandler Walker Gayton Foundation supports charitable organizations doing the work Chandler cared about most.</p>
-        <p>We aid, support, and assist other charitable entities focused on issues that were of importance to Chandler. We provide scholarships, grants, and stipends to economically and socially disadvantaged students. We aid public schools and public entities. And we administer funds on behalf of other tax-exempt organizations helping them carry out their exempt functions.</p>
-        <p>Everything we fund traces back to a single question: <em>would this have mattered to Chandler?</em></p>
+    <div class="fact-strip reveal" aria-label="The foundation at a glance">
+      <div class="fact-tile">
+        <span class="fact-num">501(c)(3)</span>
+        <span class="fact-label">Approved Charity</span>
+        <p class="fact-note">A Washington nonprofit corporation with federal tax-exempt status.</p>
       </div>
+      <div class="fact-tile">
+        <span class="fact-num">04</span>
+        <span class="fact-label">Focus Areas</span>
+        <p class="fact-note">Community, housing, early childhood education, and social justice.</p>
+      </div>
+      <div class="fact-tile">
+        <span class="fact-num">2026</span>
+        <span class="fact-label">Founding Event</span>
+        <p class="fact-note">Boots on the Ground, December 5 at D-Squared, Seattle.</p>
+      </div>
+      <div class="fact-tile">
+        <span class="fact-num">15</span>
+        <span class="fact-label">Officers &amp; Advisors</span>
+        <p class="fact-note">A working board backed by legal counsel and accountants.</p>
+      </div>
+    </div>
 
-      <div class="pillars reveal">
-        <!-- Pillar: Community -->
-        <div class="pillar">
-          <div class="pillar-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
+    <div class="impact-grid reveal">
+      <div class="pillar pillar--photo">
+        <div class="pillar-photo">
+          <img src="/images/prototype/focus-community.webp" alt="Chandler Walker Gayton speaking at a podium" width="800" height="1000" loading="lazy" decoding="async" />
+        </div>
+        <div class="pillar-body">
           <h4>Community</h4>
-          <p>Backing the people, gatherings, and traditions that hold a neighborhood together.</p>
+          <p>We back the people, gatherings, and traditions that hold a neighborhood together.</p>
         </div>
-        <!-- Pillar: Housing -->
-        <div class="pillar">
-          <div class="pillar-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>
-          </div>
+      </div>
+      <div class="pillar pillar--photo">
+        <div class="pillar-photo">
+          <img src="/images/prototype/focus-housing.webp" alt="Chandler Walker Gayton overlooking the Seattle waterfront" width="800" height="1000" loading="lazy" decoding="async" />
+        </div>
+        <div class="pillar-body">
           <h4>Housing</h4>
-          <p>Supporting housing, homelessness relief, and affordability so more families can find a place to stay.</p>
+          <p>We support housing, homelessness relief, and affordability so more families can find a place to stay.</p>
         </div>
-        <!-- Pillar: Early Ed -->
-        <div class="pillar">
-          <div class="pillar-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 6-10 6L2 9l10-6z"/><path d="M6 11v5a6 6 0 0 0 12 0v-5"/></svg>
-          </div>
+      </div>
+      <div class="pillar pillar--photo">
+        <div class="pillar-photo">
+          <img src="/images/prototype/focus-early-ed.webp" alt="Chandler Walker Gayton speaking at the Northwest African American Museum" width="800" height="1000" loading="lazy" decoding="async" />
+        </div>
+        <div class="pillar-body">
           <h4>Early Childhood Education</h4>
-          <p>Funding programs that give young children a strong beginning in the years that shape them most.</p>
+          <p>We fund programs that give young children a strong beginning in the years that shape them most.</p>
         </div>
-        <!-- Pillar: Elder Support -->
-        <div class="pillar">
-          <div class="pillar-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div class="pillar pillar--photo">
+        <div class="pillar-photo">
+          <img src="/images/prototype/focus-elders.webp" alt="Chandler Walker Gayton seated among community members at a gathering" width="800" height="1000" loading="lazy" decoding="async" />
+        </div>
+        <div class="pillar-body">
+          <h4>Social Justice</h4>
+          <p>We back organizations working for fairness, equity, and opportunity in the communities Chandler served.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="initiatives" class="sec sec--paper" aria-labelledby="initiatives-heading">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">How We Contribute</p>
+      <h2 id="initiatives-heading">Our main focus.<br /><em>Homestead Community Land Trust.</em></h2>
+      <p class="sub">We have chosen to pour our main focus into Homestead Community Land Trust, where Chandler served on the Board of Delegates and where his work in affordable housing earned Homestead&rsquo;s 2024 Legacy Award.</p>
+    </div>
+
+    <div class="hc-award reveal">
+      <div class="hc-award-photo">
+        <img src="/images/prototype/ryan-neff-award.webp" alt="Homestead 2024 Legacy Award winner, the Ryan Neff Award, Chandler Gayton, MPA" width="900" height="1350" loading="lazy" decoding="async" />
+      </div>
+      <div class="hc-award-body">
+        <span class="hc-kicker">Homestead 2024 Legacy Award</span>
+        <h3>The Ryan Neff <em>Award.</em></h3>
+        <p>The Ryan Neff Award was established in 2009 following the passing of Ryan Neff in 2008, a member of the CoHo Team of Windermere Agents, an organization committed to supporting the mission of affordable, quality housing for all. Since 2009, CoHo has partnered with Homestead each year to recognize a nonprofit organization or individual who has demonstrated exceptional leadership and innovation in creating new opportunities for affordable homeownership.</p>
+        <details class="hc-more">
+          <summary><span class="more">Read More</span><span class="less">Read Less</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="hc-more-body">
+            <p>Chandler Gayton (1990 to 2024) is the recipient of Homestead&rsquo;s 2024 Ryan Neff Award. Through his role as legislative aide to King County Council Members Larry Gossett and Girmay Zahilay, Chandler created transformational public resources to prevent displacement and create affordable homeownership opportunities in the Skyway community. His efforts resulted in a groundbreaking study that identified community land trust homeownership as a key anti-displacement strategy for unincorporated areas of King County. He played a key role in mobilizing millions of dollars to underserved communities, including funding for homeownership.</p>
+            <p>He listened deeply to the community, acted on their vision, and advised community partners on how to engage effectively with elected officials and public processes. As a member of Homestead&rsquo;s Board of Delegates, he was a trusted strategist who supported Homestead&rsquo;s legislative advocacy and work in service of community-led housing initiatives. Chandler&rsquo;s parents, Carmen and Carver Gayton, received the award on his behalf.</p>
+            <p class="hc-note">Each year, Homestead opens nominations for the Legacy Awards to the public, with the final honorees approved by the Homestead Board of Delegates.</p>
           </div>
-          <h4>Elder Support</h4>
-          <p>Standing beside churches and organizations that carry the elderly with dignity and care.</p>
-        </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="hc-about reveal">
+      <div class="hc-about-logo">
+        <img src="/images/prototype/homestead-logo-white.png" alt="Homestead Community Land Trust" width="800" height="319" loading="lazy" decoding="async" />
+      </div>
+      <div class="hc-about-body">
+        <h3>About Homestead</h3>
+        <p>Homestead Community Land Trust creates stability, equity, and opportunity by developing land and housing in trust, giving lower-income households the chance to own a home that is affordable to them and stays affordable for every owner after them. A classic community land trust, Homestead follows the model created by Civil Rights era leaders in the 1960s and 1970s to prevent displacement and let families build wealth through ownership.</p>
+        <details class="hc-more">
+          <summary><span class="more">Read More</span><span class="less">Read Less</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <div class="hc-more-body">
+            <p>Homestead builds new homes, fundraises to bring prices within reach of lower-income households, and keeps homes permanently affordable through agreements with homeowners and post-purchase support. Every permanently affordable home strengthens a neighborhood and moves the community toward social justice, economic vitality, and environmental sustainability.</p>
+          </div>
+        </details>
+        <a class="btn btn-ghost" href="https://homesteadclt.org" target="_blank" rel="noopener">Visit Homestead <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
   </div>
@@ -931,10 +1282,8 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
       <h2 id="chandler-heading">Chandler <em>Walker Gayton.</em></h2>
     </div>
 
-    <div class="chandler-grid">
+    <div class="why-grid">
       <div class="chandler-photo moodfade reveal">
-        <!-- Chandler portrait, LinkedIn headshot, Topaz-enhanced.
-             Pre-cropped to the 4:5 frame with moodfade baked in. -->
         <img src="/images/chandler-portrait-moodfade.webp" alt="Chandler Walker Gayton"
              width="800" height="1000" loading="lazy" decoding="async" />
         <div class="chandler-caption">
@@ -944,9 +1293,9 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
       </div>
 
       <div class="chandler-copy reveal">
-        <p class="lede">Chandler cared about people. He cared about the neighborhoods that raised him and the ones still finding their footing.</p>
-        <p>He believed in community. He believed in a home you could count on, in a good start for a child, and in an old age carried with dignity. This foundation exists to hold onto those beliefs and turn them into work.</p>
-        <p>We do not tell his story here. His story lives with the people who loved him. What we do is name the causes he cared about, and put resources behind the organizations already doing that work well.</p>
+        <p class="lede">Chandler Walker Gayton believed in community, and he worked at it for a living.</p>
+        <p>He served as a legislative aide at the King County Council, ran community outreach for Councilmember Girmay Zahilay with a focus on Skyway, affordable housing, and land use, and advised Seattle Mayor Bruce Harrell on public safety. He held a Master of Public Administration from the University of Washington&rsquo;s Evans School and served on boards from Homestead Community Land Trust to Treehouse for Kids.</p>
+        <p>The foundation holds his standard. A home you can count on, a strong beginning for every child, and an old age carried with dignity. Every dollar we move is measured against it.</p>
         <div class="chandler-values" aria-label="Values Chandler cared about">
           <span class="tag">Community</span>
           <span class="tag">Housing</span>
@@ -958,103 +1307,56 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
       </div>
     </div>
 
-    <div class="chandler-service reveal" aria-label="Chandler's education, career, and community service">
-      <h3>The work he was <em>part of.</em></h3>
-      <p class="service-intro">From the classrooms that shaped him to the councils, boards, and neighborhoods he served, this is where Chandler put his time.</p>
-      <div class="service-grid">
-        <div class="service-col">
-          <h4>Education</h4>
-          <ul>
-            <li><span class="org">O&rsquo;Dea High School</span><span class="role">Football team captain his senior year</span></li>
-            <li><span class="org">Simon Fraser University</span><span class="role">BA, Faculty of Communication, Art and Technology. Safety on the football team</span></li>
-            <li><span class="org">University of Washington, Evans School of Public Policy &amp; Governance</span><span class="role">Master of Public Administration, Class of 2022. Dr. Constance W. and Norman B. Rice Endowed Graduate Fellowship recipient</span></li>
-          </ul>
+    <div class="legacy-marquee reveal" aria-label="Chandler's education, career, and community service">
+      <div class="lm-grid">
+        <div class="lm-copy">
+          <h3>The work he was <em>part of.</em></h3>
+          <p class="service-intro">From the classrooms that shaped him to the councils, boards, and neighborhoods he served, this is where Chandler put his time.</p>
         </div>
-        <div class="service-col">
-          <h4>Public Service &amp; Career</h4>
-          <ul>
-            <li><span class="org">Windermere Real Estate</span><span class="role">Licensed broker</span></li>
-            <li><span class="org">King County Council</span><span class="role">Legislative aide to Councilmember Larry Gossett, beginning 2017</span></li>
-            <li><span class="org">King County Council</span><span class="role">Community outreach and communications for Councilmember Girmay Zahilay, focused on Skyway, affordable housing, and land use</span></li>
-            <li><span class="org">Office of Seattle Mayor Bruce Harrell</span><span class="role">Strategic advisor for public safety, beginning 2023</span></li>
-          </ul>
+        <div class="lm-window">
+          <div class="lm-track">
+        <div class="lm-stream">
+          <span class="lm-label">Education</span>
+          <div class="lm-item"><span class="org">O&rsquo;Dea High School</span><span class="role">Football team captain his senior year</span></div>
+          <div class="lm-item"><span class="org">Simon Fraser University</span><span class="role">BA, Faculty of Communication, Art and Technology. Safety on the football team</span></div>
+          <div class="lm-item"><span class="org">University of Washington, Evans School of Public Policy &amp; Governance</span><span class="role">Master of Public Administration, Class of 2022. Dr. Constance W. and Norman B. Rice Endowed Graduate Fellowship recipient</span></div>
+          <span class="lm-label">Public Service &amp; Career</span>
+          <div class="lm-item"><span class="org">Windermere Real Estate</span><span class="role">Licensed broker</span></div>
+          <div class="lm-item"><span class="org">King County Council</span><span class="role">Legislative aide to Councilmember Larry Gossett, beginning 2017</span></div>
+          <div class="lm-item"><span class="org">King County Council</span><span class="role">Community outreach and communications for Councilmember Girmay Zahilay, focused on Skyway, affordable housing, and land use</span></div>
+          <div class="lm-item"><span class="org">Office of Seattle Mayor Bruce Harrell</span><span class="role">Strategic advisor for public safety, beginning 2023</span></div>
+          <span class="lm-label">Boards &amp; Community</span>
+          <div class="lm-item"><span class="org">Homestead Community Land Trust</span><span class="role">Board member</span></div>
+          <div class="lm-item"><span class="org">Treehouse for Kids</span><span class="role">Young Professionals Board</span></div>
+          <div class="lm-item"><span class="org">O&rsquo;Dea High School</span><span class="role">Alumni Board</span></div>
+          <div class="lm-item"><span class="org">Bellevue Police Department</span><span class="role">African American Citizens Council</span></div>
+          <div class="lm-item"><span class="org">Youth Mentorship</span><span class="role">Mentor to local high school students</span></div>
         </div>
-        <div class="service-col">
-          <h4>Boards &amp; Community</h4>
-          <ul>
-            <li><span class="org">Homestead Community Land Trust</span><span class="role">Board member</span></li>
-            <li><span class="org">Treehouse for Kids</span><span class="role">Young Professionals Board</span></li>
-            <li><span class="org">O&rsquo;Dea High School</span><span class="role">Alumni Board</span></li>
-            <li><span class="org">Bellevue Police Department</span><span class="role">African American Citizens Council</span></li>
-            <li><span class="org">Youth Mentorship</span><span class="role">Mentor to local high school students</span></li>
-          </ul>
+        <div class="lm-stream lm-stream--dupe" aria-hidden="true">
+          <span class="lm-label">Education</span>
+          <div class="lm-item"><span class="org">O&rsquo;Dea High School</span><span class="role">Football team captain his senior year</span></div>
+          <div class="lm-item"><span class="org">Simon Fraser University</span><span class="role">BA, Faculty of Communication, Art and Technology. Safety on the football team</span></div>
+          <div class="lm-item"><span class="org">University of Washington, Evans School of Public Policy &amp; Governance</span><span class="role">Master of Public Administration, Class of 2022. Dr. Constance W. and Norman B. Rice Endowed Graduate Fellowship recipient</span></div>
+          <span class="lm-label">Public Service &amp; Career</span>
+          <div class="lm-item"><span class="org">Windermere Real Estate</span><span class="role">Licensed broker</span></div>
+          <div class="lm-item"><span class="org">King County Council</span><span class="role">Legislative aide to Councilmember Larry Gossett, beginning 2017</span></div>
+          <div class="lm-item"><span class="org">King County Council</span><span class="role">Community outreach and communications for Councilmember Girmay Zahilay, focused on Skyway, affordable housing, and land use</span></div>
+          <div class="lm-item"><span class="org">Office of Seattle Mayor Bruce Harrell</span><span class="role">Strategic advisor for public safety, beginning 2023</span></div>
+          <span class="lm-label">Boards &amp; Community</span>
+          <div class="lm-item"><span class="org">Homestead Community Land Trust</span><span class="role">Board member</span></div>
+          <div class="lm-item"><span class="org">Treehouse for Kids</span><span class="role">Young Professionals Board</span></div>
+          <div class="lm-item"><span class="org">O&rsquo;Dea High School</span><span class="role">Alumni Board</span></div>
+          <div class="lm-item"><span class="org">Bellevue Police Department</span><span class="role">African American Citizens Council</span></div>
+          <div class="lm-item"><span class="org">Youth Mentorship</span><span class="role">Mentor to local high school students</span></div>
         </div>
-      </div>
-      <div class="service-legacy">
-        <strong>Named in his memory</strong>
-        <span class="fund">Chandler Walker Gayton Scholarship Fund</span> at O&rsquo;Dea High School &middot; <span class="fund">Chandler Walker Gayton Legacy Fund</span> at the Renton Innovation Zone Partnership
+          </div>
+        </div>
       </div>
     </div>
 
-  </div>
-</section>
-
-<section id="initiatives" class="sec sec--cream" aria-labelledby="initiatives-heading">
-  <div class="container">
-    <div class="section-head reveal">
-      <p class="eyebrow">Programs &amp; Initiatives</p>
-      <h2 id="initiatives-heading">Four ways we <em>put the mission to work.</em></h2>
-      <p class="sub">Every dollar the foundation deploys follows one of these four paths, each grounded in the charitable purposes set out in our bylaws.</p>
-    </div>
-
-    <div class="programs-grid reveal">
-      <!-- Program 1: Charitable Grants -->
-      <article class="program">
-        <div class="program-photo">
-          <img src="/images/programs/grants.webp" alt="Volunteers unloading crates of fresh produce at a neighborhood community centre at golden hour" width="800" height="600" loading="lazy" decoding="async" />
-        </div>
-        <div class="program-body">
-          <h3>Charitable Grants</h3>
-          <p>We fund other charitable organizations already doing strong work in community, housing, early education, and elder care.</p>
-          <span class="program-tag">Aligned Nonprofits</span>
-        </div>
-      </article>
-
-      <!-- Program 2: Scholarships -->
-      <article class="program">
-        <div class="program-photo">
-          <img src="/images/programs/scholarships.webp" alt="A university student studying at a library table in warm late-afternoon light" width="800" height="600" loading="lazy" decoding="async" />
-        </div>
-        <div class="program-body">
-          <h3>Scholarships &amp; Stipends</h3>
-          <p>We provide scholarships, grants, and stipends to economically and socially disadvantaged students pursuing undergraduate, graduate, vocational, technical, and apprenticeship paths.</p>
-          <span class="program-tag">Students</span>
-        </div>
-      </article>
-
-      <!-- Program 3: Public Schools -->
-      <article class="program">
-        <div class="program-photo">
-          <img src="/images/programs/schools.webp" alt="A teacher kneeling beside young children working together in a sunlit classroom" width="800" height="600" loading="lazy" decoding="async" />
-        </div>
-        <div class="program-body">
-          <h3>Public School Support</h3>
-          <p>We aid public schools and public entities that qualify under Section 170(c)(1) of the Internal Revenue Code, extending our reach into the systems that shape young lives.</p>
-          <span class="program-tag">Public Education</span>
-        </div>
-      </article>
-
-      <!-- Program 4: Fund Administration -->
-      <article class="program">
-        <div class="program-photo">
-          <img src="/images/programs/administration.webp" alt="Nonprofit staff gathered around a table with papers and a laptop, planning together" width="800" height="600" loading="lazy" decoding="async" />
-        </div>
-        <div class="program-body">
-          <h3>Fund Administration</h3>
-          <p>We administer and manage funds for other tax-exempt organizations, helping them carry out their exempt functions with the operational support they need.</p>
-          <span class="program-tag">Fiscal Sponsorship</span>
-        </div>
-      </article>
+    <div class="service-legacy reveal" style="margin-top:18px;">
+      <strong>Already at work in his name</strong>
+      The <span class="fund">Homestead Community Land Trust</span>, where Chandler served on the board, continues the housing work he believed in.
     </div>
   </div>
 </section>
@@ -1067,53 +1369,168 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
       <p class="sub">The foundation is governed by a board of directors and officers, guided by a council of advisors, and supported by counsel and accountants to maintain accountability.</p>
     </div>
 
+    <div class="team-subhead team-subhead--first reveal">
+      <h3>Officers</h3>
+      <p>The officer roles set out in our bylaws.</p>
+    </div>
+
     <div class="team-grid reveal">
       <article class="team-card">
         <div class="team-portrait team-portrait--photo"><img src="/images/carmen-gayton.jpg" alt="Carmen Gayton" loading="lazy" decoding="async" width="78" height="78" /></div>
         <div class="team-meta">
+          <p class="kin">Mother</p>
           <p class="name">Carmen Gayton</p>
-          <p class="role">Mother &middot; Honorary Chair</p>
-        </div>
-      </article>
-
-      <article class="team-card">
-        <div class="team-portrait team-portrait--photo"><img src="/images/carver-gayton.jpg" alt="Carver Gayton" loading="lazy" decoding="async" width="78" height="78" /></div>
-        <div class="team-meta">
-          <p class="name">Carver Gayton</p>
-          <p class="role">Father &middot; Honorary Chair</p>
-        </div>
-      </article>
-
-      <article class="team-card">
-        <div class="team-portrait team-portrait--photo"><img src="/images/joshua-jackai.jpg" alt="Joshua Jackai" loading="lazy" decoding="async" width="78" height="78" /></div>
-        <div class="team-meta">
-          <p class="name">Joshua Jackai</p>
-          <p class="role">Close Friend &middot; Vice President</p>
-        </div>
-      </article>
-
-      <article class="team-card">
-        <div class="team-portrait team-portrait--photo"><img src="/images/atif-saad.jpg" alt="Atif Saad" loading="lazy" decoding="async" width="78" height="78" /></div>
-        <div class="team-meta">
-          <p class="name">Atif Saad</p>
-          <p class="role">Close Friend &middot; VP of Corporate Relations</p>
+          <p class="role">President</p>
         </div>
       </article>
 
       <article class="team-card">
         <div class="team-portrait team-portrait--photo"><img src="/images/nate-koweda.jpg" alt="Nate Koweda" loading="lazy" decoding="async" width="78" height="78" /></div>
         <div class="team-meta">
+          <p class="kin">Close Friend</p>
           <p class="name">Nate Koweda</p>
-          <p class="role">Close Friend &middot; Treasurer</p>
+          <p class="role">Treasurer</p>
         </div>
       </article>
 
       <article class="team-card">
-        <div class="team-portrait team-portrait--initials" aria-hidden="true">HC</div>
+        <div class="team-portrait team-portrait--photo"><img src="/images/joshua-jackai.jpg" alt="Joshua Jackai" loading="lazy" decoding="async" width="78" height="78" /></div>
+        <div class="team-meta">
+          <p class="kin">Close Friend</p>
+          <p class="name">Joshua Jackai</p>
+          <p class="role">Vice President</p>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-portrait team-portrait--photo"><img src="/images/atif-saad.jpg" alt="Atif Saad" loading="lazy" decoding="async" width="78" height="78" /></div>
+        <div class="team-meta">
+          <p class="kin">Close Friend</p>
+          <p class="name">Atif Saad</p>
+          <p class="role">Assistant Secretary</p>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-portrait team-portrait--initials" aria-hidden="true">DC</div>
+        <div class="team-meta">
+          <p class="name">Doug Crews</p>
+          <p class="role">Assistant Treasurer</p>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-portrait team-portrait--photo"><img src="/images/prototype/howard-choder.jpg" alt="Howard Choder" loading="lazy" decoding="async" width="78" height="78" /></div>
         <div class="team-meta">
           <p class="name">Howard Choder</p>
           <p class="role">Secretary</p>
         </div>
+      </article>
+    </div>
+
+    <div class="team-subhead reveal">
+      <h3>Honorary Chairs</h3>
+      <p>Held by Chandler&rsquo;s family.</p>
+    </div>
+
+    <div class="team-grid reveal">
+      <article class="team-card">
+        <div class="team-portrait team-portrait--photo"><img src="/images/carver-gayton.jpg" alt="Carver Gayton" loading="lazy" decoding="async" width="78" height="78" /></div>
+        <div class="team-meta">
+          <p class="kin">Father</p>
+          <p class="name">Carver Gayton</p>
+          <p class="role">Honorary Chair</p>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-portrait team-portrait--initials" aria-hidden="true">DW</div>
+        <div class="team-meta">
+          <p class="kin">Grandmother</p>
+          <p class="name">Daisy Walker</p>
+          <p class="role">Honorary Chair</p>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-portrait team-portrait--initials" aria-hidden="true">DG</div>
+        <div class="team-meta">
+          <p class="kin">Aunt</p>
+          <p class="name">Dianne Ramsey Gayton</p>
+          <p class="role">Honorary Chair</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="team-subhead reveal">
+      <h3>Executive Committee</h3>
+      <p>The wider circle that helps plan and carry the work.</p>
+    </div>
+
+    <div class="advisor-grid reveal">
+      <article class="advisor-card">
+        <div class="advisor-avatar" aria-hidden="true">TP</div>
+        <p class="name">Terrell Pugh</p>
+      </article>
+
+      <article class="advisor-card">
+        <img src="/images/prototype/ali-tapert.jpg" alt="Ali Tapert" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Ali Tapert</p>
+      </article>
+
+      <article class="advisor-card">
+        <div class="advisor-avatar" aria-hidden="true">SL</div>
+        <p class="name">Sarah Lenda</p>
+      </article>
+
+      <article class="advisor-card">
+        <div class="advisor-avatar" aria-hidden="true">HW</div>
+        <p class="name">Hana Weldegebriel</p>
+      </article>
+
+      <article class="advisor-card">
+        <div class="advisor-avatar" aria-hidden="true">PP</div>
+        <p class="name">Piyush Panwar</p>
+      </article>
+
+      <article class="advisor-card">
+        <div class="advisor-avatar" aria-hidden="true">AB</div>
+        <p class="name">Alyse Brindle</p>
+      </article>
+
+      <article class="advisor-card">
+        <div class="advisor-avatar" aria-hidden="true">BS</div>
+        <p class="name">Dr. Bethany Sobba-Kunthara</p>
+      </article>
+
+      <article class="advisor-card">
+        <div class="advisor-avatar" aria-hidden="true">DH</div>
+        <p class="name">Dr. Duncan Hussey</p>
+      </article>
+
+      <article class="advisor-card">
+        <img src="/images/prototype/marcel-noel.jpg" alt="Marcel Noel" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Marcel Noel</p>
+      </article>
+
+      <article class="advisor-card">
+        <div class="advisor-avatar" aria-hidden="true">GC</div>
+        <p class="name">Gen&eacute; Crews</p>
+      </article>
+
+      <article class="advisor-card">
+        <img src="/images/prototype/chris-tolbert.jpg" alt="Chris Tolbert" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Chris Tolbert</p>
+      </article>
+
+      <article class="advisor-card">
+        <img src="/images/prototype/charmien-wiggins.jpg" alt="Charmien Wiggins" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Charmien Wiggins</p>
+      </article>
+
+      <article class="advisor-card">
+        <div class="advisor-avatar" aria-hidden="true">MH</div>
+        <p class="name">Mafara Hobson</p>
       </article>
     </div>
 
@@ -1167,6 +1584,11 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
         <img src="/images/dana-frank.jpg" alt="Dana Frank" loading="lazy" decoding="async" width="56" height="56" />
         <p class="name">Dana Frank</p>
       </article>
+
+      <article class="advisor-card">
+        <img src="/images/prototype/candace-grisdale.jpg" alt="Candace Grisdale" loading="lazy" decoding="async" width="56" height="56" />
+        <p class="name">Candace Grisdale</p>
+      </article>
     </div>
 
     <div class="team-subhead reveal">
@@ -1210,7 +1632,7 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
           </div>
           <div>
             <dt>Venue</dt>
-            <dd>D-Squared · <span style="white-space:nowrap;">4105 Airport Way S,</span> <span style="white-space:nowrap;">Seattle, WA 98108</span></dd>
+            <dd>D-Squared<span class="venue-addr">4105 Airport Way S, Seattle, WA 98108</span></dd>
           </div>
         </dl>
       </div>
@@ -1223,11 +1645,11 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
   <div class="container">
     <div class="section-head reveal">
       <p class="eyebrow">Get Involved</p>
-      <h2 id="support-heading">Four ways to <em>stand with us.</em></h2>
+      <h2 id="support-heading">Two ways to <em>stand with us.</em></h2>
       <p class="sub">The foundation is small, new, and community-built. If any of what we do resonates, here is how to help.</p>
     </div>
 
-    <div class="involve-grid reveal">
+    <div class="involve-grid involve-grid--two reveal">
       <div class="involve-card">
         <div class="involve-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -1236,24 +1658,6 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
         <p>Make a gift to the foundation to support our grantmaking. Every dollar goes toward the four causes Chandler cared about.</p>
         <a href="#updates" aria-label="Donate to the foundation">Give a Gift <span aria-hidden="true">→</span></a>
         <p class="give-mail"><span>Or mail a check</span>Chandler Walker Gayton Foundation<br />PO Box 99371<br />Seattle, WA 98139-0371</p>
-      </div>
-
-      <div class="involve-card">
-        <div class="involve-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>
-        </div>
-        <h4>Volunteer</h4>
-        <p>Lend time, skill, or a room to a foundation gathering. We need help with events, outreach, and administration.</p>
-        <a href="#updates" aria-label="Volunteer with the foundation">Get in Touch <span aria-hidden="true">→</span></a>
-      </div>
-
-      <div class="involve-card">
-        <div class="involve-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
-        </div>
-        <h4>Stay Close</h4>
-        <p>Follow along as grants go out, the board grows, and our first program cycle unfolds. Sign up for occasional updates.</p>
-        <a href="#updates" aria-label="Sign up for foundation updates">Get Updates <span aria-hidden="true">→</span></a>
       </div>
 
       <div class="involve-card">
@@ -1267,7 +1671,6 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
     </div>
   </div>
 </section>
-
 </main>
 
 <!-- =========================================================
@@ -1278,8 +1681,8 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
     <div class="signup-grid reveal">
       <div>
         <p class="eyebrow">Stay in the loop</p>
-        <h2 id="updates-heading">Follow the work as it <em>takes shape.</em></h2>
-        <p class="sub">Occasional notes as grants go out, the board grows, and our first program cycle begins. Your address stays with the foundation.</p>
+        <h2 id="updates-heading">Follow every grant <em>as it lands.</em></h2>
+        <p class="sub">Occasional notes as grants go out, the board grows, and the first program cycle begins. Your address stays with the foundation.</p>
       </div>
       <div class="signup-form">
         <givebutter-widget id="paX9XR"></givebutter-widget>
@@ -1314,8 +1717,8 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
         <ul>
           <li><a href="/about/">About the Foundation</a></li>
           <li><a href="#mission">Our Mission</a></li>
-          <li><a href="#chandler">Chandler</a></li>
           <li><a href="#initiatives">Initiatives</a></li>
+          <li><a href="#chandler">Chandler</a></li>
           <li><a href="#team">Team</a></li>
         </ul>
       </div>
@@ -1619,6 +2022,63 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
     /* Stop once styled, or give up after ~30s rather than polling forever. */
     if ((fRoot && fRoot.__cwgfTypeset) || tries > 120) clearInterval(timer);
   }, 250);
+})();
+</script>
+
+<script>
+/* Smooth open/close for the read-more accordions. Native <details> snaps;
+   this animates the body's height with an ease-in-out curve instead.
+   Reduced-motion users keep the instant toggle. */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('details.hc-more').forEach(function (d) {
+    var summary = d.querySelector('summary');
+    var body = d.querySelector('.hc-more-body');
+    if (!summary || !body) return;
+    var anim = null;
+    var EASE = 'cubic-bezier(0.45, 0, 0.2, 1)';
+    summary.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (reduce) { d.open = !d.open; return; }
+      var from = anim ? body.getBoundingClientRect().height : null;
+      if (anim) { anim.cancel(); anim = null; }
+      var closing = d.classList.contains('closing');
+      if (!d.open || closing) {
+        /* open (or reverse a close in progress) */
+        d.open = true;
+        d.classList.remove('closing');
+        var target = body.scrollHeight;
+        var start = from === null ? 0 : from;
+        body.style.overflow = 'hidden';
+        anim = body.animate(
+          [{ height: start + 'px', opacity: start === 0 ? 0 : 1, transform: start === 0 ? 'translateY(-6px)' : 'none' },
+           { height: target + 'px', opacity: 1, transform: 'none' }],
+          { duration: 480, easing: EASE, fill: 'forwards' });
+        anim.onfinish = function () {
+          body.style.overflow = '';
+          var a = anim; anim = null;
+          if (a) { a.onfinish = null; a.cancel(); }   /* drop the fill, natural height takes over */
+        };
+      } else {
+        /* close */
+        var start2 = from === null ? body.scrollHeight : from;
+        d.classList.add('closing');
+        body.style.overflow = 'hidden';
+        anim = body.animate(
+          [{ height: start2 + 'px', opacity: 1, transform: 'none' },
+           { height: '0px', opacity: 0, transform: 'translateY(-6px)' }],
+          { duration: 420, easing: EASE, fill: 'forwards' });
+        anim.onfinish = function () {
+          d.open = false;                       /* hide first, while the fill holds 0px */
+          d.classList.remove('closing');
+          body.style.overflow = '';
+          var a = anim; anim = null;
+          if (a) { a.onfinish = null; a.oncancel = null; a.cancel(); }
+        };
+        anim.oncancel = function () { d.classList.remove('closing'); body.style.overflow = ''; };
+      }
+    });
+  });
 })();
 </script>
 </body>
