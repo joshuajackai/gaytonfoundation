@@ -53,14 +53,16 @@ foundation layer only when defining new semantic tokens.
 | `--glow-border`   | `rgba(181,106,37, 0.40)`    | Rust glow border on hover   |
 | `--hairline`      | `rgba(190,154,113, 0.18)`   | 1px separators on dark      |
 
-### Purple accent (Chandler / event teaser)
+### Purple accent (In Memoriam and the event bands)
 
-| Token         | Value                     | Purpose                            |
-| ------------- | ------------------------- | ---------------------------------- |
-| `--plum`      | `#3b1a6e`                 | Deep purple base for In Memoriam   |
-| `--violet`    | `#6b21c8`                 | Purple accent                      |
-| `--lavender`  | `#b48fe0`                 | Purple highlight (event teaser)    |
-| `--glass-purple`| `rgba(107,33,200, 0.10)`| Purple glass overlay               |
+Only UW Husky Purple (#32006e) or darker, always solid. No violet, lavender,
+pink, or see-through purple. Accents on purple are champagne or warm white.
+
+| Token            | Value     | Purpose                                                        |
+| ---------------- | --------- | -------------------------------------------------------------- |
+| `--husky-purple` | `#32006e` | UW Husky Purple, the lightest purple allowed. Badge, pill, band center |
+| `--husky-deep`   | `#23004d` | Deeper purple for panels and gradients                        |
+| `--husky-night`  | `#15002e` | Deepest purple, band edges and backgrounds                    |
 
 ### Semantic aliases
 

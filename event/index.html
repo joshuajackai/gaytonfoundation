@@ -56,11 +56,10 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
   --glow-border:   rgba(181,106,37, 0.40);
   --hairline:      rgba(190,154,113, 0.18);
 
-  /* Purple accent system */
-  --plum:          #3b1a6e;
-  --violet:        #6b21c8;
-  --lavender:      #b48fe0;
-  --glass-purple:  rgba(107,33,200, 0.10);
+  /* Purple accent system: UW Husky Purple or darker, always solid, never see-through */
+  --husky-purple:  #32006e;   /* UW Husky Purple, the lightest purple allowed */
+  --husky-deep:    #23004d;
+  --husky-night:   #15002e;
 
   /* Semantic tokens */
   --bg-base:       var(--base);
@@ -68,7 +67,7 @@ if (window.location.hash) document.documentElement.classList.add("deep-link");</
   --bg-glass:      var(--glass);
   --text-primary:  var(--warm-white);
   --text-secondary:var(--champagne);
-  --text-muted:    rgba(245,237,224, 0.45);
+  --text-muted:    rgba(245,237,224, 0.52);   /* 0.52 keeps small muted text at WCAG AA (5:1 on base) */
   --accent-primary: var(--rust);
   --accent-secondary: var(--champagne);
   --accent-forest:  var(--forest);
@@ -479,23 +478,15 @@ main, header, footer { position: relative; z-index: 1; }
    03 — TICKER
    ========================================================= */
 .ticker {
-  /* Purple Core gradient at 20% opacity over midnight base */
-  background:
-    linear-gradient(90deg, rgba(59,26,110,0.20) 0%, rgba(107,33,200,0.20) 50%, rgba(59,26,110,0.20) 100%),
-    var(--midnight);
-  border-block: 1px solid rgba(180,143,224,0.14);
+  /* Husky Purple band: solid stops, nothing lighter than #32006e */
+  background: linear-gradient(90deg, var(--husky-night) 0%, var(--husky-purple) 50%, var(--husky-night) 100%);
+  background-clip: padding-box;
+  border-block: 1px solid var(--hairline);
   overflow: hidden;
   height: 56px;
   display: flex;
   align-items: center;
   position: relative;
-}
-.ticker::before {
-  /* Whisper-soft radial violet wash so the band still glows, doesn't shout */
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(70% 140% at 50% 50%, rgba(107,33,200,0.10), transparent 75%);
-  pointer-events: none;
 }
 .ticker-track {
   display: flex;
@@ -710,22 +701,15 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
    ========================================================= */
 .stats-section { padding-block: 0; }
 .stats-marquee {
-  /* Identical purple band styling to .ticker — same gradient, same opacity, same border */
-  background:
-    linear-gradient(90deg, rgba(59,26,110,0.20) 0%, rgba(107,33,200,0.20) 50%, rgba(59,26,110,0.20) 100%),
-    var(--midnight);
-  border-block: 1px solid rgba(180,143,224,0.14);
+  /* Same Husky Purple band as .ticker */
+  background: linear-gradient(90deg, var(--husky-night) 0%, var(--husky-purple) 50%, var(--husky-night) 100%);
+  background-clip: padding-box;
+  border-block: 1px solid var(--hairline);
   overflow: hidden;
   height: 56px;
   display: flex;
   align-items: center;
   position: relative;
-}
-.stats-marquee::before {
-  content: "";
-  position: absolute; inset: 0;
-  background: radial-gradient(70% 140% at 50% 50%, rgba(107,33,200,0.10), transparent 75%);
-  pointer-events: none;
 }
 /* Both marquees share the same italic display serif + rust ✦ separators */
 .ticker .ticker-track,
@@ -1089,7 +1073,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   color: var(--text-secondary);
 }
 .pill.rust  { background: rgba(181,106,37,0.18); color: var(--warm-white); border-color: var(--glow-border); }
-.pill.plum  { background: rgba(59,26,110,0.30); color: var(--lavender); border-color: rgba(180,143,224,0.35); }
+.pill.husky { background: var(--husky-purple); color: var(--warm-white); border-color: var(--husky-purple); }
 
 @media (max-width: 640px) {
   .timeline::before { left: 12px; }
@@ -1394,7 +1378,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   font-size: 22px;
   letter-spacing: 0.04em;
   color: var(--text-secondary);
-  opacity: 0.7;
+  opacity: 0.78;
   transition: opacity 220ms ease, color 220ms ease;
 }
 .sponsor-logo:hover { opacity: 1; color: var(--warm-white); }
@@ -1405,7 +1389,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   font-size: 9px;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(245,237,224, 0.75);
   margin-top: 2px;
 }
 
@@ -1921,7 +1905,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
   </div>
 
   <figure class="fullbleed" aria-label="Open landscape at golden hour, in remembrance">
-    <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=2000&h=900&auto=format&fit=crop&q=70" alt="Silhouette of trees against a deep orange and purple sky at sunset" loading="lazy" decoding="async" />
+    <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=2000&h=900&auto=format&fit=crop&q=70" alt="Trees on a misty hillside at golden hour, with the low sun breaking through the clouds" loading="lazy" decoding="async" />
     <div class="fullbleed-quote">
       <blockquote>
         “The room he walked into was always a little warmer for it.”
@@ -1970,7 +1954,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <div class="timeline-content">
             <h4>Welcome from the Family</h4>
             <p>A short word from Carmen and Carver Gayton on what tonight is for, and how to make the most of it.</p>
-            <div class="timeline-tags"><span class="pill plum">Family Welcome</span></div>
+            <div class="timeline-tags"><span class="pill husky">Family Welcome</span></div>
           </div>
         </div>
       </div>
@@ -1991,7 +1975,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <div class="timeline-content">
             <h4>Keynote · Atif Saad</h4>
             <p>A close friend on the legacy Chandler is leaving behind, and the work the memorial fund is taking on next.</p>
-            <div class="timeline-tags"><span class="pill plum">Keynote</span></div>
+            <div class="timeline-tags"><span class="pill husky">Keynote</span></div>
           </div>
         </div>
         <div class="timeline-row">
@@ -2596,7 +2580,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <p class="name">Chandler Walker Gayton</p>
           <p class="role">In Memoriam · 1990 to 2024</p>
         </div>
-        <span class="host-badge" style="background: rgba(59,26,110,0.55); border-color: rgba(180,143,224,0.45);">In Memoriam</span>
+        <span class="host-badge" style="background: var(--husky-purple); border-color: var(--husky-purple);">In Memoriam</span>
       </article>
 
       <!-- Carmen Gayton — Mother -->
