@@ -742,6 +742,27 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
       if (r.top < window.innerHeight) el.classList.add('in');
     });
   }, 3000);
+
+    /* A hard flick can outrun the observer on a long page: the element
+       crosses the threshold between frames, the callback never fires, and
+       the reader lands on a blank band. Sweep whatever is on screen as the
+       scrolling settles, then detach once nothing is left hidden. */
+    var pending = false;
+    function sweep() {
+      pending = false;
+      var left = document.querySelectorAll('.reveal:not(.in)');
+      if (!left.length) { window.removeEventListener('scroll', onSweep); return; }
+      Array.prototype.forEach.call(left, function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+      });
+    }
+    function onSweep() {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(sweep);
+    }
+    window.addEventListener('scroll', onSweep, { passive: true });
 })();
 </script>
 </body>
