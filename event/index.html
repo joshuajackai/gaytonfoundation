@@ -1687,7 +1687,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     </a>
 
     <nav aria-label="Primary">
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a href="/" class="nav-home"><span aria-hidden="true">←</span> Foundation</a></li>
         <li><a href="#tribute">Tribute</a></li>
         <li><a href="#expect">The Evening</a></li>
@@ -1700,7 +1700,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
 
     <a href="#tickets" class="btn btn-primary btn-sm btn-cta-mobile-hide">Reserve <span aria-hidden="true">→</span></a>
 
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" id="navToggle"><span></span></button>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks" id="navToggle"><span></span></button>
   </div>
 </header>
 
@@ -2808,6 +2808,15 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       </div>
 
       <div class="footer-col">
+        <h4>Foundation</h4>
+        <ul>
+          <li><a href="/about/">About the Foundation</a></li>
+          <li><a href="/mission/">Our Mission</a></li>
+          <li><a href="/contact/">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
         <h4>The Evening</h4>
         <ul>
           <li><a href="#tribute">Tribute</a></li>
@@ -2888,6 +2897,14 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       nav.classList.remove('is-open');
       toggle.setAttribute('aria-expanded', 'false');
     });
+  });
+  // close on Escape, so the menu is dismissable from the keyboard
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape' && nav.classList.contains('is-open')) {
+      nav.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    }
   });
 
   // ---- Reveal on scroll ----
