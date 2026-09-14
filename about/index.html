@@ -47,7 +47,7 @@
   "description": "The Chandler Walker Gayton Foundation supports community, housing, early childhood education, and social justice in Chandler Gayton's memory. A Washington nonprofit corporation with 501(c)(3) tax-exempt status.",
   "taxID": "42-3129149",
   "nonprofitStatus": "Nonprofit501c3",
-  "email": "joshua@gaytonfoundation.org",
+  "email": "carmengayton@me.com",
   "address": {
     "@type": "PostalAddress",
     "name": "Registered address",
@@ -60,7 +60,7 @@
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "general",
-    "email": "joshua@gaytonfoundation.org",
+    "email": "carmengayton@me.com",
     "areaServed": "US"
   },
   "sameAs": [
@@ -436,6 +436,22 @@ main .container { max-width:1000px; }
    among several and must sit in the same rank as the other h2s */
 .signup-grid h2 { font-size:clamp(26px, 3vw, 38px); line-height:1.18; }
 
+
+/* Page hero: portrait beside the title on About, image strip under it on Mission */
+.page-hero { display:grid; grid-template-columns:1.12fr 0.88fr; gap:clamp(30px, 4.4vw, 64px); align-items:center; }
+.page-hero .lead { margin-top:18px; }
+.page-hero-figure { align-self:center; }
+/* every other photograph on the site is monochrome; keep the hero in the
+   same photographic language rather than dropping one colour shot in */
+.page-hero-figure img { filter:grayscale(1) contrast(1.03); }
+@media (max-width:860px) {
+  .page-hero { grid-template-columns:1fr; gap:30px; }
+  .page-hero-figure { max-width:460px; }
+}
+.hero-strip { display:grid; grid-template-columns:repeat(4, 1fr); gap:clamp(10px, 1.5vw, 18px); margin-top:clamp(28px, 4vw, 44px); }
+.hero-strip figure { border-radius:var(--r-lg); }
+.hero-strip img { display:block; width:100%; height:100%; object-fit:cover; aspect-ratio:4/5; }
+@media (max-width:700px) { .hero-strip { grid-template-columns:repeat(2, 1fr); } }
 </style>
 </head>
 <body>
@@ -447,6 +463,7 @@ main .container { max-width:1000px; }
     </a>
     <nav aria-label="Primary">
       <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
         <li><a href="/about/" aria-current="page">About</a></li>
         <li><a href="/mission/">Mission</a></li>
         <li><a href="/event/">Event</a></li>
@@ -462,13 +479,20 @@ main .container { max-width:1000px; }
 <main>
   <div class="container">
 
-    <p class="eyebrow">About the Foundation</p>
-    <h1>Chandler Walker Gayton Foundation</h1>
-    <p class="lead">
-      We are a Washington nonprofit corporation with 501(c)(3) tax-exempt status,
-      formed to honor the life of Chandler Walker Gayton by funding the work he
-      cared about most.
-    </p>
+    <div class="page-hero">
+      <div class="page-hero-copy">
+        <p class="eyebrow">About the Foundation</p>
+        <h1>Chandler Walker Gayton Foundation</h1>
+        <p class="lead">
+          We are a Washington nonprofit corporation with 501(c)(3) tax-exempt status,
+          formed to honor the life of Chandler Walker Gayton by funding the work he
+          cared about most.
+        </p>
+      </div>
+      <figure class="figure figure--portrait page-hero-figure">
+        <img src="/images/chandler-speaking.jpg" alt="Chandler Walker Gayton speaking at a podium" width="800" height="1000" loading="eager" decoding="async" fetchpriority="high" />
+      </figure>
+    </div>
 
     <section class="block" aria-labelledby="who-heading">
       <h2 id="who-heading">Who we are</h2>
@@ -587,7 +611,7 @@ main .container { max-width:1000px; }
         </div>
         <div>
           <dt>Contact</dt>
-          <dd><a href="/contact/">Contact page</a> &middot; <a href="mailto:joshua@gaytonfoundation.org">joshua@gaytonfoundation.org</a></dd>
+          <dd><a href="/contact/">Contact page</a> &middot; <a href="mailto:carmengayton@me.com">carmengayton@me.com</a></dd>
         </div>
         <div>
           <dt>Public record</dt>
@@ -633,7 +657,7 @@ main .container { max-width:1000px; }
         <p class="footer-status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>501(c)(3) Approved</p>
         <p class="footer-tag">A Washington nonprofit corporation. <span class="nb">EIN 42-3129149</span>.<br />Registered: <span class="nb">2107 NW 201st St, Shoreline, WA 98177</span>.<br />Mail to: <span class="nb">PO Box 99371, Seattle, WA 98139-0371</span>.</p>
         <div class="social-row" aria-label="Contact links">
-          <a href="mailto:joshua@gaytonfoundation.org" aria-label="Email the foundation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2L12 12.3 19.4 7H4.6zM4 8.5V18h16V8.5l-8 5.7L4 8.5z"/></svg></a>
+          <a href="mailto:carmengayton@me.com" aria-label="Email the foundation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.6 2L12 12.3 19.4 7H4.6zM4 8.5V18h16V8.5l-8 5.7L4 8.5z"/></svg></a>
         </div>
       </div>
 
