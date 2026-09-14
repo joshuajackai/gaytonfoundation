@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+<script>/* Deep-link guard: a visitor arriving at /#section must not land on a
+   reveal-on-scroll element still at opacity 0. Set before first paint. */
+if (window.location.hash) document.documentElement.classList.add("deep-link");</script>
 <meta name="theme-color" content="#fcf8f0" />
 <meta name="color-scheme" content="light" />
 
@@ -370,15 +374,13 @@ main .container { max-width:1000px; }
 .card:hover { transform:translateY(-3px); border-color:rgba(207,90,10,0.45); box-shadow:var(--lift); }
 
 /* portrait row, 78px circles exactly as the homepage team grid frames them */
-.people { list-style:none; margin:24px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:clamp(18px, 2.6vw, 30px); }
-.people li { display:flex; flex-direction:column; align-items:center; gap:9px; width:78px; }
-.people .pic {
+.people-track .pic {
   width:78px; height:78px; flex:none; border-radius:999px; overflow:hidden;
   border:1px solid rgba(207,90,10,0.30); background:var(--elevated);
   box-shadow:0 1px 4px rgba(63,69,54,0.10);
 }
-.people .pic img { width:100%; height:100%; display:block; border-radius:999px; object-fit:cover; object-position:center; }
-.people .who { font-family:var(--font-ui); font-size:10px; letter-spacing:0.06em; line-height:1.35; text-align:center; color:var(--ink-soft); }
+.people-track .pic img { width:100%; height:100%; display:block; border-radius:999px; object-fit:cover; object-position:center; }
+.people-track .who { font-family:var(--font-ui); font-size:10px; letter-spacing:0.06em; line-height:1.35; text-align:center; color:var(--ink-soft); }
 
 /* a quiet full-bleed archive image, no overlay and no caption */
 .band { margin-top:clamp(48px, 7vw, 84px); border-radius:var(--r-xl); overflow:hidden; border:1px solid var(--hairline); box-shadow:var(--lift); background:var(--elevated); }
@@ -438,7 +440,7 @@ main .container { max-width:1000px; }
 
 
 /* Page hero: portrait beside the title on About, image strip under it on Mission */
-.page-hero { display:grid; grid-template-columns:1.12fr 0.88fr; gap:clamp(30px, 4.4vw, 64px); align-items:center; }
+.page-hero { display:grid; grid-template-columns:1.12fr 0.88fr; gap:clamp(30px, 4.4vw, 64px); align-items:center; margin-bottom:clamp(18px, 2.4vw, 30px); }
 .page-hero .lead { margin-top:18px; }
 .page-hero-figure { align-self:center; }
 /* every other photograph on the site is monochrome; keep the hero in the
@@ -452,7 +454,33 @@ main .container { max-width:1000px; }
 .hero-strip figure { border-radius:var(--r-lg); }
 .hero-strip img { display:block; width:100%; height:100%; object-fit:cover; aspect-ratio:4/5; }
 @media (max-width:700px) { .hero-strip { grid-template-columns:repeat(2, 1fr); } }
+
+/* ---------- People marquee ---------- */
+.people-marquee { margin-top:26px; overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent 0, #1A1814 7%, #1A1814 93%, transparent 100%); mask-image:linear-gradient(90deg, transparent 0, #1A1814 7%, #1A1814 93%, transparent 100%); }
+.people-track { list-style:none; margin:0; padding:6px 0; display:flex; gap:clamp(18px, 2.6vw, 30px); width:max-content; animation:people-scroll 95s linear infinite; will-change:transform; }
+.people-track li { flex:none; display:flex; flex-direction:column; align-items:center; gap:9px; width:78px; }
+@keyframes people-scroll { from { transform:translate3d(0,0,0); } to { transform:translate3d(-50%,0,0); } }
+.people-marquee:hover .people-track,
+.people-marquee:focus-within .people-track { animation-play-state:paused; }
+/* a touch visitor has no hover, so the pause hint is desktop-only */
+.hover-only { display:none; }
+@media (hover:hover) and (pointer:fine) { .hover-only { display:inline; } }
+.people-note { margin-top:14px; font-family:var(--font-ui); font-size:11.5px; letter-spacing:0.04em; color:var(--ink-soft); opacity:0.75; }
+@media (prefers-reduced-motion: reduce) {
+  .people-track { animation:none; width:auto; flex-wrap:wrap; }
+  .people-marquee { -webkit-mask-image:none; mask-image:none; }
+}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 700ms ease, transform 700ms ease; }
+.reveal.in { opacity:1; transform:none; }
+html.deep-link .reveal { opacity:1; transform:none; transition:none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity:1; transform:none; transition:none; }
+  html { scroll-behavior:auto; }
+}
 </style>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
 
@@ -479,7 +507,7 @@ main .container { max-width:1000px; }
 <main>
   <div class="container">
 
-    <div class="page-hero">
+    <div class="page-hero reveal">
       <div class="page-hero-copy">
         <p class="eyebrow">About the Foundation</p>
         <h1>Chandler Walker Gayton Foundation</h1>
@@ -494,7 +522,7 @@ main .container { max-width:1000px; }
       </figure>
     </div>
 
-    <section class="block" aria-labelledby="who-heading">
+    <section class="section reveal" aria-labelledby="who-heading">
       <h2 id="who-heading">Who we are</h2>
       <div class="split" style="margin-top:18px;">
       <div class="prose">
@@ -526,7 +554,7 @@ main .container { max-width:1000px; }
       </div>
     </section>
 
-    <section class="block" aria-labelledby="what-heading">
+    <section class="section reveal" aria-labelledby="what-heading">
       <h2 id="what-heading">What we do</h2>
       <p class="sub" style="margin-top:14px; max-width:64ch; line-height:1.65;">
         We are a grantmaking foundation. We raise money and direct it to
@@ -560,7 +588,7 @@ main .container { max-width:1000px; }
       </div>
     </section>
 
-    <section class="domain-note" aria-labelledby="domain-heading">
+    <section class="section reveal" aria-labelledby="domain-heading">
       <h2 id="domain-heading" class="visually-hidden">Official website and domain</h2>
       <p>
         <strong>gaytonfoundation.org is the official website and official domain of the
@@ -574,7 +602,7 @@ main .container { max-width:1000px; }
       </p>
     </section>
 
-    <section class="block" aria-labelledby="details-heading">
+    <section class="section reveal" aria-labelledby="details-heading">
       <h2 id="details-heading">Organization details</h2>
       <dl class="facts">
         <div>
@@ -620,22 +648,51 @@ main .container { max-width:1000px; }
       </dl>
     </section>
 
-    <section class="block prose" aria-labelledby="gov-heading">
+    <section class="section reveal" aria-labelledby="gov-heading">
       <h2 id="gov-heading">Governance</h2>
       <p>
         The foundation is governed by a board of officers and advisors who meet
         regularly and approve every grant. Legal counsel and accountants support
-        the board. Our officers, advisors, and honorary chairs are listed with
-        their roles on the homepage.
+        the board. Every officer, executive committee member, honorary chair and advisor
+        is below; their roles are listed on the homepage.
       </p>
-      <ul class="people" aria-label="Some of the foundation's officers and advisors">
-        <li><span class="pic"><img src="/images/carmen-gayton.jpg" alt="Carmen Gayton" width="800" height="1000" loading="lazy" decoding="async" /></span><span class="who">Carmen Gayton</span></li>
-        <li><span class="pic"><img src="/images/carver-gayton.jpg" alt="Carver Gayton" width="600" height="600" loading="lazy" decoding="async" /></span><span class="who">Carver Gayton</span></li>
-        <li><span class="pic"><img src="/images/atif-saad.jpg" alt="Atif Saad" width="800" height="1000" loading="lazy" decoding="async" /></span><span class="who">Atif Saad</span></li>
-        <li><span class="pic"><img src="/images/nate-koweda.jpg" alt="Nate Koweda" width="800" height="1000" loading="lazy" decoding="async" /></span><span class="who">Nate Koweda</span></li>
-        <li><span class="pic"><img src="/images/joshua-jackai.jpg" alt="Joshua Jackai" width="800" height="1000" loading="lazy" decoding="async" /></span><span class="who">Joshua Jackai</span></li>
-        <li><span class="pic"><img src="/images/prototype/terrell-pugh.jpg" alt="Terrell Pugh" width="800" height="1000" loading="lazy" decoding="async" /></span><span class="who">Terrell Pugh</span></li>
-      </ul>
+      <div class="people-marquee" data-people-marquee>
+        <ul class="people-track" aria-label="Officers, executive committee, honorary chairs and advisors">
+        <li><span class="pic"><img src="/images/people-sm/carmen-gayton.webp" alt="Carmen Gayton" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Carmen Gayton</span></li>
+        <li><span class="pic"><img src="/images/people-sm/nate-koweda.webp" alt="Nate Koweda" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Nate Koweda</span></li>
+        <li><span class="pic"><img src="/images/people-sm/joshua-jackai.webp" alt="Joshua Jackai" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Joshua Jackai</span></li>
+        <li><span class="pic"><img src="/images/people-sm/atif-saad.webp" alt="Atif Saad" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Atif Saad</span></li>
+        <li><span class="pic"><img src="/images/people-sm/doug-crews.webp" alt="Doug Crews" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Doug Crews</span></li>
+        <li><span class="pic"><img src="/images/people-sm/howard-choder.webp" alt="Howard Choder" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Howard Choder</span></li>
+        <li><span class="pic"><img src="/images/people-sm/carver-gayton.webp" alt="Carver Gayton" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Carver Gayton</span></li>
+        <li><span class="pic"><img src="/images/people-sm/daisy-walker.webp" alt="Daisy Walker" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Daisy Walker</span></li>
+        <li><span class="pic"><img src="/images/people-sm/dianne-ramsey-gayton.webp" alt="Dianne Ramsey Gayton" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Dianne Ramsey Gayton</span></li>
+        <li><span class="pic"><img src="/images/people-sm/terrell-pugh.webp" alt="Terrell Pugh" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Terrell Pugh</span></li>
+        <li><span class="pic"><img src="/images/people-sm/ali-tapert.webp" alt="Ali Tapert" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Ali Tapert</span></li>
+        <li><span class="pic"><img src="/images/people-sm/sarah-lenda-v2.webp" alt="Sarah Lenda" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Sarah Lenda</span></li>
+        <li><span class="pic"><img src="/images/people-sm/hana-weldegebriel.webp" alt="Hana Weldegebriel" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Hana Weldegebriel</span></li>
+        <li><span class="pic"><img src="/images/people-sm/piyush-panwar.webp" alt="Piyush Panwar" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Piyush Panwar</span></li>
+        <li><span class="pic"><img src="/images/people-sm/alyse-brindle.webp" alt="Alyse Brindle" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Alyse Brindle</span></li>
+        <li><span class="pic"><img src="/images/people-sm/bethany-sobba-kunthara.webp" alt="Dr. Bethany Sobba-Kunthara" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Dr. Bethany Sobba-Kunthara</span></li>
+        <li><span class="pic"><img src="/images/people-sm/duncan-hussey.webp" alt="Dr. Duncan Hussey" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Dr. Duncan Hussey</span></li>
+        <li><span class="pic"><img src="/images/people-sm/marcel-noel.webp" alt="Marcel Noel" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Marcel Noel</span></li>
+        <li><span class="pic"><img src="/images/people-sm/gene-crews.webp" alt="Gené Crews" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Gené Crews</span></li>
+        <li><span class="pic"><img src="/images/people-sm/chris-tolbert.webp" alt="Chris Tolbert" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Chris Tolbert</span></li>
+        <li><span class="pic"><img src="/images/people-sm/charmien-wiggins.webp" alt="Charmien Wiggins" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Charmien Wiggins</span></li>
+        <li><span class="pic"><img src="/images/people-sm/mafara-hobson.webp" alt="Mafara Hobson" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Mafara Hobson</span></li>
+        <li><span class="pic"><img src="/images/people-sm/wanda-herndon.webp" alt="Wanda Herndon" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Wanda Herndon</span></li>
+        <li><span class="pic"><img src="/images/people-sm/susan-simpson-heydt.webp" alt="Susan Simpson Heydt" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Susan Simpson Heydt</span></li>
+        <li><span class="pic"><img src="/images/people-sm/roxie-floyd.webp" alt="Roxie Floyd" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Roxie Floyd</span></li>
+        <li><span class="pic"><img src="/images/people-sm/renee-rabb-martin.webp" alt="Renee Rabb-Martin" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Renee Rabb-Martin</span></li>
+        <li><span class="pic"><img src="/images/people-sm/katy-olweiler.webp" alt="Katy Olweiler" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Katy Olweiler</span></li>
+        <li><span class="pic"><img src="/images/people-sm/vicki-fabre.webp" alt="Vicki Fabré" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Vicki Fabré</span></li>
+        <li><span class="pic"><img src="/images/people-sm/micki-flowers.webp" alt="Micki Flowers" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Micki Flowers</span></li>
+        <li><span class="pic"><img src="/images/people-sm/rhoda-mckinney.webp" alt="Rhoda McKinney Jones" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Rhoda McKinney Jones</span></li>
+        <li><span class="pic"><img src="/images/people-sm/dana-frank.webp" alt="Dana Frank" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Dana Frank</span></li>
+        <li><span class="pic"><img src="/images/people-sm/candace-grisdale.webp" alt="Candace Grisdale" width="156" height="156" loading="lazy" decoding="async" /></span><span class="who">Candace Grisdale</span></li>
+        </ul>
+      </div>
+      <p class="people-note"><span class="hover-only">Hover to pause. </span>32 people serve the foundation as officers, executive committee members, honorary chairs and advisors.</p>
       <div class="page-cta">
         <a class="btn btn-ghost" href="/#team">All officers and advisors &nbsp;&rarr;</a>
         <a class="btn btn-ghost" href="/contact/">Contact us</a>
@@ -714,5 +771,71 @@ main .container { max-width:1000px; }
 })();
 </script>
 
+
+<script>
+/* People marquee: duplicate the row once so the -50% keyframe loops seamlessly.
+   Clones are aria-hidden so screen readers hear each person a single time. */
+(function () {
+  var wrap = document.querySelector('[data-people-marquee]');
+  if (!wrap) return;
+  var track = wrap.querySelector('.people-track');
+
+  /* Faces sit far off to the right inside a clipped track, so the browser's
+     lazy-load heuristic never reaches them and they scroll in blank. Once the
+     marquee is close to the viewport, load the whole row at once. The row is
+     32 small WebP thumbnails, so this costs little and nothing loads at all
+     for a visitor who never scrolls this far. */
+  function loadAll() {
+    track.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+      img.loading = 'eager';
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    var lio = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) { loadAll(); lio.disconnect(); }
+    }, { rootMargin: '600px 0px' });
+    lio.observe(wrap);
+  } else {
+    loadAll();
+  }
+
+  /* The loop needs a second copy of the row: the keyframe travels -50%, so
+     the duplicate is exactly what sits under the start position when it wraps.
+     Reduced motion keeps the single static row instead. */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  Array.prototype.slice.call(track.children).forEach(function (li) {
+    var c = li.cloneNode(true);
+    c.setAttribute('aria-hidden', 'true');
+    c.querySelectorAll('img').forEach(function (i) { i.setAttribute('alt', ''); });
+    track.appendChild(c);
+  });
+})();
+</script>
+
+<script>
+/* Reveal on scroll. Anything still hidden when the observer cannot run is
+   forced visible, so content never depends on the animation succeeding. */
+(function () {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    Array.prototype.forEach.call(els, function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  Array.prototype.forEach.call(els, function (el) { io.observe(el); });
+  /* safety net: anything still unrevealed after 3s gets shown anyway */
+  setTimeout(function () {
+    document.querySelectorAll('.reveal:not(.in)').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight) el.classList.add('in');
+    });
+  }, 3000);
+})();
+</script>
 </body>
 </html>

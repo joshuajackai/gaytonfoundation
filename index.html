@@ -1112,6 +1112,7 @@ details.hc-more.closing .more { display:inline; }
 .action-trio { display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; }
 @media (max-width:900px) { .action-trio { grid-template-columns:1fr; } }
 </style>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
 
@@ -1925,16 +1926,26 @@ details.hc-more.closing .more { display:inline; }
     });
   });
 
+  /* Reveal on scroll. Anything still hidden when the observer cannot run is
+     forced visible, so content never depends on the animation succeeding. */
   var reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    Array.prototype.forEach.call(reveals, function (el) { el.classList.add('in'); });
+  } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    reveals.forEach(function (el) { io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add('in'); });
+    Array.prototype.forEach.call(reveals, function (el) { io.observe(el); });
+    /* safety net: anything still unrevealed after 3s gets shown anyway */
+    setTimeout(function () {
+      document.querySelectorAll('.reveal:not(.in)').forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight) el.classList.add('in');
+      });
+    }, 3000);
   }
 })();
 </script>

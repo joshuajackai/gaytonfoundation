@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+<script>/* Deep-link guard: a visitor arriving at /#section must not land on a
+   reveal-on-scroll element still at opacity 0. Set before first paint. */
+if (window.location.hash) document.documentElement.classList.add("deep-link");</script>
 <meta name="theme-color" content="#fcf8f0" />
 <meta name="color-scheme" content="light" />
 
@@ -448,11 +452,21 @@ main .container { max-width:1000px; }
   .page-hero { grid-template-columns:1fr; gap:30px; }
   .page-hero-figure { max-width:460px; }
 }
-.hero-strip { display:grid; grid-template-columns:repeat(4, 1fr); gap:clamp(10px, 1.5vw, 18px); margin-top:clamp(28px, 4vw, 44px); }
+.hero-strip { display:grid; grid-template-columns:repeat(4, 1fr); gap:clamp(10px, 1.5vw, 18px); margin:clamp(28px, 4vw, 44px) 0 clamp(30px, 4vw, 46px); }
 .hero-strip figure { border-radius:var(--r-lg); }
 .hero-strip img { display:block; width:100%; height:100%; object-fit:cover; aspect-ratio:4/5; }
 @media (max-width:700px) { .hero-strip { grid-template-columns:repeat(2, 1fr); } }
+
+/* ---------- Reveal on scroll ---------- */
+.reveal { opacity:0; transform:translateY(22px); transition:opacity 700ms ease, transform 700ms ease; }
+.reveal.in { opacity:1; transform:none; }
+html.deep-link .reveal { opacity:1; transform:none; transition:none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity:1; transform:none; transition:none; }
+  html { scroll-behavior:auto; }
+}
 </style>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
 
@@ -485,14 +499,14 @@ main .container { max-width:1000px; }
       The Chandler Walker Gayton Foundation supports charitable organizations
       doing the work Chandler cared about most.
     </p>
-    <div class="hero-strip">
+    <div class="hero-strip reveal">
       <figure class="figure"><img src="/images/prototype/focus-community.webp" alt="" width="800" height="1000" loading="eager" decoding="async" fetchpriority="high" /></figure>
       <figure class="figure"><img src="/images/prototype/focus-housing.webp" alt="" width="800" height="1000" loading="eager" decoding="async" /></figure>
       <figure class="figure"><img src="/images/prototype/focus-early-ed.webp" alt="" width="800" height="1000" loading="eager" decoding="async" /></figure>
       <figure class="figure"><img src="/images/prototype/focus-elders.webp" alt="" width="800" height="1000" loading="eager" decoding="async" /></figure>
     </div>
 
-    <section class="domain-note" aria-labelledby="statement-heading">
+    <section class="section reveal" aria-labelledby="statement-heading">
       <h2 id="statement-heading" class="visually-hidden">Mission statement</h2>
       <p>
         <strong>Our mission is to honor Chandler Walker Gayton by raising and
@@ -507,7 +521,7 @@ main .container { max-width:1000px; }
       </p>
     </section>
 
-    <section class="block" aria-labelledby="focus-heading">
+    <section class="section reveal" aria-labelledby="focus-heading">
       <h2 id="focus-heading">Our four focus areas</h2>
       <p class="sub" style="margin-top:14px; max-width:64ch; line-height:1.65;">
         These are the four areas Chandler gave his own time to, in his work at the
@@ -554,7 +568,7 @@ main .container { max-width:1000px; }
       </div>
     </section>
 
-    <section class="block" aria-labelledby="fund-heading">
+    <section class="section reveal" aria-labelledby="fund-heading">
       <h2 id="fund-heading">What we fund</h2>
       <p class="sub" style="margin-top:14px; max-width:64ch; line-height:1.65;">
         Rather than spread a small fund thinly across many grantees, we have
@@ -589,7 +603,7 @@ main .container { max-width:1000px; }
       </div>
     </section>
 
-    <section class="block" aria-labelledby="raise-heading">
+    <section class="section reveal" aria-labelledby="raise-heading">
       <h2 id="raise-heading">How we raise the money</h2>
       <div class="split" style="margin-top:18px;">
         <div class="prose">
@@ -617,7 +631,7 @@ main .container { max-width:1000px; }
       </div>
     </section>
 
-    <section class="block prose" aria-labelledby="account-heading">
+    <section class="section reveal" aria-labelledby="account-heading">
       <h2 id="account-heading">Accountability</h2>
       <p>
         The foundation is a Washington nonprofit corporation with federal
@@ -704,5 +718,31 @@ main .container { max-width:1000px; }
 })();
 </script>
 
+
+<script>
+/* Reveal on scroll. Anything still hidden when the observer cannot run is
+   forced visible, so content never depends on the animation succeeding. */
+(function () {
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    Array.prototype.forEach.call(els, function (el) { el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  Array.prototype.forEach.call(els, function (el) { io.observe(el); });
+  /* safety net: anything still unrevealed after 3s gets shown anyway */
+  setTimeout(function () {
+    document.querySelectorAll('.reveal:not(.in)').forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight) el.classList.add('in');
+    });
+  }, 3000);
+})();
+</script>
 </body>
 </html>

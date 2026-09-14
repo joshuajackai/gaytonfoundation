@@ -1674,6 +1674,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
 @media (max-width: 480px)  { .advisors-grid > .advisor { flex-basis: 100%; } }
 
 </style>
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
 
@@ -1931,7 +1932,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       <button class="agenda-tab" role="tab" id="tab-main" aria-controls="panel-main" aria-selected="false">Main Event</button>
     </div>
 
-    <div class="agenda-panel is-active reveal" id="panel-reception" role="tabpanel" aria-labelledby="tab-reception">
+    <div class="agenda-panel is-active" id="panel-reception" role="tabpanel" aria-labelledby="tab-reception">
       <div class="timeline">
         <div class="timeline-row">
           <span class="timeline-time">6:00 PM</span>
@@ -1960,7 +1961,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       </div>
     </div>
 
-    <div class="agenda-panel reveal" id="panel-main" role="tabpanel" aria-labelledby="tab-main" hidden>
+    <div class="agenda-panel" id="panel-main" role="tabpanel" aria-labelledby="tab-main" hidden>
       <div class="timeline">
         <div class="timeline-row">
           <span class="timeline-time">7:30 PM</span>
@@ -2904,7 +2905,12 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
   });
 
   // ---- Reveal on scroll ----
-  if ('IntersectionObserver' in window) {
+  // Anything still hidden when the observer cannot run is forced visible,
+  // so content never depends on the animation succeeding.
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) {
@@ -2914,8 +2920,13 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+    // safety net: anything still unrevealed after 3s gets shown anyway
+    setTimeout(function () {
+      document.querySelectorAll('.reveal:not(.in)').forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight) el.classList.add('in');
+      });
+    }, 3000);
   }
 
   // ---- Agenda tabs ----
