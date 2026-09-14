@@ -133,7 +133,7 @@ a { color:inherit; }
   width:100%;
   display:flex; align-items:center; justify-content:space-between; gap:32px;
 }
-.brand-logo { width:clamp(104px, 12vw, 128px); display:block; filter:brightness(0.46) saturate(1.1); }
+.brand-logo { width:clamp(104px, 12vw, 128px); height:auto; display:block; filter:brightness(0.46) saturate(1.1); }
 .nav-links { display:flex; gap:28px; list-style:none; padding:0; }
 .nav-links a {
   font-family:var(--font-ui); font-size:11px; letter-spacing:0.22em; text-transform:uppercase;
@@ -341,6 +341,55 @@ main .container { max-width:1000px; }
   .page-cta .btn { width:100%; justify-content:center; }
 }
 
+/* ---------- imagery ----------
+   Frames, ratios and portrait treatment all copied from the homepage
+   (.program-photo for 4:3 media, .team-portrait--photo for the 78px circles)
+   so every photo on the site is cropped and framed the same way. */
+.figure { margin:0; border-radius:var(--r-xl); overflow:hidden; background:var(--elevated); border:1px solid var(--hairline); box-shadow:var(--lift); }
+.figure img { width:100%; height:100%; display:block; object-fit:cover; }
+.figure--square img { aspect-ratio:1/1; }
+.figure--portrait img { aspect-ratio:4/5; }
+.figure--wide img { aspect-ratio:3/2; }
+.figure--2x3 img { aspect-ratio:2/3; }
+
+/* photo on a card, same 4:3 crop and bottom scrim the homepage programme cards use */
+.card--photo { padding:0; overflow:hidden; display:flex; flex-direction:column; }
+.card-media { position:relative; aspect-ratio:5/4; overflow:hidden; background:var(--elevated); }
+.card-media img { width:100%; height:100%; object-fit:cover; object-position:50% 22%; display:block; transition:transform 420ms ease; }
+.card--photo:hover .card-media img { transform:scale(1.03); }
+.card-media::after {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg, transparent 62%, rgba(35,16,10,0.16) 100%);
+}
+.card-body { padding:clamp(18px, 2.2vw, 24px); }
+.card-body h3 { margin-bottom:9px; }
+.card-body p { margin:0; font-size:17px; line-height:1.55; color:var(--ink-soft); }
+
+/* hover matches the homepage .pillar cards */
+.card { transition:transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease; }
+.card:hover { transform:translateY(-3px); border-color:rgba(207,90,10,0.45); box-shadow:var(--lift); }
+
+/* portrait row, 78px circles exactly as the homepage team grid frames them */
+.people { list-style:none; margin:24px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:clamp(18px, 2.6vw, 30px); }
+.people li { display:flex; flex-direction:column; align-items:center; gap:9px; width:78px; }
+.people .pic {
+  width:78px; height:78px; flex:none; border-radius:999px; overflow:hidden;
+  border:1px solid rgba(207,90,10,0.30); background:var(--elevated);
+  box-shadow:0 1px 4px rgba(63,69,54,0.10);
+}
+.people .pic img { width:100%; height:100%; display:block; border-radius:999px; object-fit:cover; object-position:center; }
+.people .who { font-family:var(--font-ui); font-size:10px; letter-spacing:0.06em; line-height:1.35; text-align:center; color:var(--ink-soft); }
+
+/* a quiet full-bleed archive image, no overlay and no caption */
+.band { margin-top:clamp(48px, 7vw, 84px); border-radius:var(--r-xl); overflow:hidden; border:1px solid var(--hairline); box-shadow:var(--lift); background:var(--elevated); }
+.band img { width:100%; display:block; aspect-ratio:3/2; object-fit:cover; object-position:50% 40%; }
+@media (max-width:640px) { .band img { aspect-ratio:4/3; } }
+
+/* the Homestead block carries the award image beside its copy */
+.feature--media { display:grid; grid-template-columns:1fr 0.66fr; gap:clamp(26px, 3.5vw, 44px); align-items:start; }
+.feature--media p { max-width:58ch; }
+@media (max-width:820px) { .feature--media { grid-template-columns:1fr; gap:26px; } .feature--media p { max-width:64ch; } }
+
 /* active page in the primary nav */
 .nav-links a[aria-current="page"] { color:var(--ink); position:relative; }
 .nav-links a[aria-current="page"]::after {
@@ -400,6 +449,7 @@ main .container { max-width:1000px; }
       <ul class="nav-links" id="navLinks">
         <li><a href="/about/" aria-current="page">About</a></li>
         <li><a href="/mission/">Mission</a></li>
+        <li><a href="/event/">Event</a></li>
         <li><a href="/contact/">Contact</a></li>
         <li class="nav-cta-mobile"><a class="btn btn-primary btn-sm" href="/#support">Contribute &nbsp;&rarr;</a></li>
       </ul>
@@ -420,8 +470,10 @@ main .container { max-width:1000px; }
       cared about most.
     </p>
 
-    <section class="block prose" aria-labelledby="who-heading">
+    <section class="block" aria-labelledby="who-heading">
       <h2 id="who-heading">Who we are</h2>
+      <div class="split" style="margin-top:18px;">
+      <div class="prose">
       <p>
         Chandler Walker Gayton believed in community, and he worked at it for a
         living. He served as a legislative aide at the King County Council, ran
@@ -443,6 +495,11 @@ main .container { max-width:1000px; }
         strong beginning for every child, and fairness and opportunity for every
         neighbor. Every dollar we move is measured against it.
       </p>
+      </div>
+      <figure class="figure figure--square">
+        <img src="/images/chandler-portrait-760.webp" alt="Portrait of Chandler Walker Gayton" width="760" height="760" loading="lazy" decoding="async" />
+      </figure>
+      </div>
     </section>
 
     <section class="block" aria-labelledby="what-heading">
@@ -547,8 +604,16 @@ main .container { max-width:1000px; }
         the board. Our officers, advisors, and honorary chairs are listed with
         their roles on the homepage.
       </p>
+      <ul class="people" aria-label="Some of the foundation's officers and advisors">
+        <li><span class="pic"><img src="/images/carmen-gayton.jpg" alt="Carmen Gayton" width="800" height="1000" loading="lazy" decoding="async" /></span><span class="who">Carmen Gayton</span></li>
+        <li><span class="pic"><img src="/images/carver-gayton.jpg" alt="Carver Gayton" width="600" height="600" loading="lazy" decoding="async" /></span><span class="who">Carver Gayton</span></li>
+        <li><span class="pic"><img src="/images/atif-saad.jpg" alt="Atif Saad" width="800" height="1000" loading="lazy" decoding="async" /></span><span class="who">Atif Saad</span></li>
+        <li><span class="pic"><img src="/images/nate-koweda.jpg" alt="Nate Koweda" width="800" height="1000" loading="lazy" decoding="async" /></span><span class="who">Nate Koweda</span></li>
+        <li><span class="pic"><img src="/images/joshua-jackai.jpg" alt="Joshua Jackai" width="800" height="1000" loading="lazy" decoding="async" /></span><span class="who">Joshua Jackai</span></li>
+        <li><span class="pic"><img src="/images/prototype/terrell-pugh.jpg" alt="Terrell Pugh" width="800" height="1000" loading="lazy" decoding="async" /></span><span class="who">Terrell Pugh</span></li>
+      </ul>
       <div class="page-cta">
-        <a class="btn btn-ghost" href="/#team">See the board &nbsp;&rarr;</a>
+        <a class="btn btn-ghost" href="/#team">All officers and advisors &nbsp;&rarr;</a>
         <a class="btn btn-ghost" href="/contact/">Contact us</a>
       </div>
     </section>
