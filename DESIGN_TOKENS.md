@@ -152,7 +152,7 @@ Max container width: `--container: 1240px`.
 | Token           | Purpose                                       |
 | --------------- | --------------------------------------------- |
 | `--shadow-card` | Base card lift on dark                        |
-| `--shadow-glow` | Rust glow around primary buttons              |
+| `--shadow-glow` | Rust glow (primary buttons now use their own layered shadow, see `.btn`) |
 | `--shadow-glass`| Inner highlight plus outer drop on dark cards |
 | `--shadow-paper`| Sage-tinted drop for cards on paper (v1.1)    |
 
@@ -164,8 +164,14 @@ Component classes live inline in each page's `<style>` block, sharing the
 same tokens. Both pages reuse the same names.
 
 - **`.btn`** with modifiers `.btn-primary`, `.btn-ghost`, `.btn-sm`,
-  `.btn-lg`. Pill-shaped, uppercase Lato. Primary uses rust to saddle
-  gradient with rust glow shadow. Ghost uses hairline + 4% surface fill.
+  `.btn-lg`. Pill-shaped, uppercase Lato. Primary is "Molten Sheen"
+  (2026-09-24, all five pages): 120deg gradient #b8480a 0% / #9a3c09 55% /
+  #6b2508 100%, label #fdf9f1 (5.0:1 or better), gold rim
+  rgba(255,198,129,0.6) turning #ffc681 on hover, a layered dark drop
+  shadow (contact + deep warm off-black cast + ember glow) that deepens on
+  hover and tightens when pressed, and a light sweep (`::after`) on hover
+  and keyboard focus, switched off under reduced motion.
+  Ghost uses hairline + 4% surface fill.
   `.btn-ghost` gets a paper variant inside `.section--light` (forest fill
   + paper hairline border + ink text).
 - **`.eyebrow`** small caps label above every section title with a rust

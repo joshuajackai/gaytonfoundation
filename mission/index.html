@@ -156,10 +156,29 @@ a { color:inherit; }
 .btn:hover { transform:translateY(-1px); }
 .btn-sm { padding:10px 18px; font-size:11px; }
 .btn-primary {
-  background:linear-gradient(135deg, #a35f21 0%, #84644a 100%);
-  color:#fdf9f1; box-shadow:0 10px 26px rgba(10,4,1,0.3);
+  /* Molten Sheen (2026-09-24): flame to ember with a gold rim, a layered dark
+     drop shadow (contact + deep cast + ember glow) and a light sweep on hover.
+     Label #fdf9f1 measures 5.0:1 or better on every gradient stop. */
+  position:relative; overflow:hidden;
+  background:linear-gradient(120deg, #b8480a 0%, #9a3c09 55%, #6b2508 100%);
+  color:#fdf9f1; border-color:rgba(255,198,129,0.6);
+  box-shadow:0 2px 4px rgba(20,9,3,0.5), 0 12px 28px -4px rgba(20,9,3,0.6), 0 8px 22px rgba(154,60,9,0.28);
 }
-.btn-primary:hover { box-shadow:0 14px 34px rgba(10,4,1,0.38); }
+.btn-primary::after {
+  content:""; position:absolute; top:0; bottom:0; left:-60%; width:45%;
+  background:linear-gradient(100deg, rgba(255,220,170,0) 0%, rgba(255,220,170,0.35) 50%, rgba(255,220,170,0) 100%);
+  transform:skewX(-20deg); transition:left 650ms ease; pointer-events:none;
+}
+.btn-primary:hover, .btn-primary:focus-visible {
+  transform:translateY(-2px); border-color:#ffc681;
+  box-shadow:0 3px 6px rgba(20,9,3,0.55), 0 20px 40px -6px rgba(20,9,3,0.7), 0 10px 28px rgba(154,60,9,0.34);
+}
+.btn-primary:hover::after, .btn-primary:focus-visible::after { left:120%; }
+.btn-primary:active { transform:translateY(0) scale(0.98); box-shadow:0 1px 2px rgba(20,9,3,0.55), 0 6px 14px -2px rgba(20,9,3,0.55); }
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary::after { display:none; }
+  .btn-primary:hover, .btn-primary:focus-visible, .btn-primary:active { transform:none; }
+}
 .btn-ghost { background:rgba(63,69,54,0.05); border-color:rgba(63,69,54,0.25); color:var(--ink); }
 .btn-ghost:hover { border-color:var(--rust); background:rgba(63,69,54,0.1); }
 
@@ -185,6 +204,8 @@ a { color:inherit; }
   }
   .nav.is-open .nav-links li { width:100%; }
   .nav.is-open .nav-links a { display:block; width:100%; padding:12px 0; font-size:12px; }
+  /* the menu-link reset above zeroed the Contribute pill's side padding; restore it */
+  .nav.is-open .nav-links .nav-cta-mobile .btn { display:inline-flex; width:auto; padding:12px 22px; font-size:11px; color:#fdf9f1; }
   .btn-desktop { display:none; }
 }
 @media (min-width:901px) { .nav-cta-mobile { display:none; } }
