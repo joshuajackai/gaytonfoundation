@@ -517,10 +517,10 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
         <li><a href="/mission/">Mission</a></li>
         <li><a href="/event/">Event</a></li>
         <li><a href="/contact/">Contact</a></li>
-        <li class="nav-cta-mobile"><a class="btn btn-primary btn-sm" href="/#support">Contribute &nbsp;&rarr;</a></li>
+        <li class="nav-cta-mobile"><a class="btn btn-primary btn-sm" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="RWE2QN" href="/#support">Contribute &nbsp;&rarr;</a></li>
       </ul>
     </nav>
-    <a class="btn btn-primary btn-sm btn-desktop" href="/#support">Contribute &nbsp;&rarr;</a>
+    <a class="btn btn-primary btn-sm btn-desktop" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="RWE2QN" href="/#support">Contribute &nbsp;&rarr;</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks"><span></span></button>
   </div>
 </header>
@@ -879,5 +879,9 @@ html.deep-link .reveal { opacity:1; transform:none; transition:none; }
     window.addEventListener('scroll', onSweep, { passive: true });
 })();
 </script>
+<!-- Givebutter library (account 375972): the Contribute buttons carry
+     data-gb-campaign="RWE2QN" and open the donation checkout as a pop-up.
+     Without it they fall back to /#support. -->
+<script src="https://widgets.givebutter.com/latest.umd.cjs?acct=gKsqg0slZwD4ztrh&p=other" async></script>
 </body>
 </html>

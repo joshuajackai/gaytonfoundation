@@ -635,12 +635,13 @@ h2 em, .chandler-service h3 em {
 .involve-icon svg { width:21px; height:21px; }
 .involve-card h4 { font-family:var(--font-display); font-size:19px; font-weight:500; letter-spacing:0; margin:0 0 8px; color:var(--ink); }
 .involve-card p { font-size:14.5px; line-height:1.52; color:var(--ink-soft); margin:0 0 18px; flex:1; }
-.involve-card a {
+.involve-card a:not(.btn) {
   display:inline-flex; align-items:center; gap:6px; text-decoration:none;
   font-family:var(--font-ui); font-size:10.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase;
   color:var(--flame-mid);
 }
-.involve-card a:hover { color:var(--ember-deep); }
+.involve-card a:not(.btn):hover { color:var(--ember-deep); }
+.involve-card .btn { align-self:flex-start; }
 
 /* ---------- Footer · bookends the hero ---------- */
 .footer {
@@ -1108,6 +1109,48 @@ details.hc-more.closing .more { display:inline; }
   letter-spacing:0.05em; color:rgba(247,234,214,0.78);
 }
 
+/* ----- Get involved · donate card with inline Givebutter form -----
+   The Donate card spans the row: copy and the mail-a-check note on the
+   left, the embedded form on the right (Givebutter caps it at 420px).
+   The Contact card sits under it as a slim horizontal band. The card lift
+   on hover is switched off here so the form never moves while someone is
+   typing into it. */
+.involve-grid--give { grid-template-columns:1fr; }
+.give-card { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,440px); grid-template-areas:". form" "copy form" "mail form" ". form"; grid-template-rows:1fr auto auto 1fr; column-gap:clamp(24px,4vw,56px); row-gap:0; align-items:start; padding:clamp(24px,3vw,40px); }
+.give-copy { grid-area:copy; }
+.give-form { grid-area:form; align-self:center; }
+.give-card .give-mail { grid-area:mail; margin:22px 0 0; font-size:12.5px; }
+.give-card:hover { transform:none; }
+.give-copy { display:flex; flex-direction:column; min-width:0; }
+.give-copy p { flex:none; margin:0; font-size:16.5px; line-height:1.55; max-width:52ch; }
+.give-card h4 { font-size:clamp(21px,2vw,26px); }
+.give-form { position:relative; min-width:0; min-height:120px; }
+.give-form givebutter-widget { display:block; width:100%; }
+givebutter-widget[hidden] { display:none !important; }
+.give-fallback { display:flex; flex-direction:column; align-items:flex-start; gap:12px; }
+.give-fallback[hidden] { display:none; }
+.give-fallback p { margin:0; font-size:14.5px; line-height:1.52; color:var(--ink-soft); }
+.reach-card { display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:6px 20px; align-items:center; }
+.reach-card .involve-icon { margin:0; }
+.reach-card h4 { margin:0 0 4px; }
+.reach-card p { margin:0; }
+@media (max-width:860px) {
+  .give-card { grid-template-columns:1fr; grid-template-areas:"copy" "form" "mail"; grid-template-rows:auto; }
+  .give-form { max-width:440px; margin-top:22px; }
+}
+@media (max-width:640px) {
+  .reach-card { grid-template-columns:1fr; gap:0; align-items:start; }
+  .reach-card .involve-icon { margin-bottom:16px; }
+  .reach-card p { margin-bottom:18px; }
+  .reach-card .btn { justify-self:start; }
+}
+@media (max-width:420px) {
+  .give-card, .reach-card { padding:18px; }
+}
+@media (max-width:380px) {
+  .involve-card .btn { white-space:normal; text-align:center; justify-content:center; }
+}
+
 /* ----- B · two-up get involved grid ----- */
 .involve-grid--two { grid-template-columns:repeat(2, 1fr); }
 @media (max-width:640px) { .involve-grid--two { grid-template-columns:1fr; } }
@@ -1146,10 +1189,10 @@ details.hc-more.closing .more { display:inline; }
         <li><a href="/mission/">Mission</a></li>
         <li><a href="/event/">Event</a></li>
         <li><a href="/contact/">Contact</a></li>
-        <li class="nav-cta-mobile"><a class="btn btn-primary btn-sm" href="#support">Contribute &nbsp;&rarr;</a></li>
+        <li class="nav-cta-mobile"><a class="btn btn-primary btn-sm" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="RWE2QN" href="#support">Contribute &nbsp;&rarr;</a></li>
       </ul>
     </nav>
-    <a class="btn btn-primary btn-sm btn-desktop" href="#support">Contribute &nbsp;&rarr;</a>
+    <a class="btn btn-primary btn-sm btn-desktop" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="RWE2QN" href="#support">Contribute &nbsp;&rarr;</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks"><span></span></button>
   </div>
 </header>
@@ -1181,7 +1224,7 @@ details.hc-more.closing .more { display:inline; }
     <h1>Honoring a life.<br /><em>Extending his causes.</em></h1>
     <p class="sub">Supporting community, housing, early childhood education, and social justice in Chandler's memory.</p>
     <div class="cta">
-      <a class="btn btn-primary" href="#support">Contribute &nbsp;&rarr;</a>
+      <a class="btn btn-primary" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="RWE2QN" href="#support">Contribute &nbsp;&rarr;</a>
       <a class="btn btn-ghost" href="/event/">Attend the Event</a>
     </div>
   </div>
@@ -1680,24 +1723,35 @@ details.hc-more.closing .more { display:inline; }
       <p class="sub">The foundation is small, new, and community-built. If any of what we do resonates, here is how to help.</p>
     </div>
 
-    <div class="involve-grid involve-grid--two reveal">
-      <div class="involve-card">
-        <div class="involve-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    <div class="involve-grid involve-grid--give reveal">
+      <div class="involve-card give-card">
+        <div class="give-copy">
+          <div class="involve-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h4>Donate</h4>
+          <p>Make a gift to the foundation to support our grantmaking. Every dollar goes toward the four causes Chandler cared about.</p>
         </div>
-        <h4>Donate</h4>
-        <p>Make a gift to the foundation to support our grantmaking. Every dollar goes toward the four causes Chandler cared about.</p>
-        <a href="https://givebutter.com/support-the-chandler-walker-gayton-foundation-rwe2qn" aria-label="Donate to the foundation">Give a Gift <span aria-hidden="true">→</span></a>
+        <!-- Givebutter donation form widget g6W12Z (account 375972, campaign RWE2QN) -->
+        <div class="give-form">
+          <givebutter-widget id="g6W12Z"></givebutter-widget>
+          <div class="give-fallback" id="giveFallback" hidden>
+            <p>The donation form is taking a moment to load. You can give on our secure Givebutter page instead.</p>
+            <a class="btn btn-primary" href="https://givebutter.com/support-the-chandler-walker-gayton-foundation-rwe2qn" aria-label="Donate to the foundation">Give a Gift <span aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
         <p class="give-mail"><span>Or mail a check</span>Chandler Walker Gayton Foundation<br />PO Box 99371<br />Seattle, WA 98139-0371</p>
       </div>
 
-      <div class="involve-card">
+      <div class="involve-card reach-card">
         <div class="involve-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         </div>
-        <h4>Contact the Family</h4>
-        <p>For partnership inquiries, sponsorship, or a note for the Gayton family, we welcome the conversation.</p>
-        <a href="#updates" aria-label="Contact the foundation">Reach Out <span aria-hidden="true">→</span></a>
+        <div>
+          <h4>Contact the Family</h4>
+          <p>For partnership inquiries, sponsorship, or a note for the Gayton family, we welcome the conversation.</p>
+        </div>
+        <a class="btn btn-ghost" href="#updates" aria-label="Contact the foundation">Reach Out <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
   </div>
@@ -1989,7 +2043,9 @@ details.hc-more.closing .more { display:inline; }
 })();
 </script>
 
-<!-- Givebutter signup widget (account 375972, key gKsqg0slZwD4ztrh) -->
+<!-- Givebutter library (account 375972, key gKsqg0slZwD4ztrh). Powers the
+     signup widget pQqN79, the donation form widget g6W12Z, and the pop-up
+     checkout on every element carrying data-gb-campaign="RWE2QN". -->
 <script src="https://widgets.givebutter.com/latest.umd.cjs?acct=gKsqg0slZwD4ztrh&p=other" async></script>
 <script>
 /* If the embed hasn't painted anything after a few seconds — blocked script,
@@ -2014,6 +2070,26 @@ details.hc-more.closing .more { display:inline; }
   var obs = new MutationObserver(function () { if (painted()) { clearTimeout(t); sync(); obs.disconnect(); } });
   obs.observe(host, { childList: true, subtree: true, attributes: true });
   setTimeout(function () { obs.disconnect(); sync(); }, 15000);
+})();
+</script>
+
+<script>
+/* Donation form: same idea as the signup fallback. If the embed has not
+   built itself after a few seconds, show a plain "Give a Gift" button to the
+   Givebutter page so a donor is never left looking at an empty box. If the
+   embed lands late, the fallback steps aside by itself. */
+(function () {
+  var host = document.querySelector('.give-form givebutter-widget');
+  var fallback = document.getElementById('giveFallback');
+  if (!host || !fallback) return;
+  function built() { return !!(host.shadowRoot && host.shadowRoot.firstElementChild); }
+  var start = Date.now();
+  var timer = setInterval(function () {
+    var ok = built(), waited = Date.now() - start;
+    if (ok) { host.hidden = false; fallback.hidden = true; clearInterval(timer); return; }
+    if (waited > 7000) { host.hidden = true; fallback.hidden = false; }
+    if (waited > 30000) clearInterval(timer);
+  }, 300);
 })();
 </script>
 
