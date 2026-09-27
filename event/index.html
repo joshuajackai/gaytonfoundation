@@ -2038,7 +2038,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     <div class="reveal" data-pricing>
       <div class="lane-pick" role="group" aria-label="Who is attending">
         <button type="button" data-lane="seats" aria-pressed="true" aria-controls="lane-seats">
-          <span class="band">$185 to $1,000</span>
+          <span class="band">$150 to $1,000</span>
           <span class="who">Just me</span>
           <span class="what">One seat, or two. Come as a guest.</span>
         </button>
@@ -2057,9 +2057,9 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <span class="price-main">
               <span class="price-kicker">General admission</span>
               <span class="price-name">Legacy Pass</span>
-              
+              <span class="price-badge">Limited: 100 passes at this price</span>
             </span>
-            <span class="price-amt"><sup>$</sup>185</span>
+            <span class="price-amt"><sup>$</sup>150</span>
             <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
           <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="legacy" aria-label="Add Legacy Pass to comparison">
@@ -2079,8 +2079,8 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
               <span class="addon-box" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>
               <span class="addon-txt">
                 <span class="addon-title">Ask my employer to match <span class="addon-tag">Optional add-on</span></span>
-                <span class="addon-sub">Many employers match charitable gifts dollar for dollar, so $185 can go twice as far. Your checkout receipt is all your employer needs to process the match.</span>
-                <span class="addon-out">Matched, your $185 becomes <strong>$370</strong> for the foundation.</span>
+                <span class="addon-sub">Many employers match charitable gifts dollar for dollar, so $150 can go twice as far. Your checkout receipt is all your employer needs to process the match.</span>
+                <span class="addon-out">Matched, your $150 becomes <strong>$300</strong> for the foundation.</span>
               </span>
             </label>
             <details class="addon-more">
@@ -2572,6 +2572,15 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         <div class="tray-body" hidden></div>
       </div>
     </div>
+
+    <div class="give-instead reveal" id="give-instead">
+      <div class="give-instead-copy">
+        <p class="eyebrow">Can&rsquo;t make it on December 5?</p>
+        <h3>Give in Chandler&rsquo;s honor instead.</h3>
+        <p>Every gift goes to the foundation&rsquo;s work in community, housing, early childhood education, and social justice. Your receipt arrives by email and counts toward an employer match.</p>
+      </div>
+      <a class="btn btn-primary" href="https://givebutter.com/support-the-chandler-walker-gayton-foundation-rwe2qn" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="RWE2QN">Give Without Attending <span aria-hidden="true">&rarr;</span></a>
+    </div>
   </div>
 </section>
 
@@ -2648,6 +2657,16 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <p class="role">Close Friend</p>
         </div>
         <span class="host-badge">Host</span>
+      </article>
+
+      <!-- Gee Scott Sr. — Auctioneer -->
+      <article class="host" aria-label="Gee Scott Sr., auctioneer">
+        <img src="/images/gee-scott-sr.webp" alt="Gee Scott Sr." loading="lazy" width="800" height="1000" />
+        <div class="host-info">
+          <p class="name">Gee Scott Sr.</p>
+          <p class="role">Leads the live auction</p>
+        </div>
+        <span class="host-badge">Auctioneer</span>
       </article>
     </div>
     <p class="sub reveal" style="margin-top: var(--space-8);">The evening is presented by the Chandler Walker Gayton Foundation, governed by its board of directors and advisors. <a href="/#team" target="_blank" rel="noopener" style="color: var(--rust); text-decoration: underline; text-underline-offset: 3px;">Meet the full board</a>.</p>
@@ -2847,7 +2866,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         <ul>
           <li><a href="#tickets">Reserve Your Place</a></li>
           <li><a href="#sponsor">Sponsor the Night</a></li>
-          <li><a href="/#support">Donate to the Fund</a></li>
+          <li><a href="#give-instead">Give Without Attending</a></li>
           <li><a href="mailto:carmengayton@me.com">Contact the Family</a></li>
         </ul>
       </div>
@@ -3206,13 +3225,13 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
   ];
 
   var MATCH = {
-    legacy:'$370', supporter:'$500', patron:'$1,000', founder:'$2,000',
+    legacy:'$300', supporter:'$500', patron:'$1,000', founder:'$2,000',
     friend:'$5,000', supporting:'$10,000', legacyp:'$20,000',
     founding:'$30,000', presenting:'$50,000'
   };
 
   var TIERS = {
-    legacy:    {lane:'seats', name:'Legacy Pass', price:'$185',
+    legacy:    {lane:'seats', name:'Legacy Pass', price:'$150',
       f:{placement:'Open seating', bar:false, welcome:true, auction:true,
          paddle:false, keepsake:true, reception:false, named:false}},
     supporter: {lane:'seats', name:'Supporter Seat', price:'$250',
@@ -3414,6 +3433,31 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
 .host-badge { top: 8px; left: 8px; padding: 4px 8px; font-size: 8px; letter-spacing: 0.16em; }
 @media (max-width: 1000px) { .hosts-grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 480px)  { .hosts-grid { grid-template-columns: repeat(2, 1fr); } .host-info .name { font-size: 13px; } }
+/* seven hosts: flex rows so a short last row centres instead of leaving an orphan hanging left */
+.hosts-grid { display: flex; flex-wrap: wrap; justify-content: center; }
+.hosts-grid > .host { flex: 0 0 calc((100% - 6 * var(--space-3)) / 7); }
+@media (max-width: 1000px) { .hosts-grid > .host { flex-basis: calc((100% - 3 * var(--space-3)) / 4); } }
+@media (max-width: 480px)  { .hosts-grid > .host { flex-basis: calc((100% - var(--space-3)) / 2); } }
+/* give without attending */
+.give-instead {
+  margin-top: var(--space-10);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-8);
+  padding: var(--space-8) var(--space-10);
+  border: 1px solid var(--glow-border); border-radius: var(--radius-lg);
+  background: var(--glass);
+}
+.give-instead .eyebrow { margin-bottom: var(--space-2); }
+.give-instead h3 {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(22px, 2.4vw, 30px); line-height: 1.2; color: var(--text-primary);
+  margin: 0 0 var(--space-3);
+}
+.give-instead-copy p:last-child { color: var(--text-secondary); max-width: 58ch; margin: 0; }
+.give-instead .btn { flex: none; }
+@media (max-width: 720px) {
+  .give-instead { flex-direction: column; align-items: stretch; text-align: left; padding: var(--space-6); gap: var(--space-5); }
+  .give-instead .btn { justify-content: center; }
+}
 /* matching strip */
 .match-strip { display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); border: 1px solid var(--hairline); border-radius: var(--radius-lg); padding: var(--space-8); background: linear-gradient(165deg, rgba(181,106,37,0.10), rgba(63,69,54,0.14)); }
 .match-strip .sub { margin-top: var(--space-3); }
@@ -3539,6 +3583,9 @@ main { overflow-x: clip; }
   new IntersectionObserver(function(en){ ticketsVisible = en[0].isIntersecting; sync(); }, {threshold: 0.02}).observe(tickets);
 })();
 </script>
+<!-- Givebutter library (account 375972): opens the donation checkout as a
+     pop-up on the Give Without Attending button; the href is the fallback. -->
+<script src="https://widgets.givebutter.com/latest.umd.cjs?acct=gKsqg0slZwD4ztrh&p=other" async></script>
 </body>
 </html>
 
