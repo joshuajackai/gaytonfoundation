@@ -1104,12 +1104,12 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
    ========================================================= */
 /* Lane selector */
 .lane-pick { display: grid; gap: var(--space-3); margin-bottom: var(--space-8); }
-@media (min-width: 720px) { .lane-pick { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 900px) { .lane-pick { grid-template-columns: repeat(3, 1fr); } }
 .lane-pick button {
   text-align: left; cursor: pointer; color: inherit; font-family: var(--font-ui);
   border: 1px solid var(--hairline); border-radius: var(--radius-lg);
   background: var(--glass); padding: var(--space-5) var(--space-6);
-  display: grid; gap: 6px;
+  display: grid; gap: 6px; align-content: start;
   transition: border-color 240ms ease, background 240ms ease, transform 240ms ease;
 }
 .lane-pick button:hover { border-color: var(--glow-border); transform: translateY(-2px); }
@@ -2028,7 +2028,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     </div>
 
     <div class="reveal" data-pricing>
-      <div class="lane-pick" role="group" aria-label="Who is attending">
+      <div class="lane-pick" role="group" aria-label="How you would like to take part">
         <button type="button" data-lane="seats" aria-pressed="true" aria-controls="lane-seats">
           <span class="band">$150 to $1,000</span>
           <span class="who">Just me</span>
@@ -2038,6 +2038,11 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <span class="band">$2,500 to $25,000</span>
           <span class="who">Tables &amp; sponsorship</span>
           <span class="what">Half a table for five, or a table for ten, and your name on the night.</span>
+        </button>
+        <button type="button" data-lane="underwrite" aria-pressed="false" aria-controls="lane-underwrite">
+          <span class="band">$500 to $25,000</span>
+          <span class="who">Underwriting</span>
+          <span class="what">Can&rsquo;t attend? Give at a sponsor level. No seats, fully tax-deductible.</span>
         </button>
       </div>
 
@@ -2553,6 +2558,31 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         </div>
       </div>
 
+      <div class="lane-panel" id="lane-underwrite" data-panel="underwrite" hidden>
+        <div class="give-instead give-instead--uw" id="give-instead">
+          <div class="give-instead-copy">
+            <p class="eyebrow">Can&rsquo;t make it on December 5?</p>
+            <h3>Underwrite the evening.</h3>
+            <p>Same levels, same names, same recognition as our sponsors. The difference: no table, no seats, no gifts, and because nothing comes back to you, every dollar is tax-deductible. Your gift covers the cost of the night, so more of every ticket and every raised paddle goes to Homestead and the foundation&rsquo;s work in affordable housing, foster care, education, and social justice.</p>
+          </div>
+          <ul class="uw-list" aria-label="Underwriting levels">
+            <li class="uw-row uw-head" aria-hidden="true"><span>Level</span><span>Gift</span><span>How you&rsquo;re recognized</span></li>
+            <li class="uw-row"><span class="uw-name">Trailblazer Underwriter</span><span class="uw-amt">$25,000</span><span class="uw-rec">&ldquo;Boots on the Ground, presented by [you]&rdquo; on the website and in the programs, your name on the bid cards, and verbal acknowledgment from the stage</span></li>
+            <li class="uw-row"><span class="uw-name">Rancher Underwriter</span><span class="uw-amt">$15,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span></li>
+            <li class="uw-row"><span class="uw-name">Wrangler Underwriter</span><span class="uw-amt">$10,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span></li>
+            <li class="uw-row"><span class="uw-name">Cowhand Underwriter</span><span class="uw-amt">$5,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span></li>
+            <li class="uw-row"><span class="uw-name">Roping Partner Underwriter</span><span class="uw-amt">$2,500</span><span class="uw-rec">Recognition on the website and in the digital and printed programs</span></li>
+            <li class="uw-row"><span class="uw-name">Campfire Underwriter</span><span class="uw-amt">$1,000</span><span class="uw-rec">Your name on the website</span></li>
+            <li class="uw-row"><span class="uw-name">Trail Friend</span><span class="uw-amt">$500</span><span class="uw-rec">Your name on the website supporter list</span></li>
+          </ul>
+          <div class="uw-cta">
+            <a class="btn btn-primary" href="https://givebutter.com/boots-on-the-ground-an-evening-of-legacy-jqr2qv">Underwrite the Evening <span aria-hidden="true">&rarr;</span></a>
+            <a class="btn btn-ghost" href="https://givebutter.com/support-the-chandler-walker-gayton-foundation-rwe2qn" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="RWE2QN">Give Any Amount</a>
+            <p class="cta-note">Pick your level at checkout, listed after the seats and marked &ldquo;no seat.&rdquo; Prefer a check or an invoice? Write to <a href="mailto:carmen@gaytonfoundation.org?subject=Boots%20on%20the%20Ground%20%C2%B7%20Underwriting">carmen@gaytonfoundation.org</a> or call 206.226.2229.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="tray" hidden>
         <div class="tray-bar">
           <span class="tray-count"></span>
@@ -2564,28 +2594,6 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       </div>
     </div>
 
-    <div class="give-instead give-instead--uw reveal" id="give-instead">
-      <div class="give-instead-copy">
-        <p class="eyebrow">Can&rsquo;t make it on December 5?</p>
-        <h3>Underwrite the evening.</h3>
-        <p>Same levels, same names, same recognition as our sponsors. The difference: no table, no seats, no gifts, and because nothing comes back to you, every dollar is tax-deductible. Your gift covers the cost of the night, so more of every ticket and every raised paddle goes to Homestead and the foundation&rsquo;s work in affordable housing, foster care, education, and social justice.</p>
-      </div>
-      <ul class="uw-list" aria-label="Underwriting levels">
-        <li class="uw-row uw-head" aria-hidden="true"><span>Level</span><span>Gift</span><span>How you&rsquo;re recognized</span></li>
-        <li class="uw-row"><span class="uw-name">Trailblazer Underwriter</span><span class="uw-amt">$25,000</span><span class="uw-rec">&ldquo;Boots on the Ground, presented by [you]&rdquo; on the website and in the programs, your name on the bid cards, and verbal acknowledgment from the stage</span></li>
-        <li class="uw-row"><span class="uw-name">Rancher Underwriter</span><span class="uw-amt">$15,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span></li>
-        <li class="uw-row"><span class="uw-name">Wrangler Underwriter</span><span class="uw-amt">$10,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span></li>
-        <li class="uw-row"><span class="uw-name">Cowhand Underwriter</span><span class="uw-amt">$5,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span></li>
-        <li class="uw-row"><span class="uw-name">Roping Partner Underwriter</span><span class="uw-amt">$2,500</span><span class="uw-rec">Recognition on the website and in the digital and printed programs</span></li>
-        <li class="uw-row"><span class="uw-name">Campfire Underwriter</span><span class="uw-amt">$1,000</span><span class="uw-rec">Your name on the website</span></li>
-        <li class="uw-row"><span class="uw-name">Trail Friend</span><span class="uw-amt">$500</span><span class="uw-rec">Your name on the website supporter list</span></li>
-      </ul>
-      <div class="uw-cta">
-        <a class="btn btn-primary" href="https://givebutter.com/boots-on-the-ground-an-evening-of-legacy-jqr2qv">Underwrite the Evening <span aria-hidden="true">&rarr;</span></a>
-        <a class="btn btn-ghost" href="https://givebutter.com/support-the-chandler-walker-gayton-foundation-rwe2qn" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="RWE2QN">Give Any Amount</a>
-        <p class="cta-note">Pick your level at checkout, listed after the seats and marked &ldquo;no seat.&rdquo; Prefer a check or an invoice? Write to <a href="mailto:carmen@gaytonfoundation.org?subject=Boots%20on%20the%20Ground%20%C2%B7%20Underwriting">carmen@gaytonfoundation.org</a> or call 206.226.2229.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -2816,7 +2824,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       <span class="sponsor-logo">4105 Airport Way S <small>Venue</small></span>
     </div>
 
-    <p class="sponsors-note reveal">Sponsorships from Chandler&rsquo;s Roping Partner to Trailblazer are open for the evening, and every sponsor is recognized here, in the digital and printed programs, and from the stage on December 5. Can&rsquo;t attend? <a href="#give-instead">Underwrite the night instead</a>: any amount, fully tax-deductible, recognized alongside our sponsors at the same level.</p>
+    <p class="sponsors-note reveal">Sponsorships from Chandler&rsquo;s Roping Partner to Trailblazer are open for the evening, and every sponsor is recognized here, in the digital and printed programs, and from the stage on December 5. Can&rsquo;t attend? <a href="#give-instead" data-lane="underwrite">Underwrite the night instead</a>: any amount, fully tax-deductible, recognized alongside our sponsors at the same level.</p>
 
     <div class="sponsor-cta reveal">
       <a href="#tickets" data-lane="packages" class="btn btn-primary btn-lg">See Sponsorship Levels <span aria-hidden="true">→</span></a>
@@ -2871,7 +2879,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         <ul>
           <li><a href="#tickets">Reserve Your Place</a></li>
           <li><a href="#sponsor">Sponsor the Night</a></li>
-          <li><a href="#give-instead">Underwrite the Evening</a></li>
+          <li><a href="#give-instead" data-lane="underwrite">Underwrite the Evening</a></li>
           <li><a href="mailto:carmen@gaytonfoundation.org">Contact the Family</a></li>
         </ul>
       </div>
@@ -3448,7 +3456,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
   .give-instead .btn { justify-content: center; }
 }
 /* underwriting levels (inside give-instead) */
-.give-instead--uw { display: block; }
+.give-instead--uw { display: block; margin-top: 0; }
 .give-instead--uw .give-instead-copy p:last-child { max-width: 68ch; }
 .uw-list { list-style: none; margin: var(--space-8) 0 0; padding: 0; border-top: 1px solid var(--hairline); }
 .uw-row { display: grid; grid-template-columns: minmax(200px, 1.1fr) 110px 2fr; gap: var(--space-5); align-items: baseline; padding: var(--space-4) 0; border-bottom: 1px solid var(--hairline); }
@@ -3553,6 +3561,17 @@ main { overflow-x: clip; }
 <script>
 
 (function(){
+  /* #give-instead lives in the hidden Underwriting lane: open the lane, then scroll */
+  function openUnderwrite(){
+    if (location.hash !== '#give-instead' && location.hash !== '#lane-underwrite') return;
+    var btn = document.querySelector('.lane-pick button[data-lane="underwrite"]');
+    if (!btn) return;
+    if (btn.getAttribute('aria-pressed') !== 'true') btn.click();
+    var t = document.getElementById('give-instead');
+    if (t) requestAnimationFrame(function(){ t.scrollIntoView({block:'start'}); });
+  }
+  openUnderwrite();
+  window.addEventListener('hashchange', openUnderwrite);
   document.querySelectorAll('a[data-lane]').forEach(function(a){
     a.addEventListener('click', function(){
       var want = a.dataset.lane;
