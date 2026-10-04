@@ -1104,7 +1104,8 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
    ========================================================= */
 /* Lane selector */
 .lane-pick { display: grid; gap: var(--space-3); margin-bottom: var(--space-8); }
-@media (min-width: 900px) { .lane-pick { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 640px) { .lane-pick { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) { .lane-pick { grid-template-columns: repeat(4, 1fr); } }
 .lane-pick button {
   text-align: left; cursor: pointer; color: inherit; font-family: var(--font-ui);
   border: 1px solid var(--hairline); border-radius: var(--radius-lg);
@@ -2044,6 +2045,11 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <span class="who">Underwriting</span>
           <span class="what">Can&rsquo;t attend? Give at a sponsor level. No seats, fully tax-deductible.</span>
         </button>
+        <button type="button" data-lane="donate" aria-pressed="false" aria-controls="lane-donate">
+          <span class="band">Any amount</span>
+          <span class="who">Donate</span>
+          <span class="what">Can&rsquo;t attend? Give any amount in Chandler&rsquo;s name. Fully tax-deductible.</span>
+        </button>
       </div>
 
       <div class="lane-panel" id="lane-seats" data-panel="seats">
@@ -2577,8 +2583,21 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           </ul>
           <div class="uw-cta">
             <a class="btn btn-primary" href="https://givebutter.com/boots-on-the-ground-an-evening-of-legacy-jqr2qv">Underwrite the Evening <span aria-hidden="true">&rarr;</span></a>
-            <a class="btn btn-ghost" href="https://givebutter.com/support-the-chandler-walker-gayton-foundation-rwe2qn" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="RWE2QN">Give Any Amount</a>
             <p class="cta-note">Pick your level at checkout, listed after the seats and marked &ldquo;no seat.&rdquo; Prefer a check or an invoice? Write to <a href="mailto:carmen@gaytonfoundation.org?subject=Boots%20on%20the%20Ground%20%C2%B7%20Underwriting">carmen@gaytonfoundation.org</a> or call 206.226.2229.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lane-panel" id="lane-donate" data-panel="donate" hidden>
+        <div class="give-instead give-instead--uw" id="donate">
+          <div class="give-instead-copy">
+            <p class="eyebrow">Can&rsquo;t make it on December 5?</p>
+            <h3>Donate without attending.</h3>
+            <p>No ticket, no table, no level to choose. A gift of any size goes to Homestead and the foundation&rsquo;s work in affordable housing, foster care, education, and social justice. Your receipt arrives by email, the full amount is tax-deductible, and many employers will match it.</p>
+          </div>
+          <div class="uw-cta">
+            <a class="btn btn-primary" href="https://givebutter.com/support-the-chandler-walker-gayton-foundation-rwe2qn" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="RWE2QN">Donate Any Amount <span aria-hidden="true">&rarr;</span></a>
+            <p class="cta-note">Prefer to mail a check? Make it payable to the Chandler Walker Gayton Foundation, PO Box 99371, Seattle, WA 98139-0371. Questions? Write to <a href="mailto:carmen@gaytonfoundation.org?subject=Boots%20on%20the%20Ground%20%C2%B7%20Donation">carmen@gaytonfoundation.org</a>.</p>
           </div>
         </div>
       </div>
@@ -2880,6 +2899,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <li><a href="#tickets">Reserve Your Place</a></li>
           <li><a href="#sponsor">Sponsor the Night</a></li>
           <li><a href="#give-instead" data-lane="underwrite">Underwrite the Evening</a></li>
+          <li><a href="#donate" data-lane="donate">Donate Without Attending</a></li>
           <li><a href="mailto:carmen@gaytonfoundation.org">Contact the Family</a></li>
         </ul>
       </div>
@@ -3563,11 +3583,13 @@ main { overflow-x: clip; }
 (function(){
   /* #give-instead lives in the hidden Underwriting lane: open the lane, then scroll */
   function openUnderwrite(){
-    if (location.hash !== '#give-instead' && location.hash !== '#lane-underwrite') return;
-    var btn = document.querySelector('.lane-pick button[data-lane="underwrite"]');
+    var map = {'#give-instead':['underwrite','give-instead'], '#lane-underwrite':['underwrite','give-instead'], '#donate':['donate','donate'], '#lane-donate':['donate','donate']};
+    var m = map[location.hash];
+    if (!m) return;
+    var btn = document.querySelector('.lane-pick button[data-lane="' + m[0] + '"]');
     if (!btn) return;
     if (btn.getAttribute('aria-pressed') !== 'true') btn.click();
-    var t = document.getElementById('give-instead');
+    var t = document.getElementById(m[1]);
     if (t) requestAnimationFrame(function(){ t.scrollIntoView({block:'start'}); });
   }
   openUnderwrite();
@@ -3627,7 +3649,7 @@ main { overflow-x: clip; }
 })();
 </script>
 <!-- Givebutter library (account 375972): opens the donation checkout as a
-     pop-up on the Give Without Attending button; the href is the fallback. -->
+     pop-up on the Donate Any Amount button; the href is the fallback. -->
 <script src="https://widgets.givebutter.com/latest.umd.cjs?acct=gKsqg0slZwD4ztrh&p=other" async></script>
 </body>
 </html>
