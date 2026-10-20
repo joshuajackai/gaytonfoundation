@@ -2447,6 +2447,8 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <ul class="price-incl">
           <li>Premium seating: half of a table, reserved for your party of five, seated together</li>
           <li>Saddle benefits and a Cowboy Yeti for every guest</li>
+          <li>VIP Lounge access in Chandler&rsquo;s Bunkhouse</li>
+          <li>Complimentary valet</li>
           <li>Your name or company on the digital signage at the event</li>
           <li>Verbal recognition during the evening</li>
           <li>Recognition on the website and in the digital and printed programs</li>
@@ -2501,6 +2503,8 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <ul class="price-incl">
           <li>Premium seating: a table for ten, your party seated together</li>
           <li>Saddle benefits and a Cowboy Yeti for every guest at your table</li>
+          <li>VIP Lounge access in Chandler&rsquo;s Bunkhouse</li>
+          <li>Complimentary valet</li>
           <li>Your name or company on the digital signage at the event</li>
           <li>Verbal recognition during the evening</li>
           <li>Recognition on the website and in the digital and printed programs</li>
@@ -2555,6 +2559,8 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <ul class="price-incl">
           <li>Premium seating: a table for ten, your party seated together</li>
           <li>Silver Buckle benefits for every guest at your table</li>
+          <li>VIP Lounge access in Chandler&rsquo;s Bunkhouse</li>
+          <li>Complimentary valet</li>
           <li>Your name or company on the digital signage at the event</li>
           <li>Express check-in and checkout</li>
           <li>A gift from one of Chandler&rsquo;s favorite local spots for every guest</li>
@@ -2612,6 +2618,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <li>A dessert named for you on the dessert menu</li>
           <li>Recognition on the website and in the digital and printed programs, and verbal acknowledgment during the event</li>
           <li>VIP table for ten with Saloon Service, and the VIP reception in Chandler&rsquo;s Bunkhouse before dinner. Silver Buckle benefits for every guest</li>
+          <li>Complimentary valet</li>
           <li>An etched glassybaby for you, and a gift from one of Chandler&rsquo;s favorite local spots for every guest at your table</li>
           <li>Express check-in, and white glove checkout: we come to your table to settle up, bring your coats, and have valet bring your cars around</li>
           </ul>
@@ -2668,6 +2675,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <li>A first drink made to your coaster: a cocktail (or mocktail) that is not on the bar menu, waiting when you sit down to dinner</li>
           <li>Your name on the dinner menu and on the bid cards, and verbal acknowledgment during the event</li>
           <li>VIP table for ten with Saloon Service, and the VIP reception in Chandler&rsquo;s Bunkhouse before dinner. Silver Buckle benefits for every guest</li>
+          <li>Complimentary valet</li>
           <li>An etched glassybaby for you, and a gift from one of Chandler&rsquo;s favorite local spots for every guest at your table</li>
           <li>Express check-in, and white glove checkout: we settle up at your table, bring your coats, and have valet bring your cars around</li>
           <li>Category exclusivity: no competing sponsor in your industry</li>
@@ -3407,7 +3415,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     ['signage',    'Your name or company on the digital signage'],
     ['express',    'Express check-in and checkout'],
     ['gift',       'A gift for every guest from one of Chandler&rsquo;s favorite local spots'],
-    ['vip',        'VIP reception in Chandler&rsquo;s Bunkhouse before dinner'],
+    ['vip',        'VIP Lounge access in Chandler&rsquo;s Bunkhouse'],
     ['saloon',     'Saloon Service at your table'],
     ['whiteglove', 'White glove express checkout'],
     ['glassybaby', 'Etched glassybaby for the host'],
@@ -3447,17 +3455,17 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     silverbuckle: {lane:'seats', name:'Silver Buckle', price:'$1,000', f:pkg('silverbuckle', {seatcount:'1'})},
 
     roping:      {lane:'packages', name:'Chandler’s Roping Partner', price:'$2,500 · $500 a seat',
-      f:pkg('saddle', {seatcount:'5, half a table', seating:'Premium', yeti:true, web:true, verbal:true, signage:true})},
+      f:pkg('saddle', {seatcount:'5, half a table', seating:'Premium', yeti:true, web:true, verbal:true, signage:true, vip:true})},
     cowhand:     {lane:'packages', name:'Cowhand', price:'$5,000 · $500 a seat',
-      f:pkg('saddle', {seatcount:'10, a table', seating:'Premium', yeti:true, web:true, verbal:true, signage:true})},
+      f:pkg('saddle', {seatcount:'10, a table', seating:'Premium', yeti:true, web:true, verbal:true, signage:true, vip:true})},
     wrangler:    {lane:'packages', name:'Wrangler', price:'$10,000 · $1,000 a seat',
-      f:pkg('silverbuckle', {seatcount:'10, a table', seating:'Premium', verbal:true, signage:true, express:true, gift:true})},
+      f:pkg('silverbuckle', {seatcount:'10, a table', seating:'Premium', verbal:true, signage:true, express:true, gift:true, vip:true})},
     rancher:     {lane:'packages', name:'Rancher', price:'$15,000 · $1,500 a seat',
       f:pkg('silverbuckle', {seatcount:'10, a VIP table', seating:'VIP', verbal:true, signage:true, express:true, gift:true,
-         vip:true, saloon:true, whiteglove:true, glassybaby:true, remarks:'Closing remarks', menu:'A dessert named for you'})},
+         vip:'With the VIP reception before dinner', saloon:true, whiteglove:true, glassybaby:true, remarks:'Closing remarks', menu:'A dessert named for you'})},
     trailblazer: {lane:'packages', name:'Trailblazer', price:'$25,000 · $2,500 a seat',
       f:pkg('silverbuckle', {seatcount:'10, a VIP table', seating:'VIP', verbal:true, signage:true, express:true, gift:true,
-         vip:true, saloon:true, whiteglove:true, glassybaby:true, remarks:'Opening remarks, first to speak',
+         vip:'With the VIP reception before dinner', saloon:true, whiteglove:true, glassybaby:true, remarks:'Opening remarks, first to speak',
          menu:'Dinner menu and the bid cards', coaster:true, presenting:true, exclusive:true})}
   };
 
