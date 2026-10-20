@@ -1254,15 +1254,39 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   font-size: 16px; color: rgba(245,237,224,0.78); line-height: 1.45;
 }
 .price-incl li::before { content: "\2726"; color: var(--rust); font-size: 12px; line-height: 1.55; }
-/* One checkout button per tab: buyers pick their tier and quantity once, in Givebutter */
-.lane-cta { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); margin: var(--space-6) 0 var(--space-4); }
-.lane-cta .btn { max-width: 100%; }
+/* One checkout button on every tier: each opens the same Givebutter checkout,
+   where the buyer picks their ticket and how many once. */
+.price-go { flex: 0 0 auto; display: flex; align-items: center; padding: 0 var(--space-5) 0 var(--space-2); }
 .lane-cta-note { margin: 0; max-width: 64ch; font-family: var(--font-ui); font-size: 13px; line-height: 1.6; color: var(--text-muted); }
 .lane-cta-note a { color: var(--champagne); text-decoration: underline; text-underline-offset: 3px; }
-@media (max-width: 520px) { .lane-cta .btn { width: 100%; justify-content: center; text-align: center; } }
-/* Table-host note under the table packages: same type as .cta-note */
-.lane-note { margin: var(--space-2) 0 0; max-width: 64ch; font-family: var(--font-ui); font-size: 12px; line-height: 1.6; color: var(--text-muted); }
-.lane-note a { color: var(--champagne); text-decoration: underline; text-underline-offset: 3px; }
+.lane-cta-note--solo { margin: var(--space-5) 0 var(--space-2); }
+/* How it works: same glass panel as the tier rows */
+.how-box {
+  border: 1px solid var(--hairline); border-radius: var(--radius-lg);
+  background: var(--glass); padding: var(--space-5) var(--space-6);
+  margin: 0 0 var(--space-5);
+}
+.how-title {
+  margin: 0 0 var(--space-4); font-family: var(--font-ui); font-size: 10px;
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--champagne);
+}
+.how-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.how-steps li {
+  display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start;
+  font-family: var(--font-ui); font-size: 14px; line-height: 1.55; color: rgba(245,237,224,0.78);
+  max-width: 100ch;
+}
+.how-n {
+  width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--glow-border);
+  display: grid; place-items: center; font-size: 12px; line-height: 1; color: var(--champagne);
+  font-variant-numeric: tabular-nums;
+}
+.how-t a { color: var(--champagne); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 640px) {
+  .price-go { padding: 0 var(--space-5) var(--space-4); }
+  .price-go .btn { width: 100%; }
+  .how-box { padding: var(--space-5); }
+}
 
 /* Compare control */
 .cmp-btn {
@@ -2170,6 +2194,15 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       </div>
 
       <div class="lane-panel" id="lane-seats" data-panel="seats">
+        <div class="how-box" role="note" aria-label="How it works">
+          <p class="how-title">How it works</p>
+          <ol class="how-steps">
+            <li><span class="how-n" aria-hidden="true">1</span><span class="how-t">Pick your tickets and how many.</span></li>
+            <li><span class="how-n" aria-hidden="true">2</span><span class="how-t">Checkout asks for your details, then a name and email for each seat, so every guest gets their own ticket. Don&rsquo;t know everyone yet? Tap &ldquo;Apply to all individual tickets&rdquo; to put your details on every seat, then choose &ldquo;I&rsquo;ll send my guests&rsquo; names by Nov&nbsp;23&rdquo; and <a href="mailto:joshua@gaytonfoundation.org?subject=Guest%20names%20%C2%B7%20Boots%20on%20the%20Ground">send us the names</a> later.</span></li>
+            <li><span class="how-n" aria-hidden="true">3</span><span class="how-t">Your tickets arrive by email with a QR code you can add to Apple Wallet.</span></li>
+            <li><span class="how-n" aria-hidden="true">4</span><span class="how-t">On Saturday, December 5, doors open at 5&nbsp;PM at 4105 Airport Way S, Seattle. Western black tie, boots welcome. Show your QR code at registration to pick up your envelope with your drink tokens and paddle number. Silver Buckle, Cowhand and Wrangler guests use the express table instead, and Rancher and Trailblazer tables get white glove check&#8209;in.</span></li>
+          </ol>
+        </div>
         <div class="price-acc">
       <div class="price-item" data-tier="boots">
         <div class="price-row">
@@ -2182,6 +2215,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <span class="price-amt"><sup>$</sup>150</span>
             <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
+          <div class="price-go"><a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-sm" aria-label="Get tickets, Boots, $150">Get tickets</a></div>
           <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="boots" aria-label="Add Boots to comparison">
             <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
           </button>
@@ -2233,6 +2267,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <span class="price-amt"><sup>$</sup>250</span>
             <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
+          <div class="price-go"><a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-sm" aria-label="Get tickets, Lasso, $250">Get tickets</a></div>
           <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="lasso" aria-label="Add Lasso to comparison">
             <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
           </button>
@@ -2282,6 +2317,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <span class="price-amt"><sup>$</sup>500</span>
             <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
+          <div class="price-go"><a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-sm" aria-label="Get tickets, Saddle, $500">Get tickets</a></div>
           <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="saddle" aria-label="Add Saddle to comparison">
             <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
           </button>
@@ -2334,6 +2370,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <span class="price-amt"><sup>$</sup>1,000</span>
             <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
+          <div class="price-go"><a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-sm" aria-label="Get tickets, Silver Buckle, $1,000">Get tickets</a></div>
           <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="silverbuckle" aria-label="Add Silver Buckle to comparison">
             <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
           </button>
@@ -2376,14 +2413,19 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           </div>
         </div></div></div>
       </div>
-      <div class="lane-cta">
-        <a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-lg">Reserve your seats</a>
-        <p class="lane-cta-note">You will choose your ticket and number of seats in the next step.</p>
-      </div>
         </div>
       </div>
 
       <div class="lane-panel" id="lane-packages" data-panel="packages" hidden>
+        <div class="how-box" role="note" aria-label="How it works">
+          <p class="how-title">How it works</p>
+          <ol class="how-steps">
+            <li><span class="how-n" aria-hidden="true">1</span><span class="how-t">Pick your tickets and how many.</span></li>
+            <li><span class="how-n" aria-hidden="true">2</span><span class="how-t">Checkout asks for your details, then a name and email for each seat, so every guest gets their own ticket. Don&rsquo;t know everyone yet? Tap &ldquo;Apply to all individual tickets&rdquo; to put your details on every seat, then choose &ldquo;I&rsquo;ll send my guests&rsquo; names by Nov&nbsp;23&rdquo; and <a href="mailto:joshua@gaytonfoundation.org?subject=Guest%20names%20%C2%B7%20Boots%20on%20the%20Ground">send us the names</a> later.</span></li>
+            <li><span class="how-n" aria-hidden="true">3</span><span class="how-t">Your tickets arrive by email with a QR code you can add to Apple Wallet.</span></li>
+            <li><span class="how-n" aria-hidden="true">4</span><span class="how-t">On Saturday, December 5, doors open at 5&nbsp;PM at 4105 Airport Way S, Seattle. Western black tie, boots welcome. Show your QR code at registration to pick up your envelope with your drink tokens and paddle number. Silver Buckle, Cowhand and Wrangler guests use the express table instead, and Rancher and Trailblazer tables get white glove check&#8209;in.</span></li>
+          </ol>
+        </div>
         <div class="price-acc">
       <div class="price-item" data-tier="roping">
         <div class="price-row">
@@ -2396,6 +2438,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <span class="price-amt"><sup>$</sup>2,500<span class="per">$500 a seat</span></span>
             <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
+          <div class="price-go"><a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-sm" aria-label="Reserve a table, Chandler&rsquo;s Roping Partner, $2,500">Reserve a table</a></div>
           <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="roping" aria-label="Add Chandler's Roping Partner to comparison">
             <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
           </button>
@@ -2449,6 +2492,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <span class="price-amt"><sup>$</sup>5,000<span class="per">$500 a seat</span></span>
             <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
+          <div class="price-go"><a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-sm" aria-label="Reserve a table, Cowhand, $5,000">Reserve a table</a></div>
           <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="cowhand" aria-label="Add Cowhand to comparison">
             <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
           </button>
@@ -2502,6 +2546,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <span class="price-amt"><sup>$</sup>10,000<span class="per">$1,000 a seat</span></span>
             <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
+          <div class="price-go"><a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-sm" aria-label="Reserve a table, Wrangler, $10,000">Reserve a table</a></div>
           <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="wrangler" aria-label="Add Wrangler to comparison">
             <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
           </button>
@@ -2556,6 +2601,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <span class="price-amt"><sup>$</sup>15,000<span class="per">$1,500 a seat</span></span>
             <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
+          <div class="price-go"><a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-sm" aria-label="Reserve a table, Rancher, $15,000">Reserve a table</a></div>
           <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="rancher" aria-label="Add Rancher to comparison">
             <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
           </button>
@@ -2610,6 +2656,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <span class="price-amt"><sup>$</sup>25,000<span class="per">$2,500 a seat</span></span>
             <span class="price-chev" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
           </button>
+          <div class="price-go"><a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-sm" aria-label="Reserve a table, Trailblazer, $25,000">Reserve a table</a></div>
           <button class="cmp-btn" type="button" aria-pressed="false" data-cmp="trailblazer" aria-label="Add Trailblazer to comparison">
             <span class="box"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><span class="label">Compare</span>
           </button>
@@ -2655,11 +2702,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           </div>
         </div></div></div>
       </div>
-      <div class="lane-cta">
-        <a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-lg">Reserve your table</a>
-        <p class="lane-cta-note">You will choose your table and how many in the next step. Prefer an invoice or a check? <a href="mailto:carmen@gaytonfoundation.org?subject=Boots%20on%20the%20Ground%20%C2%B7%20Table%20sponsorship">Email Carmen</a> or call 206.226.2229.</p>
-      </div>
-      <p class="lane-note">Hosting a table? At checkout you can name each guest, or use your own details for every seat and <a href="mailto:joshua@gaytonfoundation.org?subject=Table%20guests">send us</a> your guests&rsquo; names by November 23. Each guest receives their own ticket by email.</p>
+      <p class="lane-cta-note lane-cta-note--solo">Prefer an invoice or a check? <a href="mailto:carmen@gaytonfoundation.org?subject=Boots%20on%20the%20Ground%20%C2%B7%20Table%20sponsorship">Email Carmen</a> or call 206.226.2229.</p>
         </div>
       </div>
 
