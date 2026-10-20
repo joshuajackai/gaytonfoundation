@@ -1260,6 +1260,31 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 .lane-cta-note { margin: 0; max-width: 64ch; font-family: var(--font-ui); font-size: 13px; line-height: 1.6; color: var(--text-muted); }
 .lane-cta-note a { color: var(--champagne); text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 520px) { .lane-cta .btn { width: 100%; justify-content: center; text-align: center; } }
+/* PREVIEW: inline Givebutter checkout (Form widget g8MXW2, campaign JQR2QV).
+   One widget, mounted in whichever of the Just me / Tables lanes is open.
+   The checkout itself is a cross-origin iframe; only the frame around it is ours. */
+.lane-embed { margin: var(--space-8) 0 var(--space-4); min-width: 0; }
+.lane-embed-lead {
+  margin: 0 0 var(--space-4); font-family: var(--font-ui); font-size: 12px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--champagne);
+}
+.lane-embed-card {
+  max-width: 460px; min-height: 180px; padding: var(--space-2);
+  background: #FAF6EE; border: 1px solid var(--glow-border);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-glow); overflow: hidden;
+}
+.lane-embed-card givebutter-widget { display: block; width: 100%; }
+.lane-embed-fallback { margin: var(--space-3) 0 0; font-family: var(--font-ui); font-size: 13px; line-height: 1.6; color: var(--text-muted); }
+.lane-embed-fallback[hidden] { display: none; }
+.lane-embed-fallback a { color: var(--champagne); text-decoration: underline; text-underline-offset: 3px; }
+.lane-embed .lane-cta-note, .lane-embed .lane-note { margin-top: var(--space-4); max-width: 460px; }
+@media (min-width: 1100px) {
+  .lane-panel:not([hidden]):has(> .lane-embed) {
+    display: grid; grid-template-columns: minmax(0, 1fr) 460px;
+    column-gap: var(--space-10); align-items: start;
+  }
+  .lane-panel > .lane-embed { margin-top: 0; }
+}
 /* Table-host note under the table packages: same type as .cta-note */
 .lane-note { margin: var(--space-2) 0 0; max-width: 64ch; font-family: var(--font-ui); font-size: 12px; line-height: 1.6; color: var(--text-muted); }
 .lane-note a { color: var(--champagne); text-decoration: underline; text-underline-offset: 3px; }
@@ -2376,10 +2401,11 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           </div>
         </div></div></div>
       </div>
-      <div class="lane-cta">
-        <a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-lg">Reserve your seats</a>
-        <p class="lane-cta-note">You will choose your ticket and number of seats in the next step.</p>
-      </div>
+        </div>
+        <div class="lane-embed" data-gb-form-slot>
+          <p class="lane-embed-lead">Pick your tickets and how many below.</p>
+          <div class="lane-embed-card"></div>
+          <p class="lane-embed-fallback" hidden>The checkout is taking a moment to load. <a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" target="_blank" rel="noopener">Open it on Givebutter</a> instead.</p>
         </div>
       </div>
 
@@ -2655,11 +2681,13 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           </div>
         </div></div></div>
       </div>
-      <div class="lane-cta">
-        <a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" data-gb-account="gKsqg0slZwD4ztrh" data-gb-campaign="JQR2QV" class="btn btn-primary btn-lg">Reserve your table</a>
-        <p class="lane-cta-note">You will choose your table and how many in the next step. Prefer an invoice or a check? <a href="mailto:carmen@gaytonfoundation.org?subject=Boots%20on%20the%20Ground%20%C2%B7%20Table%20sponsorship">Email Carmen</a> or call 206.226.2229.</p>
-      </div>
-      <p class="lane-note">Hosting a table? At checkout you can name each guest, or use your own details for every seat and <a href="mailto:joshua@gaytonfoundation.org?subject=Table%20guests">send us</a> your guests&rsquo; names by November 23. Each guest receives their own ticket by email.</p>
+        </div>
+        <div class="lane-embed" data-gb-form-slot>
+          <p class="lane-embed-lead">Pick your tickets and how many below.</p>
+          <div class="lane-embed-card"></div>
+          <p class="lane-embed-fallback" hidden>The checkout is taking a moment to load. <a href="https://givebutter.com/c/boots-on-the-ground-an-evening-of-legacy-jqr2qv" target="_blank" rel="noopener">Open it on Givebutter</a> instead.</p>
+          <p class="lane-cta-note">Prefer an invoice or a check? <a href="mailto:carmen@gaytonfoundation.org?subject=Boots%20on%20the%20Ground%20%C2%B7%20Table%20sponsorship">Email Carmen</a> or call 206.226.2229.</p>
+          <p class="lane-note">Hosting a table? At checkout you can name each guest, or use your own details for every seat and <a href="mailto:joshua@gaytonfoundation.org?subject=Table%20guests">send us</a> your guests&rsquo; names by November 23. Each guest receives their own ticket by email.</p>
         </div>
       </div>
 
@@ -3745,6 +3773,59 @@ main { overflow-x: clip; }
 @media (max-width: 880px) { .sticky-reserve { display: block; } }
 </style>
 <div class="sticky-reserve" id="stickyReserve"><a href="#tickets" class="btn btn-primary btn-lg">Reserve Your Place &middot; Dec 5</a></div>
+<script>
+/* PREVIEW: mount the one inline Givebutter checkout (Form widget g8MXW2) in
+   whichever ticket lane is open. Moving it between lanes reloads it. If it has
+   not built after 8 seconds, show a plain link to the Givebutter page. */
+(function () {
+  var slots = Array.prototype.slice.call(document.querySelectorAll('[data-gb-form-slot]'));
+  if (!slots.length) return;
+  var widget = document.createElement('givebutter-widget');
+  widget.setAttribute('id', 'g8MXW2');
+  var started = 0, watch = null;
+  function openSlot() {
+    for (var i = 0; i < slots.length; i++) {
+      var panel = slots[i].closest('.lane-panel');
+      if (!panel || !panel.hidden) return slots[i];
+    }
+    return null;
+  }
+  function built() { return !!(widget.shadowRoot && widget.shadowRoot.firstElementChild); }
+  /* Frame only: their iframe sits in open shadow roots, so a stylesheet can be
+     appended there. Drop their grey borders, round the corners to our card and
+     let the cream show behind the "Powered by Givebutter" strip. */
+  var FRAME_CSS = 'iframe{border:0!important;border-radius:14px 14px 0 0!important;}' +
+    '.rounded-b-2xl{border:0!important;background:transparent!important;border-radius:0!important;}';
+  function typeset() {
+    var a = widget.shadowRoot && widget.shadowRoot.querySelector('givebutter-giving-form');
+    var b = a && a.shadowRoot && a.shadowRoot.querySelector('givebutter-iframe');
+    var root = b && b.shadowRoot;
+    if (!root || root.__cwgfTypeset) return !!root;
+    try { var sh = new CSSStyleSheet(); sh.replaceSync(FRAME_CSS); root.adoptedStyleSheets = root.adoptedStyleSheets.concat(sh); }
+    catch (e) { var st = document.createElement('style'); st.textContent = FRAME_CSS; root.appendChild(st); }
+    root.__cwgfTypeset = true;
+    return true;
+  }
+  function place() {
+    var slot = openSlot();
+    if (!slot) return;
+    var card = slot.querySelector('.lane-embed-card');
+    if (widget.parentNode === card) return;
+    card.appendChild(widget);
+    slots.forEach(function (s) { s.querySelector('.lane-embed-fallback').hidden = true; });
+    started = Date.now();
+    clearInterval(watch);
+    watch = setInterval(function () {
+      if (built() && typeset()) { slot.querySelector('.lane-embed-fallback').hidden = true; clearInterval(watch); return; }
+      if (!built() && Date.now() - started > 8000) { slot.querySelector('.lane-embed-fallback').hidden = false; }
+      if (Date.now() - started > 30000) clearInterval(watch);
+    }, 400);
+  }
+  place();
+  var mo = new MutationObserver(place);
+  document.querySelectorAll('.lane-panel').forEach(function (p) { mo.observe(p, { attributes: true, attributeFilter: ['hidden'] }); });
+})();
+</script>
 <script>
 
 (function(){
