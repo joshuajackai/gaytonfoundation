@@ -1159,15 +1159,15 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 .lane-pick { display: grid; gap: var(--space-3); margin-bottom: var(--space-8); }
 @media (min-width: 640px) { .lane-pick { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1100px) { .lane-pick { grid-template-columns: repeat(4, 1fr); } }
-.lane-pick button {
+.lane-pick > button {
   text-align: left; cursor: pointer; color: inherit; font-family: var(--font-ui);
   border: 1px solid var(--hairline); border-radius: var(--radius-lg);
   background: var(--glass); padding: var(--space-5) var(--space-6);
   display: grid; gap: 6px; align-content: start;
   transition: border-color 240ms ease, background 240ms ease, transform 240ms ease;
 }
-.lane-pick button:hover { border-color: var(--glow-border); transform: translateY(-2px); }
-.lane-pick button[aria-pressed="true"] {
+.lane-pick > button:hover { border-color: var(--glow-border); transform: translateY(-2px); }
+.lane-pick > button[aria-pressed="true"] {
   border-color: var(--glow-border); background: var(--glass-strong);
   box-shadow: var(--shadow-glow);
 }
@@ -1178,6 +1178,13 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 .lane-pick .who { font-family: var(--font-display); font-size: 21px; font-weight: 500; color: var(--warm-white); }
 .lane-pick .what { font-size: 13px; color: rgba(245,237,224,0.72); line-height: 1.45; }
 .lane-panel[hidden] { display: none; }
+/* Phones (below 640px) stack the four lanes, so the lane script moves each panel
+   directly under its own lane and the lanes open and close like an accordion. */
+.lane-pick > .lane-panel { min-width: 0; margin: var(--space-2) 0 var(--space-5); }
+.lane-pick > button[aria-expanded="true"] {
+  border-color: var(--glow-border); background: var(--glass-strong);
+  box-shadow: var(--shadow-glow);
+}
 
 /* Price accordion */
 .price-acc { display: grid; gap: var(--space-3); }
@@ -2665,13 +2672,13 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           </div>
           <ul class="uw-list" aria-label="Underwriting levels">
             <li class="uw-row uw-head" aria-hidden="true"><span>Level</span><span>Gift</span><span>How you&rsquo;re recognized</span><span></span></li>
-            <li class="uw-row"><span class="uw-name">Trailblazer Underwriter</span><span class="uw-amt">$25,000</span><span class="uw-rec">&ldquo;Boots on the Ground, presented by [you]&rdquo; on the website and in the programs, your name on the bid cards, and verbal acknowledgment from the stage</span><span class="uw-go"><a class="btn btn-ghost btn-sm" href="https://givebutter.com/boots-on-the-ground-trailblazer-underwriter/donate?amount=25000" target="_blank" rel="noopener" aria-label="Underwrite at Trailblazer, $25,000">Underwrite at Trailblazer</a></span></li>
-            <li class="uw-row"><span class="uw-name">Rancher Underwriter</span><span class="uw-amt">$15,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span><span class="uw-go"><a class="btn btn-ghost btn-sm" href="https://givebutter.com/boots-on-the-ground-rancher-underwriter/donate?amount=15000" target="_blank" rel="noopener" aria-label="Underwrite at Rancher, $15,000">Underwrite at Rancher</a></span></li>
-            <li class="uw-row"><span class="uw-name">Wrangler Underwriter</span><span class="uw-amt">$10,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span><span class="uw-go"><a class="btn btn-ghost btn-sm" href="https://givebutter.com/boots-on-the-ground-wrangler-underwriter/donate?amount=10000" target="_blank" rel="noopener" aria-label="Underwrite at Wrangler, $10,000">Underwrite at Wrangler</a></span></li>
-            <li class="uw-row"><span class="uw-name">Cowhand Underwriter</span><span class="uw-amt">$5,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span><span class="uw-go"><a class="btn btn-ghost btn-sm" href="https://givebutter.com/boots-on-the-ground-cowhand-underwriter/donate?amount=5000" target="_blank" rel="noopener" aria-label="Underwrite at Cowhand, $5,000">Underwrite at Cowhand</a></span></li>
-            <li class="uw-row"><span class="uw-name">Roping Partner Underwriter</span><span class="uw-amt">$2,500</span><span class="uw-rec">Recognition on the website and in the digital and printed programs</span><span class="uw-go"><a class="btn btn-ghost btn-sm" href="https://givebutter.com/boots-on-the-ground-roping-partner-underwriter/donate?amount=2500" target="_blank" rel="noopener" aria-label="Underwrite at Roping Partner, $2,500">Underwrite at Roping Partner</a></span></li>
-            <li class="uw-row"><span class="uw-name">Campfire Underwriter</span><span class="uw-amt">$1,000</span><span class="uw-rec">Your name on the website</span><span class="uw-go"><a class="btn btn-ghost btn-sm" href="https://givebutter.com/boots-on-the-ground-campfire-underwriter/donate?amount=1000" target="_blank" rel="noopener" aria-label="Underwrite at Campfire, $1,000">Underwrite at Campfire</a></span></li>
-            <li class="uw-row"><span class="uw-name">Trail Friend</span><span class="uw-amt">$500</span><span class="uw-rec">Your name on the website supporter list</span><span class="uw-go"><a class="btn btn-ghost btn-sm" href="https://givebutter.com/boots-on-the-ground-trail-friend/donate?amount=500" target="_blank" rel="noopener" aria-label="Underwrite at Trail Friend, $500">Underwrite at Trail Friend</a></span></li>
+            <li class="uw-row"><span class="uw-name">Trailblazer Underwriter</span><span class="uw-amt">$25,000</span><span class="uw-rec">&ldquo;Boots on the Ground, presented by [you]&rdquo; on the website and in the programs, your name on the bid cards, and verbal acknowledgment from the stage</span><span class="uw-go"><a class="btn btn-primary btn-sm" href="https://givebutter.com/boots-on-the-ground-trailblazer-underwriter/donate?amount=25000" target="_blank" rel="noopener" aria-label="Underwrite at Trailblazer, $25,000">Underwrite at Trailblazer</a></span></li>
+            <li class="uw-row"><span class="uw-name">Rancher Underwriter</span><span class="uw-amt">$15,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span><span class="uw-go"><a class="btn btn-primary btn-sm" href="https://givebutter.com/boots-on-the-ground-rancher-underwriter/donate?amount=15000" target="_blank" rel="noopener" aria-label="Underwrite at Rancher, $15,000">Underwrite at Rancher</a></span></li>
+            <li class="uw-row"><span class="uw-name">Wrangler Underwriter</span><span class="uw-amt">$10,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span><span class="uw-go"><a class="btn btn-primary btn-sm" href="https://givebutter.com/boots-on-the-ground-wrangler-underwriter/donate?amount=10000" target="_blank" rel="noopener" aria-label="Underwrite at Wrangler, $10,000">Underwrite at Wrangler</a></span></li>
+            <li class="uw-row"><span class="uw-name">Cowhand Underwriter</span><span class="uw-amt">$5,000</span><span class="uw-rec">Recognition on the website and in the digital and printed programs, and verbal acknowledgment from the stage</span><span class="uw-go"><a class="btn btn-primary btn-sm" href="https://givebutter.com/boots-on-the-ground-cowhand-underwriter/donate?amount=5000" target="_blank" rel="noopener" aria-label="Underwrite at Cowhand, $5,000">Underwrite at Cowhand</a></span></li>
+            <li class="uw-row"><span class="uw-name">Roping Partner Underwriter</span><span class="uw-amt">$2,500</span><span class="uw-rec">Recognition on the website and in the digital and printed programs</span><span class="uw-go"><a class="btn btn-primary btn-sm" href="https://givebutter.com/boots-on-the-ground-roping-partner-underwriter/donate?amount=2500" target="_blank" rel="noopener" aria-label="Underwrite at Roping Partner, $2,500">Underwrite at Roping Partner</a></span></li>
+            <li class="uw-row"><span class="uw-name">Campfire Underwriter</span><span class="uw-amt">$1,000</span><span class="uw-rec">Your name on the website</span><span class="uw-go"><a class="btn btn-primary btn-sm" href="https://givebutter.com/boots-on-the-ground-campfire-underwriter/donate?amount=1000" target="_blank" rel="noopener" aria-label="Underwrite at Campfire, $1,000">Underwrite at Campfire</a></span></li>
+            <li class="uw-row"><span class="uw-name">Trail Friend</span><span class="uw-amt">$500</span><span class="uw-rec">Your name on the website supporter list</span><span class="uw-go"><a class="btn btn-primary btn-sm" href="https://givebutter.com/boots-on-the-ground-trail-friend/donate?amount=500" target="_blank" rel="noopener" aria-label="Underwrite at Trail Friend, $500">Underwrite at Trail Friend</a></span></li>
           </ul>
           <div class="uw-cta">
             <p class="cta-note">Each level opens its own checkout, and every underwriting gift is fully tax-deductible. Prefer a check or an invoice? Write to <a href="mailto:carmen@gaytonfoundation.org?subject=Boots%20on%20the%20Ground%20%C2%B7%20Underwriting">carmen@gaytonfoundation.org</a> or call 206.226.2229.</p>
@@ -3440,18 +3447,49 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     });
   });
 
-  /* ---- lane switch ---- */
-  root.querySelectorAll('.lane-pick button').forEach(function (b) {
+  /* ---- lane switch ----
+     640px and up: the lanes sit in a row (or 2x2) and the chosen panel shows
+     below all of them; the lanes are toggle buttons (aria-pressed).
+     Below 640px the lanes stack, so each panel moves directly under its own
+     lane and the lanes work as an accordion (aria-expanded): tapping a lane
+     opens it under itself and closes the other, tapping the open lane closes it. */
+  var laneBtns = Array.prototype.slice.call(root.querySelectorAll('.lane-pick > button'));
+  var lanePanels = Array.prototype.slice.call(root.querySelectorAll('.lane-panel'));
+  var laneHome = document.createComment(' lane panels (640px and up) ');
+  var lastPanel = lanePanels[lanePanels.length - 1];
+  if (lastPanel) lastPanel.parentNode.insertBefore(laneHome, lastPanel.nextSibling);
+  var phoneMq = window.matchMedia('(max-width: 639.98px)');
+  var shown = lane;
+  function lanePanel(b) { return document.getElementById(b.getAttribute('aria-controls')); }
+  function renderLanes() {
+    var phone = phoneMq.matches;
+    laneBtns.forEach(function (b) {
+      var on = b.dataset.lane === shown;
+      var p = lanePanel(b);
+      if (p) {
+        if (phone && b.nextElementSibling !== p) b.parentNode.insertBefore(p, b.nextSibling);
+        p.hidden = !on;
+      }
+      if (phone) { b.removeAttribute('aria-pressed'); b.setAttribute('aria-expanded', String(on)); }
+      else { b.removeAttribute('aria-expanded'); b.setAttribute('aria-pressed', String(on)); }
+    });
+    if (!phone && laneHome.parentNode) {
+      lanePanels.forEach(function (p) { laneHome.parentNode.insertBefore(p, laneHome); });
+    }
+  }
+  laneBtns.forEach(function (b) {
     b.addEventListener('click', function () {
-      lane = b.dataset.lane;
-      root.querySelectorAll('.lane-pick button').forEach(function (o) {
-        o.setAttribute('aria-pressed', String(o === b));
-      });
-      root.querySelectorAll('.lane-panel').forEach(function (p) {
-        p.hidden = p.dataset.panel !== lane;
-      });
+      var want = b.dataset.lane;
+      if (phoneMq.matches && shown === want) { shown = null; renderLanes(); return; }
+      lane = shown = want;
+      renderLanes();
+      if (phoneMq.matches) requestAnimationFrame(function () { b.scrollIntoView({ block: 'start' }); });
     });
   });
+  function onLaneMq() { if (!phoneMq.matches && !shown) shown = lane; renderLanes(); }
+  if (phoneMq.addEventListener) phoneMq.addEventListener('change', onLaneMq);
+  else if (phoneMq.addListener) phoneMq.addListener(onLaneMq);
+  renderLanes();
 
   /* ---- comparison matrix ---- */
   function matrix(ids) {
@@ -3717,7 +3755,8 @@ main { overflow-x: clip; }
     if (!m) return;
     var btn = document.querySelector('.lane-pick button[data-lane="' + m[0] + '"]');
     if (!btn) return;
-    if (btn.getAttribute('aria-pressed') !== 'true') btn.click();
+    var bp = document.getElementById(btn.getAttribute('aria-controls'));
+    if (bp && bp.hidden) btn.click();
     var t = document.getElementById(m[1]);
     if (t && t.tagName === 'DETAILS') t.open = true;
     if (t) requestAnimationFrame(function(){ t.scrollIntoView({block:'start'}); });
@@ -3728,7 +3767,8 @@ main { overflow-x: clip; }
     a.addEventListener('click', function(){
       var want = a.dataset.lane;
       var btn = document.querySelector('.lane-pick button[data-lane="' + want + '"]');
-      if (btn && btn.getAttribute('aria-pressed') !== 'true') btn.click();
+      var bp = btn && document.getElementById(btn.getAttribute('aria-controls'));
+      if (bp && bp.hidden) btn.click();
     });
   });
 })();
