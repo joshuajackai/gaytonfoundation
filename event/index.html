@@ -2167,6 +2167,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       <p class="eyebrow" style="display:block;">Reserve Your Place</p>
       <h2 id="tickets-heading">Who&rsquo;s coming<br><em>on December 5?</em></h2>
       <p class="sub" style="margin-inline:auto;">Boots on the Ground is a seated dinner with assigned seating. Pick the one that sounds like you, then tick any levels you want to compare. Every guest gets dinner, the program, raise the paddle and the dance floor. The room holds 280, and December 5 is one night only.</p>
+      <p class="lane-cta-note sales-window" style="margin-inline:auto;">Tickets and tables are on sale through November&nbsp;30.</p>
     </div>
 
     <div class="reveal" data-pricing>
@@ -2198,7 +2199,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <p class="how-title">How it works</p>
           <ol class="how-steps">
             <li><span class="how-n" aria-hidden="true">1</span><span class="how-t">Pick your tickets and how many.</span></li>
-            <li><span class="how-n" aria-hidden="true">2</span><span class="how-t">Checkout asks for your details, then a name and email for each seat, so every guest gets their own ticket. Don&rsquo;t know everyone yet? Tap &ldquo;Apply to all individual tickets&rdquo; to put your details on every seat, then choose &ldquo;I&rsquo;ll send my guests&rsquo; names by Nov&nbsp;23&rdquo; and <a href="/event/guests/">send us the names</a> later.</span></li>
+            <li><span class="how-n" aria-hidden="true">2</span><span class="how-t">Checkout asks for your details, then a name and email for each seat, so every guest gets their own ticket. Don&rsquo;t know everyone yet? Tap &ldquo;Apply to all individual tickets&rdquo; to put your details on every seat, then choose &ldquo;I&rsquo;ll send my guests&rsquo; names by Nov&nbsp;30&rdquo; and <a href="/event/guests/">send us the names</a> later.</span></li>
             <li><span class="how-n" aria-hidden="true">3</span><span class="how-t">Your tickets arrive by email with a QR code you can add to Apple Wallet.</span></li>
             <li><span class="how-n" aria-hidden="true">4</span><span class="how-t">On Saturday, December 5, doors open at 5&nbsp;PM at 4105 Airport Way S, Seattle. Western black tie, boots welcome. Show your QR code at registration to pick up your envelope with your drink tokens and paddle number. Wrangler tables use the express table, and Rancher and Trailblazer tables get white glove check&#8209;in.</span></li>
           </ol>
@@ -2380,6 +2381,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <li>Everything in Saddle, plus</li>
           <li>A second raffle ticket</li>
           <li>Premium seating, with other Silver Buckle guests</li>
+          <li>VIP Lounge access in Chandler&rsquo;s Bunkhouse</li>
           <li>Cowboy Yeti</li>
           <li>Name on the website</li>
           </ul>
@@ -2421,7 +2423,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <p class="how-title">How it works</p>
           <ol class="how-steps">
             <li><span class="how-n" aria-hidden="true">1</span><span class="how-t">Pick your tickets and how many.</span></li>
-            <li><span class="how-n" aria-hidden="true">2</span><span class="how-t">Checkout asks for your details, then a name and email for each seat, so every guest gets their own ticket. Don&rsquo;t know everyone yet? Tap &ldquo;Apply to all individual tickets&rdquo; to put your details on every seat, then choose &ldquo;I&rsquo;ll send my guests&rsquo; names by Nov&nbsp;23&rdquo; and <a href="/event/guests/">send us the names</a> later.</span></li>
+            <li><span class="how-n" aria-hidden="true">2</span><span class="how-t">Checkout asks for your details, then a name and email for each seat, so every guest gets their own ticket. Don&rsquo;t know everyone yet? Tap &ldquo;Apply to all individual tickets&rdquo; to put your details on every seat, then choose &ldquo;I&rsquo;ll send my guests&rsquo; names by Nov&nbsp;30&rdquo; and <a href="/event/guests/">send us the names</a> later.</span></li>
             <li><span class="how-n" aria-hidden="true">3</span><span class="how-t">Your tickets arrive by email with a QR code you can add to Apple Wallet.</span></li>
             <li><span class="how-n" aria-hidden="true">4</span><span class="how-t">On Saturday, December 5, doors open at 5&nbsp;PM at 4105 Airport Way S, Seattle. Western black tie, boots welcome. Show your QR code at registration to pick up your envelope with your drink tokens and paddle number. Wrangler tables use the express table, and Rancher and Trailblazer tables get white glove check&#8209;in.</span></li>
           </ol>
@@ -3452,7 +3454,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
     boots:        {lane:'seats', name:'Boots',         price:'$150',   f:pkg('boots', {seatcount:'1'})},
     lasso:        {lane:'seats', name:'Lasso',         price:'$250',   f:pkg('lasso', {seatcount:'1'})},
     saddle:       {lane:'seats', name:'Saddle',        price:'$500',   f:pkg('saddle', {seatcount:'1'})},
-    silverbuckle: {lane:'seats', name:'Silver Buckle', price:'$1,000', f:pkg('silverbuckle', {seatcount:'1'})},
+    silverbuckle: {lane:'seats', name:'Silver Buckle', price:'$1,000', f:pkg('silverbuckle', {seatcount:'1', vip:true})},
 
     roping:      {lane:'packages', name:'Chandler’s Roping Partner', price:'$2,500 · $500 a seat',
       f:pkg('saddle', {seatcount:'5, half a table', seating:'Premium', yeti:true, web:true, verbal:true, signage:true, vip:true})},
@@ -3704,7 +3706,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
 .sponsors-note a { color: var(--champagne); text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 640px) {
   #tickets .section-head, #sponsor .section-head { text-align: left !important; margin-inline: 0 !important; }
-  #tickets .section-head .sub { margin-inline: 0 !important; }
+  #tickets .section-head .sub, #tickets .section-head .sales-window { margin-inline: 0 !important; }
   .sponsors { text-align: left; }
   .sponsors-row { justify-content: flex-start; }
   .sponsors-note { margin-inline: 0; }
