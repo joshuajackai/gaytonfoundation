@@ -1623,16 +1623,32 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   .spw-mq-set[aria-hidden="true"] { display: none; }
 }
 
-/* messages donors left with their gifts, shown word for word */
-.spw-feature {
+/* messages donors left with their gifts, shown word for word.
+   With JavaScript and motion allowed they share one slot and fade in and out on a loop;
+   otherwise (no JS, or reduced motion) they simply stack. */
+.spw-rotator {
+  width: 100%;
+  max-width: 820px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(18px, 2vw, 24px);
+}
+.spw-rot-stage {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(28px, 3vw, 36px);
+}
+.spw-quote {
   margin: 0;
-  max-width: 760px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
 }
-.spw-feature blockquote {
+.spw-quote blockquote {
   margin: 0;
   font-family: var(--font-display);
   font-style: italic;
@@ -1649,41 +1665,53 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   text-transform: uppercase;
   color: var(--champagne);
 }
-.spw-msgs {
-  width: 100%;
-  max-width: 960px;
-  margin-top: 8px;
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1fr);
+.spw-rotator.is-live .spw-rot-stage { display: grid; }
+.spw-rotator.is-live .spw-quote {
+  grid-area: 1 / 1;
+  align-self: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.6s ease, visibility 0s linear 1.6s;
 }
-.spw-msgs figure {
-  margin: 0;
-  padding: 4px 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
+.spw-rotator.is-booting .spw-quote { transition: none !important; }
+.spw-rotator.is-live .spw-quote.is-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.6s ease, visibility 0s linear 0s;
 }
-.spw-msgs figure + figure { border-left: 1px solid #3a2a1a; }
-.spw-msgs blockquote {
-  margin: 0;
-  font-family: var(--font-body);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(19px, 1.65vw, 21px);
-  line-height: 1.45;
-  color: #ede3d3;
+.spw-rot-controls { display: flex; align-items: center; justify-content: center; gap: 2px; }
+.spw-rot-controls[hidden] { display: none; }
+.spw-rot-dot {
+  width: 24px; height: 24px;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  display: grid; place-items: center;
 }
-@media (max-width: 360px) {
-  .spw-tier-h { font-size: 18px; gap: 8px; }
-  .spw-tier-h::before, .spw-tier-h::after { width: 14px; }
-  .spw-names--roping li { font-size: 20px; }
+.spw-rot-dot::before {
+  content: "";
+  width: 7px; height: 7px; border-radius: 50%;
+  border: 1px solid var(--champagne);
+  transition: background 300ms ease;
 }
-@media (max-width: 760px) {
-  .spw-msgs { grid-template-columns: 1fr; gap: 18px; margin-top: 4px; }
-  .spw-msgs figure { padding: 18px 0 0; border-top: 1px solid #3a2a1a; }
-  .spw-msgs figure + figure { border-left: 0; }
+.spw-rot-dot[aria-current="true"]::before { background: var(--champagne); }
+.spw-rot-dot:hover::before { background: rgba(190,154,113,0.45); }
+.spw-rot-dot[aria-current="true"]:hover::before { background: var(--champagne); }
+.spw-rot-pause {
+  margin-left: 10px;
+  min-height: 24px;
+  padding: 4px 10px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  transition: border-color 200ms ease, color 200ms ease;
 }
+.spw-rot-pause:hover { border-color: var(--glow-border); color: var(--warm-white); }
+.spw-rot-dot:focus-visible, .spw-rot-pause:focus-visible { outline: 2px solid var(--champagne); outline-offset: 2px; border-radius: 999px; }
 
 .sponsors-note {
   max-width: 52ch;
@@ -3275,23 +3303,32 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
 
       <div class="spw-tier reveal" role="group" aria-labelledby="spw-messages">
         <h3 id="spw-messages" class="spw-tier-h">Messages for Chandler</h3>
-        <figure class="spw-feature">
-          <blockquote>&ldquo;A beautiful occasion to honor a beautiful life. JSR&rdquo;</blockquote>
-          <figcaption class="spw-cap">Jackie &amp; Tim Richards</figcaption>
-        </figure>
-        <div class="spw-msgs">
-          <figure>
-            <blockquote>&ldquo;Mr. and Mrs. Gayton,<br />LOVE how your son is being honored.<br />Much love,&rdquo;</blockquote>
-            <figcaption class="spw-cap">Wanda Mozzone</figcaption>
-          </figure>
-          <figure>
-            <blockquote>&ldquo;With much love.&rdquo;</blockquote>
-            <figcaption class="spw-cap">Tracie McGovern</figcaption>
-          </figure>
-          <figure>
-            <blockquote>&ldquo;With love!&rdquo;</blockquote>
-            <figcaption class="spw-cap">Anonymous</figcaption>
-          </figure>
+        <div class="spw-rotator" data-rotator>
+          <div class="spw-rot-stage" aria-live="off">
+            <figure class="spw-quote is-active">
+              <blockquote>&ldquo;A beautiful occasion to honor a beautiful life. JSR&rdquo;</blockquote>
+              <figcaption class="spw-cap">Jackie &amp; Tim Richards</figcaption>
+            </figure>
+            <figure class="spw-quote">
+              <blockquote>&ldquo;Mr. and Mrs. Gayton,<br />LOVE how your son is being honored.<br />Much love,&rdquo;</blockquote>
+              <figcaption class="spw-cap">Wanda Mozzone</figcaption>
+            </figure>
+            <figure class="spw-quote">
+              <blockquote>&ldquo;With much love.&rdquo;</blockquote>
+              <figcaption class="spw-cap">Tracie McGovern</figcaption>
+            </figure>
+            <figure class="spw-quote">
+              <blockquote>&ldquo;With love!&rdquo;</blockquote>
+              <figcaption class="spw-cap">Anonymous</figcaption>
+            </figure>
+          </div>
+          <div class="spw-rot-controls" role="group" aria-label="Messages" hidden>
+            <button type="button" class="spw-rot-dot" aria-label="Message 1 of 4" aria-current="true"></button>
+            <button type="button" class="spw-rot-dot" aria-label="Message 2 of 4"></button>
+            <button type="button" class="spw-rot-dot" aria-label="Message 3 of 4"></button>
+            <button type="button" class="spw-rot-dot" aria-label="Message 4 of 4"></button>
+            <button type="button" class="spw-rot-pause">Pause</button>
+          </div>
         </div>
       </div>
     </div>
@@ -4158,6 +4195,64 @@ main { overflow-x: clip; }
 </script>
 <!-- Givebutter library (account 375972): opens the checkout as a pop-up on every seat,
      table, underwriting (JQR2QV) and Donate (RWE2QN) button; the href is the fallback if the script fails. -->
+<script>
+/* Messages for Chandler: one message at a time, fading in and out on a loop.
+   Runs only while the section is on screen and the tab is visible. Pauses on hover,
+   keyboard focus or the Pause button. Reduced motion keeps the static stacked list. */
+(function () {
+  var rot = document.querySelector('[data-rotator]');
+  if (!rot) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var stage = rot.querySelector('.spw-rot-stage');
+  var quotes = [].slice.call(rot.querySelectorAll('.spw-quote'));
+  var dots = [].slice.call(rot.querySelectorAll('.spw-rot-dot'));
+  var pauseBtn = rot.querySelector('.spw-rot-pause');
+  var controls = rot.querySelector('.spw-rot-controls');
+  if (quotes.length < 2) return;
+  var FADE = 1600, HOLD = 6000;
+  var i = 0, timer = null, pending = null, paused = false, inView = false, hovering = false;
+
+  rot.classList.add('is-booting', 'is-live');
+  controls.hidden = false;
+  requestAnimationFrame(function () { requestAnimationFrame(function () { rot.classList.remove('is-booting'); }); });
+
+  function go(n) {
+    clearTimeout(pending);
+    quotes[i].classList.remove('is-active');
+    dots[i].removeAttribute('aria-current');
+    i = (n + quotes.length) % quotes.length;
+    dots[i].setAttribute('aria-current', 'true');
+    pending = setTimeout(function () { quotes[i].classList.add('is-active'); }, FADE);
+  }
+  function schedule() {
+    clearTimeout(timer);
+    if (paused || hovering || !inView || document.hidden) return;
+    timer = setTimeout(function () { go(i + 1); schedule(); }, HOLD + FADE * 2);
+  }
+
+  dots.forEach(function (d, k) {
+    d.addEventListener('click', function () {
+      stage.setAttribute('aria-live', 'polite');
+      if (k !== i) go(k);
+      schedule();
+    });
+  });
+  pauseBtn.addEventListener('click', function () {
+    paused = !paused;
+    pauseBtn.textContent = paused ? 'Play' : 'Pause';
+    stage.setAttribute('aria-live', paused ? 'polite' : 'off');
+    schedule();
+  });
+  rot.addEventListener('mouseenter', function () { hovering = true; schedule(); });
+  rot.addEventListener('mouseleave', function () { hovering = false; schedule(); });
+  rot.addEventListener('focusin', function () { hovering = true; schedule(); });
+  rot.addEventListener('focusout', function (e) { if (!rot.contains(e.relatedTarget)) { hovering = false; schedule(); } });
+  document.addEventListener('visibilitychange', schedule);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) { inView = entries[0].isIntersecting; schedule(); }, { threshold: 0.25 }).observe(rot);
+  } else { inView = true; schedule(); }
+})();
+</script>
 <script src="https://widgets.givebutter.com/latest.umd.cjs?acct=gKsqg0slZwD4ztrh&p=other" async></script>
 </body>
 </html>
