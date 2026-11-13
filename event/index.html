@@ -1696,8 +1696,8 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
+  grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+  gap: clamp(32px, 4vw, 64px);
   align-items: start;
 }
 .footer .brand { margin-bottom: var(--space-3); }
@@ -1754,9 +1754,28 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 }
 .footer-bottom .legal { display: flex; gap: 20px; }
 
-@media (max-width: 880px) {
-  .footer-grid { grid-template-columns: 1fr; gap: var(--space-10); }
-  .footer-bottom { flex-direction: column; align-items: flex-start; }
+/* tablet: brand across the top, the three link columns share one row */
+@media (max-width: 1023px) {
+  .footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-10) var(--space-8); }
+  .footer-grid > :first-child { grid-column: 1 / -1; }
+}
+/* phone: brand, then Foundation and The Evening side by side, then Take Part full width in two columns */
+@media (max-width: 640px) {
+  .footer { padding-block: var(--space-12) var(--space-6); }
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-8) var(--space-6); }
+  .footer-grid > :first-child { padding-bottom: var(--space-8); border-bottom: 1px solid rgba(190,154,113,0.10); }
+  .footer-col h4 { margin-bottom: var(--space-2); }
+  .footer-col ul { gap: 0; }
+  .footer-col a { display: inline-block; padding-block: 7px; line-height: 1.3; }
+  .footer-col--take { grid-column: 1 / -1; padding-top: var(--space-8); border-top: 1px solid rgba(190,154,113,0.10); }
+  .footer-col--take ul { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-6); }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: var(--space-2); margin-top: var(--space-8); line-height: 1.8; letter-spacing: 0.14em; }
+  .footer-bottom > span:first-child { text-wrap: balance; }
+}
+@media (max-width: 380px) {
+  .footer-grid { column-gap: var(--space-4); }
+  .footer-col a { font-size: 14.5px; }
+  .footer-col--take ul { grid-template-columns: 1fr; }
 }
 
 /* Reveal animation (subtle) */
@@ -3315,7 +3334,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         </ul>
       </div>
 
-      <div class="footer-col">
+      <div class="footer-col footer-col--take">
         <h4>Take Part</h4>
         <ul>
           <li><a href="#tickets">Reserve Your Place</a></li>
