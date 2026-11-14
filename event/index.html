@@ -1596,7 +1596,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   -webkit-mask-image: linear-gradient(90deg, rgba(14,9,5,0) 0%, rgba(14,9,5,1) 12%, rgba(14,9,5,1) 88%, rgba(14,9,5,0) 100%);
   mask-image: linear-gradient(90deg, rgba(14,9,5,0) 0%, rgba(14,9,5,1) 12%, rgba(14,9,5,1) 88%, rgba(14,9,5,0) 100%);
 }
-.spw-mq-track { display: flex; width: max-content; animation: spw-mq 42s linear infinite; }
+.spw-mq-track { display: flex; width: max-content; animation: spw-mq 64s linear infinite; }
 .spw-mq:hover .spw-mq-track,
 .spw-mq:focus-within .spw-mq-track { animation-play-state: paused; }
 .spw-mq-set {
@@ -1611,7 +1611,10 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 .spw-mq-set img { display: block; width: auto; }
 .spw-lg-4105 { height: clamp(53px, 6.3vw, 81px); }
 .spw-lg-40acres { height: clamp(48px, 5.7vw, 73px); }
+.spw-lg-7starcaviar { height: clamp(63px, 7.45vw, 96px); }
+.spw-lg-barlou { height: clamp(23px, 2.7vw, 35px); }
 .spw-lg-checkpoint { height: clamp(20px, 2.4vw, 31px); }
+.spw-lg-dossier { height: clamp(30px, 3.6vw, 46px); }
 .spw-lg-liveoak { height: clamp(39px, 4.7vw, 60px); }
 .spw-lg-salish { height: clamp(35px, 4.15vw, 53px); }
 .spw-lg-tuxedos { height: clamp(29px, 3.45vw, 44px); }
@@ -1619,7 +1622,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 @media (prefers-reduced-motion: reduce) {
   .spw-mq { -webkit-mask-image: none; mask-image: none; }
   .spw-mq-track { animation: none; width: auto; justify-content: center; }
-  .spw-mq-set { flex-wrap: wrap; justify-content: center; padding: 0; gap: 28px 44px; }
+  .spw-mq-set { flex: 1 1 auto; min-width: 0; flex-wrap: wrap; justify-content: center; padding: 0; gap: 28px 44px; }
   .spw-mq-set[aria-hidden="true"] { display: none; }
 }
 
@@ -3246,7 +3249,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         <h3 id="spw-roping" class="spw-tier-h">Chandler&rsquo;s Roping Partner</h3>
         <ul class="spw-names spw-names--roping">
           <li>Roxie Lee Floyd</li>
-          <li>Brett Frank-Looney</li>
+          <li>Brett Frank Looney</li>
           <li>Lyn &amp; Gerald Grinstein</li>
           <li>Sam &amp; Rhoda McKinney Jones</li>
           <li>Merck</li>
@@ -3284,16 +3287,22 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <div class="spw-mq-track">
             <ul class="spw-mq-set" aria-label="In-kind partners">
             <li><img class="spw-lg-4105" src="/images/sponsors/4105.webp" width="242" height="162" alt="4105" decoding="async" fetchpriority="low" /></li>
+            <li><img class="spw-lg-barlou" src="/images/sponsors/barlou.webp" width="370" height="80" alt="BarLou Candles" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-40acres" src="/images/sponsors/40acres.webp" width="172" height="146" alt="40 Acres Blending Co." decoding="async" fetchpriority="low" /></li>
+            <li><img class="spw-lg-dossier" src="/images/sponsors/dossier.webp" width="313" height="92" alt="Dossier Wine Collective" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-checkpoint" src="/images/sponsors/checkpoint.webp" width="363" height="62" alt="Checkpoint" decoding="async" fetchpriority="low" /></li>
+            <li><img class="spw-lg-7starcaviar" src="/images/sponsors/7starcaviar.webp" width="197" height="192" alt="7 Star Caviar" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-liveoak" src="/images/sponsors/liveoak.webp" width="252" height="120" alt="Live Oak Audio Visual" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-salish" src="/images/sponsors/salish.webp" width="273" height="106" alt="Salish Lodge &amp; Spa" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-tuxedos" src="/images/sponsors/tuxedos.webp" width="333" height="88" alt="Tuxedos &amp; Tennis Shoes" decoding="async" fetchpriority="low" /></li>
             </ul>
             <ul class="spw-mq-set" aria-hidden="true">
             <li><img class="spw-lg-4105" src="/images/sponsors/4105.webp" width="242" height="162" alt="" decoding="async" fetchpriority="low" /></li>
+            <li><img class="spw-lg-barlou" src="/images/sponsors/barlou.webp" width="370" height="80" alt="" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-40acres" src="/images/sponsors/40acres.webp" width="172" height="146" alt="" decoding="async" fetchpriority="low" /></li>
+            <li><img class="spw-lg-dossier" src="/images/sponsors/dossier.webp" width="313" height="92" alt="" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-checkpoint" src="/images/sponsors/checkpoint.webp" width="363" height="62" alt="" decoding="async" fetchpriority="low" /></li>
+            <li><img class="spw-lg-7starcaviar" src="/images/sponsors/7starcaviar.webp" width="197" height="192" alt="" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-liveoak" src="/images/sponsors/liveoak.webp" width="252" height="120" alt="" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-salish" src="/images/sponsors/salish.webp" width="273" height="106" alt="" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-tuxedos" src="/images/sponsors/tuxedos.webp" width="333" height="88" alt="" decoding="async" fetchpriority="low" /></li>
