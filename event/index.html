@@ -1482,7 +1482,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
    10 — SPONSORS
    Thank-you wall (Ember spotlight, approved 2026-11-13).
    One background gradient: burnt orange spotlight from the top, falling to --base.
-   Names are sized by sponsor level. In-kind partners scroll as a logo marquee.
+   Names are sized by sponsor level. In-kind sponsors scroll as a logo marquee.
    ========================================================= */
 .sponsors {
   text-align: center;
@@ -1578,7 +1578,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   filter: drop-shadow(0 2px 22px rgba(181,106,37,0.34));
 }
 
-/* in-kind partner logos: continuous marquee, pauses on hover or focus, still for reduced motion */
+/* in-kind sponsor logos: continuous marquee, pauses on hover or focus, still for reduced motion */
 .spw-mq {
   --mq-gap: clamp(44px, 6.25vw, 80px);
   width: 100%;
@@ -1606,7 +1606,8 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 .spw-lg-checkpoint { height: clamp(20px, 2.4vw, 31px); }
 .spw-lg-dossier { height: clamp(30px, 3.6vw, 46px); }
 .spw-lg-liveoak { height: clamp(39px, 4.7vw, 60px); }
-.spw-lg-salish { height: clamp(35px, 4.15vw, 53px); }
+/* a sponsor with no logo file yet: set as a wordmark in the logo champagne */
+.spw-lg-word { display: block; font-family: var(--font-display); font-weight: 400; font-size: clamp(24px, 2.85vw, 36px); line-height: 1; white-space: nowrap; color: #dbc3a1; }
 .spw-lg-tuxedos { height: clamp(29px, 3.45vw, 44px); }
 @keyframes spw-mq { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
@@ -3231,18 +3232,23 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       <div class="spw-tier reveal" role="group" aria-labelledby="spw-cowhand">
         <h3 id="spw-cowhand" class="spw-tier-h">Cowhand</h3>
         <ul class="spw-names spw-names--cowhand">
-          <li class="spw-gilt">Jill Wood</li>
+          <li class="spw-gilt">Windermere Real Estate</li>
         </ul>
       </div>
 
       <div class="spw-tier reveal" role="group" aria-labelledby="spw-roping">
         <h3 id="spw-roping" class="spw-tier-h">Chandler&rsquo;s Roping Partner</h3>
         <ul class="spw-names spw-names--roping">
+          <li>Brett Frank-Looney</li>
+        </ul>
+      </div>
+
+      <div class="spw-tier reveal" role="group" aria-labelledby="spw-underwriters">
+        <h3 id="spw-underwriters" class="spw-tier-h">Underwriters</h3>
+        <ul class="spw-names spw-names--roping">
           <li>Roxie Lee Floyd</li>
-          <li>Brett Frank Looney</li>
           <li>Lyn &amp; Gerald Grinstein</li>
           <li>Sam &amp; Rhoda McKinney Jones</li>
-          <li>Merck</li>
         </ul>
       </div>
 
@@ -3253,7 +3259,6 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <li>Alden Gibbs Jr.</li>
           <li>Connie &amp; Gus Kravas</li>
           <li>Carmen Mayo</li>
-          <li>Red Mountain</li>
         </ul>
       </div>
 
@@ -3270,10 +3275,10 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       </div>
 
       <div class="spw-tier reveal" role="group" aria-labelledby="spw-inkind">
-        <h3 id="spw-inkind" class="spw-tier-h">In-Kind Partners</h3>
+        <h3 id="spw-inkind" class="spw-tier-h">In-Kind Sponsors</h3>
         <div class="spw-mq">
           <div class="spw-mq-track">
-            <ul class="spw-mq-set" aria-label="In-kind partners">
+            <ul class="spw-mq-set" aria-label="In-kind sponsors">
             <li><img class="spw-lg-4105" src="/images/sponsors/4105.webp" width="242" height="162" alt="4105" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-barlou" src="/images/sponsors/barlou.webp" width="370" height="80" alt="BarLou Candles" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-40acres" src="/images/sponsors/40acres.webp" width="172" height="146" alt="40 Acres Blending Co." decoding="async" fetchpriority="low" /></li>
@@ -3281,7 +3286,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <li><img class="spw-lg-checkpoint" src="/images/sponsors/checkpoint.webp" width="363" height="62" alt="Checkpoint" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-7starcaviar" src="/images/sponsors/7starcaviar.webp" width="197" height="192" alt="7 Star Caviar" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-liveoak" src="/images/sponsors/liveoak.webp" width="252" height="120" alt="Live Oak Audio Visual" decoding="async" fetchpriority="low" /></li>
-            <li><img class="spw-lg-salish" src="/images/sponsors/salish.webp" width="273" height="106" alt="Salish Lodge &amp; Spa" decoding="async" fetchpriority="low" /></li>
+            <li><span class="spw-lg-word">Red Mountain</span></li>
             <li><img class="spw-lg-tuxedos" src="/images/sponsors/tuxedos.webp" width="333" height="88" alt="Tuxedos &amp; Tennis Shoes" decoding="async" fetchpriority="low" /></li>
             </ul>
             <ul class="spw-mq-set" aria-hidden="true">
@@ -3292,7 +3297,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
             <li><img class="spw-lg-checkpoint" src="/images/sponsors/checkpoint.webp" width="363" height="62" alt="" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-7starcaviar" src="/images/sponsors/7starcaviar.webp" width="197" height="192" alt="" decoding="async" fetchpriority="low" /></li>
             <li><img class="spw-lg-liveoak" src="/images/sponsors/liveoak.webp" width="252" height="120" alt="" decoding="async" fetchpriority="low" /></li>
-            <li><img class="spw-lg-salish" src="/images/sponsors/salish.webp" width="273" height="106" alt="" decoding="async" fetchpriority="low" /></li>
+            <li><span class="spw-lg-word">Red Mountain</span></li>
             <li><img class="spw-lg-tuxedos" src="/images/sponsors/tuxedos.webp" width="333" height="88" alt="" decoding="async" fetchpriority="low" /></li>
             </ul>
           </div>
