@@ -1481,7 +1481,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 /* =========================================================
    10 — SPONSORS
    Thank-you wall (Ember spotlight, approved 2026-11-13).
-   Burnt orange spotlight over the heading and the Underwriters, settling to --base where Guests of Honor begins.
+   Burnt orange spotlight over the Underwriters, settling to --base where Guests of Honor begins.
    Three groups in one centred column: Underwriters, Guests of Honor, In-Kind Sponsors.
    Inside a group the larger the gift, the larger the names and the higher they sit.
    Amounts are never shown. In-kind sponsors scroll as a logo marquee.
@@ -1491,7 +1491,7 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   isolation: isolate;
   overflow: hidden;
   border-top: 1px solid var(--hairline);
-  --spw-gap: clamp(64px, 7vw, 96px);
+  --spw-gap: clamp(72px, 9vw, 128px);
   background: var(--base);
 }
 .sponsors::before {
@@ -1504,14 +1504,12 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   opacity: 0.85;
 }
 .sponsors > .container { position: relative; z-index: 1; }
-.sponsors .eyebrow { color: #e9c99a; }
-.sponsors h2 em { color: #e9c99a; }
 
 .spw-tiers {
   margin-top: var(--spw-gap);
   display: flex;
   flex-direction: column;
-  gap: clamp(48px, 5vw, 64px);
+  gap: var(--spw-gap);
 }
 .spw-tier {
   display: flex;
@@ -1519,17 +1517,20 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   align-items: center;
   gap: clamp(16px, 1.6vw, 20px);
 }
+/* each group is its own section with its own headline (2026-11-19): there is no shared headline above them */
 .spw-tier-h {
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(12px, 1.4vw, 18px);
+  gap: clamp(12px, 2vw, 28px);
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(20px, 2.1vw, 26px);
-  line-height: 1.2;
+  font-size: clamp(28px, 4.3vw, 54px);
+  line-height: 1.15;
+  margin-bottom: clamp(6px, 0.8vw, 12px);
+  text-wrap: balance;
   letter-spacing: 0;
   text-transform: none;
   color: #e9c99a;
@@ -1538,15 +1539,15 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 .spw-tier-h::after {
   content: "";
   flex: none;
-  width: clamp(22px, 3.8vw, 48px);
+  width: clamp(16px, 5vw, 72px);
   height: 1px;
   background: var(--champagne);
 }
 
-/* Program layout (approved 2026-11-19): one centred column on every screen, like a printed gala program.
+/* Staircase layout (approved 2026-11-20): one centred column on every screen.
    Underwriters come first, inside the orange spotlight; Guests of Honor follow on the dark page shade.
-   Inside a group each contribution level is its own block, largest gift first and in the largest type.
-   The top two levels set one name per line; the lower levels pair names across a centre spine. Amounts are never shown. */
+   Inside a group each contribution level is its own block, largest gift first, larger and brighter than the level below.
+   Amounts are never shown. */
 .spw-lead { position: relative; }
 /* The spotlight belongs to the Underwriters. It starts at the top of the section and has settled
    into the dark page shade exactly where the Guests of Honor heading begins. ::after re-lays the grain over it. */
@@ -1564,12 +1565,12 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 }
 .spw-lead::before { background: radial-gradient(140% 100% at 50% 0%, #8a3a0c 0%, #6b2508 30%, #4a1c0a 60%, #2c150d 82%, var(--base) 100%); }
 .spw-lead::after { background: url("/images/textures/grain.webp") 0 0 / 200px 200px; opacity: 0.85; }
-.spw-tier--lead { margin-top: clamp(48px, 6vw, 72px); }
-.spw-tier--prog { gap: clamp(22px, 2.2vw, 28px); }
-.spw-tier--prog .spw-tier-h { margin-bottom: 6px; }
+.spw-tier--prog { gap: clamp(22px, 2.4vw, 32px); }
 .spw-row { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .spw-row-h { margin: 0; font-family: var(--font-ui); font-weight: 700; font-size: 12px; line-height: 1.4; letter-spacing: 0.22em; text-transform: uppercase; color: #e9c99a; }
 .spw-orn { flex: none; width: 6px; height: 6px; border: 1px solid var(--champagne); transform: rotate(45deg); opacity: 0.8; }
+/* One type scale for both groups, set by gift level: a larger gift is always larger AND brighter,
+   so no name can outweigh a name from a higher level. Class suffix = the level, never shown to visitors. */
 .spw-names {
   list-style: none;
   margin: 0;
@@ -1586,21 +1587,22 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
   color: var(--warm-white);
   text-wrap: balance;
 }
-.spw-names--xl li { font-size: clamp(28px, 3.4vw, 48px); line-height: 1.16; }
-.spw-names--l li { font-size: clamp(21px, 1.9vw, 27px); }
-.spw-names--m li { font-size: clamp(18px, 1.5vw, 21px); }
-.spw-names--s li { font-family: var(--font-body); font-size: clamp(18px, 1.5vw, 21px); line-height: 1.3; color: #ede3d3; }
-.spw-names--two { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(16px, 2vw, 28px); row-gap: 10px; max-width: 520px; }
-.spw-names--two li:nth-child(odd) { justify-self: end; text-align: right; }
-.spw-names--two li:nth-child(even) { justify-self: start; text-align: left; }
-.spw-names--two li:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; text-align: center; }
-@media (max-width: 440px) {
-  .spw-names--two { grid-template-columns: minmax(0, 1fr); }
-  .spw-names--two li:nth-child(n) { justify-self: center; text-align: center; }
+.spw-names--10k li { font-size: clamp(28px, 3.1vw, 44px); line-height: 1.14; }
+.spw-names--5k li { font-size: clamp(25px, 2.5vw, 35px); line-height: 1.18; max-width: 17em; }
+.spw-names--2500 li { font-size: clamp(21px, 1.95vw, 28px); }
+.spw-names--1000 li { font-size: clamp(18px, 1.55vw, 22px); color: #e9dfcf; }
+.spw-names--500 li { font-size: clamp(17px, 1.35vw, 19px); color: #cdc2b2; }
+/* Desktop only: a level with three or more names shares rows, with wide space either side of each name.
+   :has() applies it automatically as a level grows, so adding a name never needs a layout change.
+   Phones and tablets, and any level with one or two names, keep one name per line. */
+@media (min-width: 900px) {
+  .spw-names:has(> li:nth-child(3)) { display: block; max-width: 940px; margin-inline: auto; text-align: center; text-wrap: balance; }
+  .spw-names:has(> li:nth-child(3)) li { display: inline-block; white-space: nowrap; margin: 6px clamp(24px, 2.7vw, 38px); }
+  .spw-names--2500:has(> li:nth-child(3)) li { margin: 6px clamp(28px, 3.2vw, 46px); }
 }
 .spw-gilt {
   display: inline-block;
-  background-image: linear-gradient(100deg, #a8835a 0%, #d2b085 24%, #f2dfbc 46%, #d0ae83 62%, #ab8660 100%);
+  background-image: linear-gradient(100deg, #dcbd8f 0%, #f0dbb4 30%, #fbf1da 50%, #eed8b0 70%, #d9b98a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -3251,28 +3253,23 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
 <!-- =========================
      10 SPONSORS
      ========================= -->
-<section id="sponsor" class="sponsors" aria-labelledby="sponsor-heading">
+<section id="sponsor" class="sponsors" aria-label="Sponsors">
   <div class="container">
     <div class="spw-lead">
-      <div class="section-head reveal" style="margin-inline:auto; text-align:center;">
-        <p class="eyebrow" style="display:block;">In Generous Partnership</p>
-        <h2 id="sponsor-heading">Thank you to <em>our sponsors.</em></h2>
-      </div>
-
       <div class="spw-tier spw-tier--prog spw-tier--lead reveal" role="group" aria-labelledby="spw-underwriters">
-        <h3 id="spw-underwriters" class="spw-tier-h">Underwriters</h3>
-        <ul class="spw-names spw-names--xl">
+        <h2 id="spw-underwriters" class="spw-tier-h">Underwriters</h2>
+        <ul class="spw-names spw-names--10k">
           <li class="spw-gilt">Connie &amp; Steve Ballmer</li>
         </ul>
         <span class="spw-orn" aria-hidden="true"></span>
-        <ul class="spw-names spw-names--l">
+        <ul class="spw-names spw-names--2500">
           <li>Roxie Lee Floyd</li>
           <li>Lyn &amp; Gerald Grinstein</li>
           <li>Sam &amp; Rhoda McKinney Jones</li>
           <li>Lynn &amp; Mikal Thomsen</li>
         </ul>
         <span class="spw-orn" aria-hidden="true"></span>
-        <ul class="spw-names spw-names--m spw-names--two">
+        <ul class="spw-names spw-names--1000">
           <li>Sheri &amp; Les Biller</li>
           <li>Gary &amp; Gwen Gilchrist</li>
           <li>Connie &amp; Gus Kravas</li>
@@ -3281,7 +3278,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
           <li>Ann Ramsay-Jenkins</li>
         </ul>
         <span class="spw-orn" aria-hidden="true"></span>
-        <ul class="spw-names spw-names--s spw-names--two">
+        <ul class="spw-names spw-names--500">
           <li>Jacquelyne &amp; Rick Doane</li>
           <li>Jackie Goldfarb</li>
           <li>Toni Hoffman</li>
@@ -3292,24 +3289,22 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
 
     <div class="spw-tiers">
       <div class="spw-tier spw-tier--prog reveal" role="group" aria-labelledby="spw-guests">
-        <h3 id="spw-guests" class="spw-tier-h">Guests of Honor</h3>
+        <h2 id="spw-guests" class="spw-tier-h">Guests of Honor</h2>
         <div class="spw-row">
-          <h4 class="spw-row-h">Cowhand</h4>
-          <ul class="spw-names spw-names--xl">
+          <h3 class="spw-row-h">Cowhand</h3>
+          <ul class="spw-names spw-names--5k">
             <li class="spw-gilt">Windermere Real Estate Services Company</li>
           </ul>
         </div>
-        <span class="spw-orn" aria-hidden="true"></span>
         <div class="spw-row">
-          <h4 class="spw-row-h">Chandler&rsquo;s Roping Partner</h4>
-          <ul class="spw-names spw-names--l">
+          <h3 class="spw-row-h">Chandler&rsquo;s Roping Partner</h3>
+          <ul class="spw-names spw-names--2500">
             <li>Brett Frank-Looney</li>
           </ul>
         </div>
-        <span class="spw-orn" aria-hidden="true"></span>
         <div class="spw-row">
-          <h4 class="spw-row-h">Silver Buckle</h4>
-          <ul class="spw-names spw-names--m spw-names--two">
+          <h3 class="spw-row-h">Silver Buckle</h3>
+          <ul class="spw-names spw-names--1000">
             <li>Michelle Flowers Taylor</li>
             <li>Alden Gibbs Jr.</li>
             <li>Clarkie Hussey</li>
@@ -3320,7 +3315,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       </div>
 
       <div class="spw-tier reveal" role="group" aria-labelledby="spw-inkind">
-        <h3 id="spw-inkind" class="spw-tier-h">In-Kind Sponsors</h3>
+        <h2 id="spw-inkind" class="spw-tier-h">In-Kind Sponsors</h2>
         <div class="spw-mq">
           <div class="spw-mq-track">
             <ul class="spw-mq-set" aria-label="In-kind sponsors">
@@ -3354,7 +3349,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
       </div>
 
       <div class="spw-tier reveal" role="group" aria-labelledby="spw-messages">
-        <h3 id="spw-messages" class="spw-tier-h">Messages for Chandler</h3>
+        <h2 id="spw-messages" class="spw-tier-h">Messages for Chandler</h2>
         <div class="spw-rotator" data-rotator>
           <div class="spw-rot-stage" aria-live="off">
             <figure class="spw-quote is-active">
