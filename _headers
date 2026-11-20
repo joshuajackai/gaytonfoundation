@@ -17,6 +17,12 @@
 /images/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Brand kit downloads (/brand/). Kept out of /images/ on purpose: these files are
+# revised under the same names, so they must revalidate instead of caching for a
+# year. Search engines should list the /brand/ page, not the raw files.
+/brand/assets/*
+  X-Robots-Tag: noindex
+
 # The IRS determination letter is intentionally NOT published.
 /docs/*
   Cache-Control: no-store
