@@ -779,6 +779,87 @@ section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
 @media (max-width: 560px)  { .expect-grid { grid-template-columns: 1fr; } }
 
 /* =========================================================
+   05B THE VENUE: 4105 trailer (Vimeo, click to play)
+   The poster is ours, not Vimeo's: the trailer's own cover is a bright cyan
+   film countdown. The Vimeo player only loads after a click, so the page
+   pays nothing for it until a guest chooses to watch.
+   ========================================================= */
+.venue-film { margin: 0; }
+.venue-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  background: var(--husky-night);
+  box-shadow: var(--shadow-card);
+}
+.venue-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+.venue-poster {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(12px, 3vw, 32px);
+  color: var(--warm-white);
+  text-decoration: none;
+  background:
+    radial-gradient(90% 75% at 50% 42%, var(--husky-deep) 0%, var(--husky-night) 58%, var(--base) 100%);
+  cursor: pointer;
+}
+.venue-poster::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: url(/images/textures/grain.webp) repeat;
+  opacity: 0.16; mix-blend-mode: overlay;
+}
+.venue-poster::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(190,154,113,0.10), inset 0 -80px 120px -40px rgba(14,9,5,0.85);
+}
+.venue-logo {
+  position: relative; z-index: 1;
+  width: clamp(88px, 32%, 400px); height: auto;
+  opacity: 0.94;
+  transition: transform 600ms ease, opacity 600ms ease;
+}
+.venue-cue {
+  position: relative; z-index: 1;
+  display: inline-flex; align-items: center; gap: var(--space-4);
+  font-family: var(--font-ui); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--warm-white);
+}
+.venue-play {
+  flex: none;
+  width: clamp(48px, 6vw, 72px); height: clamp(48px, 6vw, 72px);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(120deg, #b8480a 0%, #9a3c09 55%, #6b2508 100%);
+  border: 1px solid rgba(255,198,129,0.6);
+  box-shadow: 0 2px 4px rgba(20,9,3,0.5), 0 12px 28px -4px rgba(20,9,3,0.6);
+  transition: transform 240ms ease, border-color 240ms ease;
+}
+.venue-play svg { width: 34%; height: 34%; margin-left: 8%; fill: #fdf9f1; }
+.venue-poster:hover .venue-play,
+.venue-poster:focus-visible .venue-play { transform: scale(1.06); border-color: #ffc681; }
+.venue-poster:hover .venue-logo,
+.venue-poster:focus-visible .venue-logo { transform: scale(1.02); opacity: 1; }
+.venue-poster:focus-visible { outline: 2px solid var(--champagne); outline-offset: -6px; border-radius: var(--radius-lg); }
+.venue-film figcaption {
+  margin-top: var(--space-4);
+  font-size: 15px; font-style: italic;
+  color: var(--text-muted);
+}
+.venue-cta { margin-top: var(--space-8); }
+@media (max-width: 480px) {
+  .venue-cue-text { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .venue-logo, .venue-play { transition: none; }
+  .venue-poster:hover .venue-play, .venue-poster:focus-visible .venue-play,
+  .venue-poster:hover .venue-logo, .venue-poster:focus-visible .venue-logo { transform: none; }
+}
+
+/* =========================================================
    06 — STATS BAR + FULL-BLEED IMAGE
    ========================================================= */
 .stats-section { padding-block: 0; }
@@ -2293,6 +2374,34 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
 </section>
 
 <!-- =========================
+     05B THE VENUE (4105 trailer)
+     ========================= -->
+<section id="venue" aria-labelledby="venue-heading">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">The Venue</p>
+      <h2 id="venue-heading">Step inside <em>4105.</em></h2>
+      <p class="sub">On December 5, 4105 Airport Way S becomes Chandler&rsquo;s room for the night: dinner for 280, raise the paddle, the Bunkhouse lounge and a dance floor that stays open late. Take a one minute look before you walk in.</p>
+    </div>
+
+    <figure class="venue-film reveal">
+      <div class="venue-frame" data-venue-video>
+        <a class="venue-poster" href="https://vimeo.com/1052321042" aria-label="Play the 4105 venue trailer, 1 minute">
+          <img class="venue-logo" src="/images/venue-4105-logo.webp" width="640" height="427" alt="" loading="lazy" decoding="async" />
+          <span class="venue-cue">
+            <span class="venue-play" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M5 3.5v17L20 12z"/></svg></span>
+            <span class="venue-cue-text" aria-hidden="true">Watch the trailer &middot; 1 min</span>
+          </span>
+        </a>
+      </div>
+      <figcaption>Footage from a past gala at 4105. Trailer by Epoch Design Co.</figcaption>
+    </figure>
+
+    <p class="venue-cta reveal"><a class="btn btn-primary btn-sm" href="#tickets">Reserve your place <span aria-hidden="true">&rarr;</span></a></p>
+  </div>
+</section>
+
+<!-- =========================
      06 STATS + FULL-BLEED
      ========================= -->
 <section class="stats-section" aria-label="Event highlights">
@@ -3443,6 +3552,7 @@ html.deep-link .reveal { opacity: 1; transform: none; transition: none; }
         <ul>
           <li><a href="#tribute">Tribute</a></li>
           <li><a href="#expect">What to Expect</a></li>
+          <li><a href="#venue">The Venue</a></li>
           <li><a href="#hosts">Hosts &amp; Honorees</a></li>
           <li><a href="/#team">Board of Advisors</a></li>
           <li><a href="#agenda">Agenda</a></li>
@@ -4317,6 +4427,38 @@ main { overflow-x: clip; }
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (entries) { inView = entries[0].isIntersecting; schedule(); }, { threshold: 0.25 }).observe(rot);
   } else { inView = true; schedule(); }
+})();
+</script>
+<script>
+/* 4105 venue trailer: swap our poster for the Vimeo player on click.
+   No Vimeo code loads until then. Hover or focus warms the connection first.
+   Without JS the poster is a plain link to the video on Vimeo. */
+(function () {
+  var frame = document.querySelector('[data-venue-video]');
+  if (!frame) return;
+  var poster = frame.querySelector('.venue-poster');
+  var warmed = false;
+  function warm() {
+    if (warmed) return; warmed = true;
+    ['https://player.vimeo.com', 'https://i.vimeocdn.com', 'https://f.vimeocdn.com'].forEach(function (h) {
+      var l = document.createElement('link'); l.rel = 'preconnect'; l.href = h; l.crossOrigin = '';
+      document.head.appendChild(l);
+    });
+  }
+  poster.addEventListener('pointerenter', warm, { once: true });
+  poster.addEventListener('focus', warm, { once: true });
+  poster.addEventListener('click', function (e) {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+    e.preventDefault();
+    var f = document.createElement('iframe');
+    f.src = 'https://player.vimeo.com/video/1052321042?autoplay=1&dnt=1&title=0&byline=0&portrait=0&color=be9a71';
+    f.title = '4105 venue trailer';
+    f.allow = 'autoplay; fullscreen; picture-in-picture';
+    f.setAttribute('allowfullscreen', '');
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.replaceChild(f, poster);
+    f.focus();
+  });
 })();
 </script>
 <script src="https://widgets.givebutter.com/latest.umd.cjs?acct=gKsqg0slZwD4ztrh&p=other" async></script>
